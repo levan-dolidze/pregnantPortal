@@ -12,4 +12,6 @@ export class LendingComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+
 }

@@ -1,5 +1,61 @@
-<div class="page-container">
+<div class="navbar-content">
+    <div class="navbar-inner">
+        <div class="navbar-title">
+            online support your parenting journey from
+        </div>
+        <div class="navbar-navigation">
 
 
-    LAYOUT
+            <div class="navigation-inner">
+                <button mat-button [routerLink]="['/lending']"> {{"home"|translate}}</button>
+                <button mat-button [routerLink]="['/about']"> {{"about"|translate}}</button>
+
+                <button mat-button [routerLink]="['/courses']">{{"courses"|translate}}</button>
+                <button mat-button [routerLink]="['/book']">{{"book"|translate}}</button>
+                <button mat-button [routerLink]="['/free-guides']">{{"free-guide"|translate}}</button>
+                <button mat-button [routerLink]="['/shop']">{{"shop"|translate}}</button>
+                <button mat-button [routerLink]="['/contact']">{{"contact"|translate}}</button>
+
+                <span>
+                    <select (change)="changeLang($event.target)">
+                        <option value="ka" [selected]="lang =='ka'">KA</option>
+                        <option value="en" [selected]="lang =='en'"> ENG</option>
+                    </select>
+
+
+                
+
+
+                    <button *ngFor="let action of authActions" mat-button (click)="initAuthActions(action.type)">{{action.text}}</button>
+                    
+                    <!-- <button mat-button [matMenuTriggerFor]="menu">about</button> -->
+
+                    <!-- <mat-menu #menu="matMenu">
+                        <div class="product-menu">
+                            <button mat-menu-item [routerLink]="['/deck']">koko</button>
+                            <button mat-menu-item [routerLink]="['/wheel']">koko</button>
+                            <button mat-menu-item [routerLink]="['/truck']">dsds</button>
+                            <button mat-menu-item [routerLink]="['/complete']">okoko</button>
+                        </div>
+                    </mat-menu> -->
+
+
+                </span>
+            </div>
+
+        </div>
+    </div>
+    <div class="page-name">
+        {{pageName}} >
+    </div>
+
+
+
+    <div class="page-container">
+        <router-outlet></router-outlet>
+    </div>
+
+    <div class="footer">
+        footer
+    </div>
 </div>

@@ -14,10 +14,17 @@ const routes: Routes = [
         pathMatch: 'full'
       },
       { path: 'lending', loadChildren: () => import('./features/lending/lending.module').then(m => m.LendingModule) },
-      { path: 'lending', loadChildren: () => import('./features/about/about.module').then(m => m.AboutModule) },
-
+      { path: 'about', loadChildren: () => import('./features/about/about.module').then(m => m.AboutModule) },
+      { path: 'courses', loadChildren: () => import('./features/courses/courses.module').then(m => m.CoursesModule) },
+      { path: 'book', loadChildren: () => import('./features/book/book.module').then(m => m.BookModule) },
+      { path: 'free-guides', loadChildren: () => import('./features/free-guides/free-guides.module').then(m => m.FreeGuidesModule) },
+      { path: 'shop', loadChildren: () => import('./features/shop/shop.module').then(m => m.ShopModule) },
+      { path: 'contact', loadChildren: () => import('./features/contact/contact.module').then(m => m.ContactModule) },
     ]
   },
+  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+
+
 
 ];
 
