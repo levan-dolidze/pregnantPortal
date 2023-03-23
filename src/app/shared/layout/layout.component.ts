@@ -3,9 +3,13 @@ import { MatDialog } from '@angular/material/dialog';
 // import { MatDialog } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { combineLatest, forkJoin, switchMap } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 import { LogInComponent } from 'src/app/auth/log-in/log-in.component';
+import { IsAdminCheck } from 'src/app/auth/models/authModel';
 import { SignUpComponent } from 'src/app/auth/sign-up/sign-up.component';
-import { authActionModes, IActionType } from 'src/app/models/authModel';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
+import { authActionModes, IActionType } from 'src/app/shared/layout/models/authModel';
 
 @Component({
   selector: 'app-layout',
@@ -17,10 +21,15 @@ import { authActionModes, IActionType } from 'src/app/models/authModel';
 
 export class LayoutComponent implements OnInit {
 
+
+  isAdmin: IsAdminCheck;
+
   constructor(
     private route: ActivatedRoute,
     private translate: TranslateService,
     private dialog: MatDialog,
+    private localStorageService: LocalStorageService,
+    public authService: AuthService
 
 
   ) {
@@ -35,24 +44,11 @@ export class LayoutComponent implements OnInit {
       translate.setDefaultLang('ka');
     }
 
-
     this.authActions.push(
       {
         text: 'logIn',
         type: 'logIn',
-        icon: "check_circle",
-        permission: "user",
-      },
-      {
-        text: 'logOut',
-        type: 'logOut',
         icon: "update",
-        permission: "user",
-      },
-      {
-        text: 'signUp',
-        type: 'signUp',
-        icon: "edit",
         permission: "user",
       },
       {
@@ -65,9 +61,88 @@ export class LayoutComponent implements OnInit {
     )
 
 
+
+
+
+    combineLatest({
+      token: this.localStorageService.isTokenEvent$,
+      admin: this.authService.isAdminEvent$
+    }).subscribe((res) => {
+
+
+      if (res.token&&res.admin) {
+        this.authActions = []
+        this.authActions.push(
+          {
+            text: 'logOut',
+            type: 'logOut',
+            icon: "update",
+            permission: "user",
+          },
+          {
+            text: 'admin',
+            type: 'admin',
+            icon: "edit",
+            permission: "admin",
+          },
+
+        )
+
+      } 
+      else if(res.token&&!res.admin) {
+        this.authActions = []
+        this.authActions = []
+        this.authActions.push(
+          {
+            text: 'logOut',
+            type: 'logOut',
+            icon: "update",
+            permission: "user",
+          },
+        )
+
+      }
+
+      else if(!res.token) {
+        this.authActions = []
+        this.authActions = []
+        this.authActions.push(
+          {
+            text: 'logIn',
+            type: 'logIn',
+            icon: "update",
+            permission: "user",
+          },
+          {
+            text: 'signUp',
+            type: 'signUp',
+            icon: "update",
+            permission: "user",
+          },
+        )
+
+      }
+
+
+
+
+
+
+    });
+
+
+
+
+
+
+
+
+
+
+
   }
 
-
+  test: boolean
   pageName: string;
   lang: string;
 
@@ -76,7 +151,22 @@ export class LayoutComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.buttonInit()
   }
+
+
+
+
+
+  buttonInit() {
+
+
+
+  }
+
+
+
+
 
   changeLang(lang: any) {
     localStorage.setItem('lang', lang.value);
@@ -89,8 +179,8 @@ export class LayoutComponent implements OnInit {
   initAuthActions(type: IActionType) {
 
 
-    
-    const popups:any = {
+
+    const popups: any = {
       logIn: {
         component: LogInComponent,
         width: '500px',
@@ -102,7 +192,6 @@ export class LayoutComponent implements OnInit {
       },
     };
 
-    console.log(popups[type])
 
     const dialogRef = this.dialog.open(popups[type]['component'], {
       width: '500px',
@@ -112,7 +201,7 @@ export class LayoutComponent implements OnInit {
       // },
     });
 
-   
+
   }
 
   openLogin() {

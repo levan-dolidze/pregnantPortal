@@ -26,7 +26,11 @@
                 
 
 
-                    <button *ngFor="let action of authActions" mat-button (click)="initAuthActions(action.type)">{{action.text}}</button>
+
+                    <button *ngFor="let action of authActions" mat-button 
+                            (click)="initAuthActions(action.type)">{{action.text}}
+                    </button>
+
                     
                     <!-- <button mat-button [matMenuTriggerFor]="menu">about</button> -->
 

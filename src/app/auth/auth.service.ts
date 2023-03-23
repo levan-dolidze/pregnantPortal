@@ -1,30 +1,34 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth'
-import { of, Subject } from 'rxjs';
-import { SignUp } from './models/authModel';
+import { BehaviorSubject, of, Subject } from 'rxjs';
+import { Admin, SignUp } from './models/authModel';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  public isAdminEvent$: BehaviorSubject<boolean>;
+
+
+  constructor(public firebaseAuth: AngularFireAuth) {
+    this.isAdminEvent$ = new BehaviorSubject<boolean>(null);
+
+  }
+
+  get result() {
+    return this.isAdminEvent$.value
+  }
 
 
 
-
-  constructor(public firebaseAuth: AngularFireAuth) { }
-  userLoggedIn$: Subject<any> = new Subject()
-
-
-  getToken() {
-    let token = localStorage.getItem('user');
-    if (token) {
-      let tokenJson = JSON.parse(token);
-      if (tokenJson.emailVerified) {
-        return of(tokenJson)
-      }
-      return of(false)
+  isAdmin(email: string) {
+    if (email === Admin.admin) {
+      this.isAdminEvent$.next(true)
+      return of(true);
+    } else {
+      this.isAdminEvent$.next(false)
+      return of(false);
     }
-    return of(false)
   }
 
 

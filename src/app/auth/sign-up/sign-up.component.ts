@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AuthService } from '../auth.service';
 import { SignUp } from '../models/authModel';
 import { getAuth, sendEmailVerification } from "firebase/auth";
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class SignUpComponent implements OnInit {
     @Optional() public dialogRef: MatDialogRef<SignUpComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { promoCodeDetails: any },
     private authservice: AuthService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
 
   ) { }
 
@@ -45,6 +47,8 @@ export class SignUpComponent implements OnInit {
       await this.authservice.signUp(params);
       this.verifyEmail();
       this.dialogRef.close();
+      this.router.navigate([''])
+
     }
   };
 
