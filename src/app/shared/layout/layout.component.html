@@ -1,7 +1,7 @@
 <div class="navbar-content">
     <div class="navbar-inner">
         <div class="navbar-title">
-            online support your parenting journey from
+            {{"headerTitle"|translate}} {{prise}} 
         </div>
         <div class="navbar-navigation">
 
@@ -27,21 +27,28 @@
 
 
 
-                    <button *ngFor="let action of authActions" mat-button 
-                            (click)="initAuthActions(action.type)">{{action.text}}
+                    <button *ngFor="let action of authActions" mat-button [matMenuTriggerFor]="action.text==='admin'?adminMenu:null"
+
+                            (click)="initAuthActions(action.type)"
+                           
+                            >{{action.text|translate}}
+
                     </button>
 
-                    
-                    <!-- <button mat-button [matMenuTriggerFor]="menu">about</button> -->
+                 <mat-menu #adminMenu="matMenu">
+                        <div class="admin-menu">
 
-                    <!-- <mat-menu #menu="matMenu">
-                        <div class="product-menu">
-                            <button mat-menu-item [routerLink]="['/deck']">koko</button>
-                            <button mat-menu-item [routerLink]="['/wheel']">koko</button>
-                            <button mat-menu-item [routerLink]="['/truck']">dsds</button>
-                            <button mat-menu-item [routerLink]="['/complete']">okoko</button>
+                            <button *ngFor="let link of adminBtns" mat-menu-item [routerLink]="link.link">
+                                {{link.text|translate}}
+                            </button>
+                            <!-- <button mat-menu-item [routerLink]="['/admin/admin-pregnancy']">{{'pregnancy_stuff'|translate}}</button>
+                            <button mat-menu-item [routerLink]="['/admin/admin-home']">{{'home'|translate}}</button>
+                            <button mat-menu-item [routerLink]="['/admin/admin-about']">{{'about'|translate}}</button>
+                            <button mat-menu-item [routerLink]="['/admin/admin-books']">{{'book'|translate}}</button>
+                            <button mat-menu-item [routerLink]="['/admin/admin-free-guides']">{{'free-guide'|translate}}</button>
+                            <button mat-menu-item [routerLink]="['/admin/admin-contact']">{{'contact'|translate}}</button> -->
                         </div>
-                    </mat-menu> -->
+                    </mat-menu>
 
 
                 </span>

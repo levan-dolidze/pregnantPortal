@@ -1,8 +1,22 @@
-
 <form (ngSubmit)="onSignUp()" [formGroup]="form">
-    <input type="text" placeholder="email" formControlName="email">
-    <input type="text" placeholder="password" formControlName="password">
+
+    <h4>{{'signUp'|translate}}</h4>
+
+        <div>
+            <mat-form-field  appearance="outline">
+                <mat-label>{{'email'|translate}}</mat-label>
+                <input matInput placeholder="{{'email'|translate}}" value="Sushi" formControlName="email">
+            </mat-form-field>
+        </div>
+      
+
+        <div>
+            <mat-form-field  appearance="outline">
+                <mat-label>{{'password'|translate}}</mat-label>
+                <input matInput placeholder="{{'password'|translate}}" formControlName="password" value="Sushi">
+            </mat-form-field>
+        </div>
 
 
-    <button type="submit">signUp</button>
+    <button type="submit" mat-raised-button color="primary">{{'signUp'|translate}}</button>
 </form>

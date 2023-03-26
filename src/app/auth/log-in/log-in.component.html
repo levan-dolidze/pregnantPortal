@@ -1,9 +1,23 @@
-<p>log-in works!</p>
+
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+
+    <h4>{{'logIn'|translate}}</h4>
+
+        <div>
+            <mat-form-field  appearance="outline">
+                <mat-label>{{'user'|translate}}</mat-label>
+                <input matInput placeholder="{{'user'|translate}}"  formControlName="userName">
+            </mat-form-field>
+        </div>
+      
+
+        <div>
+            <mat-form-field  appearance="outline">
+                <mat-label>{{'password'|translate}}</mat-label>
+                <input matInput placeholder="{{'password'|translate}}" formControlName="password" >
+            </mat-form-field>
+        </div>
 
 
-<form  (ngSubmit)="onSubmit()"  [formGroup]="form">
-    <input type="text" formControlName="userName">
-    <input type="text" formControlName="password">
-
-    <button type="submit">submit</button>
+    <button type="submit" mat-raised-button color="primary">{{'logIn'|translate}}</button>
 </form>

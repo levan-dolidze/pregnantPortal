@@ -1,4 +1,6 @@
 {
+
+    "headerTitle":"Online Support Your Parenting Journey From",
     "home": "Home",
     "about":"About",
     "courses":"Courses",
@@ -8,7 +10,13 @@
     "contact":"contact",
     "logIn":"logIn",
     "logOut":"logOut",
-    "signUp":"signUp"
+    "signUp":"signUp",
+    "admin":"admin",
+    "user":"user",
+    "password":"password",
+    "email":"email",
+    "pregnancy_stuff":"pregnancy stuff"
+
 
 
 

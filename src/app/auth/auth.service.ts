@@ -15,9 +15,7 @@ export class AuthService {
 
   }
 
-  get result() {
-    return this.isAdminEvent$.value
-  }
+  
 
 
 

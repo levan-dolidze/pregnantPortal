@@ -4,7 +4,7 @@ export interface SignUp {
 }
 
 export enum Admin {
-    admin = 'l.dolidze11@gmail.com'
+    admin = '1'
 }
 
 
