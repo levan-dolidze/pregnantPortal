@@ -1,1 +1,97 @@
-<p>admin-pregnancy-stuff works!</p>
+<div class="admin-content">
+    <div class="admin-flex">
+
+     <div @fade class="admin-inner">
+        <h3 class="list-title">{{'ordered_pregnancy_stuff'|translate}}</h3>
+
+         <div class="admin-list-content" >
+             <div class="admin-list-inner" >
+                 <div class="personal-info">
+                     <h3>Personal Info</h3>
+                     <div>
+                         Full name:
+                     </div>
+                     <div>
+                         Email# 
+                     </div>
+                     <div>
+                         Phone:
+                     </div>
+
+
+                 </div>
+                 <div class="event-Info">
+                     <h3>Event Info</h3>
+                     <div>
+                         Order Date:
+                     </div>
+                     <div>
+                         Event Date: 
+                     </div>
+                     <div>
+                         Start Time :
+                         <ng-container>
+                           koko
+                         </ng-container>
+
+                         <ng-container *ngIf="0;else isnotNull">
+                             0
+                         </ng-container>
+                         <ng-template #isnotNull>
+                             koko
+                         </ng-template>
+
+
+                         <ng-container>
+                             AM
+                         </ng-container>
+                         <ng-template #PM>
+                             PM
+                         </ng-template>
+
+
+
+                     </div>
+                     <div>
+                         Number Of People:
+                     </div>
+                     <div>
+                         Event Type: 
+                     </div>
+                     <div>
+                         AdditionalInfo:
+                     </div>
+                 </div>
+
+                 <div>
+                 </div>
+                 <mat-icon style="cursor:pointer;" >cancel
+                 </mat-icon>
+             </div>
+         </div>
+     </div>
+<!-- 
+     <div @fade class="input-form">
+         <h3 class="list-title">Add New course</h3>
+         <form style="padding:10px" >
+       
+             <div>
+                 <mat-form-field  appearance="outline">
+                     <mat-label>{{'user'|translate}}</mat-label>
+                     <input matInput placeholder="{{'user'|translate}}"  >
+                 </mat-form-field>
+             </div>
+           
+     
+             <div>
+                 <mat-form-field  appearance="outline">
+                     <mat-label>{{'password'|translate}}</mat-label>
+                     <input matInput placeholder="{{'password'|translate}}">
+                 </mat-form-field>
+             </div>
+          
+             <button class="addEventBtn" type="submit" mat-raised-button color="primary">Add New Event</button>
+         </form>
+     </div> -->
+ </div>
+</div>

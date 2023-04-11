@@ -1,0 +1,125 @@
+$goldColor: rgb(171, 155, 86);
+$whiteColor: white;
+$borderRadius: 5px;
+
+@mixin  absoluteSizes(){
+    width:100%;
+    height:100%;
+}
+@mixin centerElement {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+//admin
+@mixin adminList($PinfoWidth,$EinfoWidth) {
+   @include absoluteSizes;
+
+    .admin-flex {
+        display: flex;
+        width: 100%;
+
+    }
+
+    .admin-inner {
+        width: 70%;
+        .list-title {
+            padding: 5px;
+        }
+
+        .admin-list-content {
+            width: 100%;
+            .admin-list-inner {
+                display: flex;
+                background-color: $whiteColor;
+                padding: 10px;
+                margin-top: 10px;
+                border-radius: $borderRadius;
+                width: 95%;
+
+                .personal-info {
+                    width: $PinfoWidth;
+                }
+
+                .event-Info {
+                    width: $EinfoWidth;
+                    div{
+                    img{
+                        height: 100%;
+                            width: 25%;
+                            object-fit: cover;
+                            border-radius: 5px;
+                    }
+                    }
+                }
+            }
+        }
+
+
+    }
+
+ 
+};
+
+@mixin admin-form {
+    background-color: $whiteColor;
+    border-radius: $borderRadius;
+    text-align: center;
+    width: 20%;
+    position: sticky;
+    top: 0px;
+    margin: 10px 0px 0px 20px;
+}
+
+@mixin adminListCancelIcons {
+    float: right;
+    cursor: pointer;
+    opacity: 0.8;
+};
+
+@function marginTop($size) {
+    @return $size
+};
+
+//cart styles
+// @mixin cart {
+//    @include absoluteSizes;
+//     .admin-inner{
+//         display: flex;
+//         width: 100%;
+//         .cart-inner{
+//             overflow: auto;
+//             width: 70%;
+//             .list-title{
+//                 padding: 10px;
+//             }
+//             div{
+//                 .list-inner {
+//                     display: flex;
+//                     background-color: $whiteColor;
+//                     border-radius: $borderRadius;
+//                     padding: 10px;
+//                     margin-top: 10px;
+//                     .employee-Info{
+//                         .employee-image{
+//                             width: 100px;
+//                             height: 100px;
+//                             img{
+//                                 @include absoluteSizes;
+//                                 object-fit: cover;
+//                             }
+//                         }
+//                     }
+//                     .employee-personal-info{
+//                         width: 100%;
+//                         padding: 10px;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// };

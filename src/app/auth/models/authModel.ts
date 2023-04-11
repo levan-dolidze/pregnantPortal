@@ -3,8 +3,13 @@ export interface SignUp {
     password: string
 }
 
+export interface LogIn {
+    userName: string,
+    password: string
+}
+
 export enum Admin {
-    admin = '1'
+    admin = 'l.dolidze11@gmail.com'
 }
 
 

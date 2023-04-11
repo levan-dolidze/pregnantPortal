@@ -4,6 +4,7 @@ import { LendingRoutingModule } from './lending-routing.module';
 import { LendingComponent } from './lending.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CustomMaterialModule } from 'src/app/custom-material/custom-material.module';
+// import { NgxEchartsModule } from 'ngx-echarts/public-api';
 
 
 @NgModule({
@@ -14,6 +15,8 @@ import { CustomMaterialModule } from 'src/app/custom-material/custom-material.mo
     LendingRoutingModule,
     SharedModule,
     CustomMaterialModule,
+    // NgxEchartsModule.forChild(),
+
 
   ]
 })

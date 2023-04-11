@@ -33,4 +33,15 @@ export class LocalStorageService {
     this.isTokenEvent$.next(false)
     return of(false)
   }
+
+  getAdmin() {
+    const admin = localStorage.getItem('admin')
+    if (admin) {
+      return of(admin)
+    }
+    else {
+      return of(false)
+    }
+
+  }
 }

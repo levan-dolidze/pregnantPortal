@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth'
-import { BehaviorSubject, of, Subject } from 'rxjs';
+import { BehaviorSubject, map, of, Subject } from 'rxjs';
 import { Admin, SignUp } from './models/authModel';
 
 @Injectable({
@@ -15,13 +15,14 @@ export class AuthService {
 
   }
 
-  
+
 
 
 
   isAdmin(email: string) {
     if (email === Admin.admin) {
       this.isAdminEvent$.next(true)
+      localStorage.setItem('admin', '1')
       return of(true);
     } else {
       this.isAdminEvent$.next(false)
@@ -38,7 +39,15 @@ export class AuthService {
 
   async signIn(email: string, password: string) {
     await this.firebaseAuth.signInWithEmailAndPassword(email, password).then(res => {
-      localStorage.setItem('user', JSON.stringify(res.user))
+      if (res.user.emailVerified) {
+        localStorage.setItem('user', JSON.stringify(res.user))
+
+      }
+      else {
+        console.error('error')
+      }
+
+
     })
   };
 

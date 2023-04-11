@@ -14,5 +14,8 @@
             "user": "მომხმარებელი",
             "password": "პაროლი",
             "email": "იმეილი",
-            "pregnancy_stuff": "ორსულობის ნივთები"
+            "pregnancy_stuff": "ორსულობის ნივთები",
+            "ordered_pregnancy_stuff": "შეკვეთილი ორსულობის ნივთები",
+            "ordered_courses": "შეკვეთილი კურსები",
+            "customer_message": "მომხმარებლის შეტყობინება"
         }

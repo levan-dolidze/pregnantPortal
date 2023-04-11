@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 // import { MatDialog } from '@angular/material';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { combineLatest, concatMap, forkJoin, from, switchMap } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
@@ -28,11 +28,13 @@ export class LayoutComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private translate: TranslateService,
     private dialog: MatDialog,
     private localStorageService: LocalStorageService,
     public authService: AuthService,
-    private autBtnService: AuthBtnModesService
+    private autBtnService: AuthBtnModesService,
+
 
 
   ) {
@@ -47,15 +49,18 @@ export class LayoutComponent implements OnInit {
       translate.setDefaultLang('ka');
     }
 
+    this.localStorageService.getToken().subscribe((res) => {
+      this.authBtnInit(res);
+    })
 
-    this.authBtnInit();
   }
 
   pageName: string;
   lang: string;
 
   authActions: authActionModes[] = [];
-  adminBtns:Array<any> = []
+  adminBtns: Array<any> = []
+
 
 
 
@@ -66,16 +71,17 @@ export class LayoutComponent implements OnInit {
 
 
 
-  authBtnInit() {
+  authBtnInit(storedAdmin: boolean) {
 
     combineLatest({
       token: this.localStorageService.isTokenEvent$,
-      admin: this.authService.isAdminEvent$
+      admin: this.authService.isAdminEvent$,
     }).subscribe((res) => {
-      this.autBtnService.getAuthBtnMode(this.authActions, res.token, res.admin).subscribe((res) => {
+
+      this.autBtnService.getAuthBtnMode(this.authActions, res.token, storedAdmin ? storedAdmin : res.admin).subscribe((res) => {
         this.authActions = res
       })
-      this.autBtnService.getAdminBtns(this.adminBtns,res.token, res.admin).subscribe((res) => {
+      this.autBtnService.getAdminBtns(this.adminBtns, res.token, storedAdmin ? storedAdmin : res.admin).subscribe((res) => {
         this.adminBtns = res
       })
     });
@@ -95,6 +101,13 @@ export class LayoutComponent implements OnInit {
 
 
 
+    if (type === 'logOut') {
+      this.authService.logOut();
+      this.localStorageService.getToken().subscribe((res) => { })
+      return
+    }
+
+
     const popups: any = {
       logIn: {
         component: LogInComponent,
@@ -105,6 +118,7 @@ export class LayoutComponent implements OnInit {
         component: SignUpComponent,
         width: '500px',
       },
+
     };
 
 
@@ -119,16 +133,7 @@ export class LayoutComponent implements OnInit {
 
   }
 
-  openLogin() {
 
-  }
-
-  openLogOut() {
-
-  }
-  openSignUp() {
-
-  }
 
 
 }

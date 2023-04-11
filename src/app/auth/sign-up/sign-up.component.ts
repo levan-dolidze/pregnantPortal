@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit, Optional } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControlOptions } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AuthService } from '../auth.service';
 import { SignUp } from '../models/authModel';
@@ -35,7 +35,7 @@ export class SignUpComponent implements OnInit {
     this.form = this.fb.group({
       email: [null, [Validators.required]],
       password: [null, [Validators.required]]
-    })
+    } as { [key in keyof SignUp]: FormControlOptions })
   }
 
 

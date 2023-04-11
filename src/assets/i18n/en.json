@@ -15,7 +15,10 @@
     "user":"user",
     "password":"password",
     "email":"email",
-    "pregnancy_stuff":"pregnancy stuff"
+    "pregnancy_stuff":"pregnancy stuff",
+    "ordered_pregnancy_stuff":"ordered pregnancy stuff",
+    "ordered_courses":"ordered courses",
+    "customer_message":"customer message"
 
 
 

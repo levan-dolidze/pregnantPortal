@@ -14,7 +14,7 @@ export class AuthBtnModesService {
   getAuthBtnMode(container: Array<any>, token: boolean, admin: boolean): Observable<Array<authActionModes>> {
 
 
-    if (!token && admin) {
+    if (token && admin) {
       container = []
       container.push(
         {
@@ -77,22 +77,28 @@ export class AuthBtnModesService {
   getAdminBtns(container: Array<any>, token: boolean, admin: boolean) {
 
 
-    //dummy -უნდა შეიცვალოს token
-    if (!token && admin) {
+    if (token && admin) {
       container = []
       container.push(
         {
-          text: 'courses',
+          text: 'ordered_courses',
           type: 'courses',
           icon: "update",
           link: "/admin/admin-courses",
           permission: "user",
         },
         {
-          text: 'pregnancy_stuff',
+          text: 'ordered_pregnancy_stuff',
           type: 'courses',
           icon: "update",
           link: "/admin/admin-pregnancy",
+          permission: "user",
+        },
+        {
+          text: 'customer_message',
+          type: 'message',
+          icon: "update",
+          link: "/admin/admin-message",
           permission: "user",
         },
         {
