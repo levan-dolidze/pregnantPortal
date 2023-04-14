@@ -1,0 +1,22 @@
+@import '../../../../app/config.scss';
+
+
+
+.admin-content {
+    @include adminList(30%,70%);
+
+    
+};
+
+.cancel-icon {
+    @include adminListCancelIcons;
+};
+
+.form-control,
+.addEventBtn {
+    margin-top: marginTop(10px);
+};
+
+.input-form{
+    @include admin-form;
+ };

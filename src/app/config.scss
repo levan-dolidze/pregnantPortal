@@ -1,11 +1,11 @@
-$goldColor: rgb(171, 155, 86);
 $whiteColor: white;
 $borderRadius: 5px;
 
-@mixin  absoluteSizes(){
-    width:100%;
-    height:100%;
+@mixin absoluteSizes() {
+    width: 100%;
+    height: 100%;
 }
+
 @mixin centerElement {
     position: absolute;
     left: 50%;
@@ -16,8 +16,8 @@ $borderRadius: 5px;
 
 
 //admin
-@mixin adminList($PinfoWidth,$EinfoWidth) {
-   @include absoluteSizes;
+@mixin adminList($PinfoWidth, $EinfoWidth) {
+    @include absoluteSizes;
 
     .admin-flex {
         display: flex;
@@ -26,13 +26,15 @@ $borderRadius: 5px;
     }
 
     .admin-inner {
-        width: 70%;
+
+        // width: 70%;
         .list-title {
             padding: 5px;
         }
 
         .admin-list-content {
             width: 100%;
+
             .admin-list-inner {
                 display: flex;
                 background-color: $whiteColor;
@@ -43,17 +45,41 @@ $borderRadius: 5px;
 
                 .personal-info {
                     width: $PinfoWidth;
+
+                    div {
+                        padding: 3px;
+
+                        div {
+                            margin-top: 8px;
+                        }
+                    }
                 }
 
                 .event-Info {
                     width: $EinfoWidth;
-                    div{
-                    img{
-                        height: 100%;
+
+                    div {
+                        img {
+                            height: 100%;
                             width: 25%;
                             object-fit: cover;
                             border-radius: 5px;
+                        }
                     }
+                }
+
+                .displayedColumns {
+                    margin-top: 75px;
+
+                    .displayedColumns-inner {
+                        display: flex;
+                        flex-direction: column;
+
+                        .action-btns {
+                            display: flex;
+                            gap: 15px;
+                            margin-top:10px
+                        }
                     }
                 }
             }
@@ -62,8 +88,10 @@ $borderRadius: 5px;
 
     }
 
- 
-};
+
+}
+
+;
 
 @mixin admin-form {
     background-color: $whiteColor;
@@ -72,54 +100,20 @@ $borderRadius: 5px;
     width: 20%;
     position: sticky;
     top: 0px;
-    margin: 10px 0px 0px 20px;
+    // margin: 10px 0px 0px 20px;
+    max-height: 500px;
 }
 
 @mixin adminListCancelIcons {
     float: right;
     cursor: pointer;
     opacity: 0.8;
-};
+}
+
+;
 
 @function marginTop($size) {
     @return $size
-};
+}
 
-//cart styles
-// @mixin cart {
-//    @include absoluteSizes;
-//     .admin-inner{
-//         display: flex;
-//         width: 100%;
-//         .cart-inner{
-//             overflow: auto;
-//             width: 70%;
-//             .list-title{
-//                 padding: 10px;
-//             }
-//             div{
-//                 .list-inner {
-//                     display: flex;
-//                     background-color: $whiteColor;
-//                     border-radius: $borderRadius;
-//                     padding: 10px;
-//                     margin-top: 10px;
-//                     .employee-Info{
-//                         .employee-image{
-//                             width: 100px;
-//                             height: 100px;
-//                             img{
-//                                 @include absoluteSizes;
-//                                 object-fit: cover;
-//                             }
-//                         }
-//                     }
-//                     .employee-personal-info{
-//                         width: 100%;
-//                         padding: 10px;
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// };
+;

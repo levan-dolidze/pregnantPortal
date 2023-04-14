@@ -1,0 +1,69 @@
+
+
+<div class="admin-shop-cont">
+
+    <div class="list">
+        <app-grid [displayedColumns]="displayedColumns" 
+        [edit]="true" 
+        [cancel]="true"
+        [showDetails]="true"
+        (emitActions)="onAction($event)">
+    
+        </app-grid>
+    </div>
+  
+
+
+
+    <div class="input-form" >
+
+        <h4>{{'addNewStuff'|translate}}</h4>
+
+        <form (ngSubmit)="onAdd()" [formGroup]="form">
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>{{'user'|translate}}</mat-label>
+                    <input matInput placeholder="{{'user'|translate}}" formControlName="title">
+
+                    <ng-container *ngIf="form.get('title')?.dirty">
+                        <mat-error *ngIf="form.get('title').errors?.['required']">
+                            ველი სავალდებულოა
+                        </mat-error>
+                        <mat-error *ngIf="form.get('title').errors?.['pattern']">
+                            არასწორი ფორმატი
+                        </mat-error>
+                    </ng-container>
+                </mat-form-field>
+            </div>
+
+
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>{{'password'|translate}}</mat-label>
+                    <input matInput placeholder="{{'password'|translate}}" formControlName="description">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>{{'password'|translate}}</mat-label>
+                    <input matInput placeholder="{{'password'|translate}}" formControlName="prise">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>{{'password'|translate}}</mat-label>
+                    <input matInput placeholder="{{'password'|translate}}" formControlName="img">
+                </mat-form-field>
+            </div>
+
+
+            <button type="submit" mat-raised-button color="primary">{{'Add'|translate}}</button>
+        </form>
+
+
+    </div>
+
+
+</div>
+
+

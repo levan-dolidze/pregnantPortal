@@ -9,6 +9,7 @@ import { AdminFreeGuideComponent } from './admin-free-guide/admin-free-guide.com
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { AdminPregnancyStuffComponent } from './admin-pregnancy-stuff/admin-pregnancy-stuff.component';
 import { AdminComponent } from './admin.component';
+import { AdminShopComponent } from './admin-shop/admin-shop.component';
 
 const routes: Routes = [
   {
@@ -53,6 +54,11 @@ const routes: Routes = [
           {
             path: 'admin-contact',
             component: AdminContactComponent,
+
+          },
+          {
+            path: 'admin-shop',
+            component: AdminShopComponent,
 
           },
         ]

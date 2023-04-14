@@ -12,6 +12,9 @@ export enum Admin {
     admin = 'l.dolidze11@gmail.com'
 }
 
+export const adminValidation = (user: string) => user === Admin.admin;
+
+
 
 export interface IsAdminCheck {
     isAdmin: boolean,

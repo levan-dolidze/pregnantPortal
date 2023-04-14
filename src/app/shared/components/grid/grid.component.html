@@ -1,0 +1,42 @@
+<div class="admin-content" >
+
+    <div class="admin-inner">
+        <h3 class="list-title">{{pageTitle|translate}}</h3>
+        <div class="admin-list-content">
+            <div class="admin-list-inner">
+                <div class="personal-info" *ngFor="let column of displayedColumns">
+                    <h3>{{column.title}}</h3>
+                    <div *ngFor="let item of column.getData"  style="border-bottom: 1px solid #e9e9e9!important;" >
+                        <div  >
+                            {{item}}
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <div class="displayedColumns"  *ngIf="displayedColumns" >
+
+                    <div class="displayedColumns-inner" *ngFor="let column of displayedColumns[0]?.getData;let i=index"
+                        >
+                        <div class="action-btns">
+                            <div *ngIf="cancel">
+                                <mat-icon (click)="emitAction(i,'cancel',displayedColumns)"
+                                    style="cursor:pointer;">cancel
+                                </mat-icon>
+                            </div>
+                            <div *ngIf="showDetails">
+                                <mat-icon (click)="emitAction(i,'detail',displayedColumns)"
+                                    style="cursor:pointer;">detail
+                                </mat-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

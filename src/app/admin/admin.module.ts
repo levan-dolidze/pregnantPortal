@@ -12,6 +12,7 @@ import { AdminBookComponent } from './admin-book/admin-book.component';
 import { AdminFreeGuideComponent } from './admin-free-guide/admin-free-guide.component';
 import { AdminContactComponent } from './admin-contact/admin-contact.component';
 import { AdminCustomerMessageComponent } from './admin-customer-message/admin-customer-message.component';
+import { AdminShopComponent } from './admin-shop/admin-shop.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { AdminCustomerMessageComponent } from './admin-customer-message/admin-cu
     AdminFreeGuideComponent,
     AdminContactComponent,
     AdminCustomerMessageComponent,
+    AdminShopComponent
 
   ],
   imports: [

@@ -13,7 +13,7 @@ export const environment = {
     appId: "1:348776876701:web:06baa2f97c7a6df8392274",
     measurementId: "G-L534XRVX0X"
   },
-  apiUrl:'https://pregnantportal-default-rtdb.firebaseio.com/'
+  apiUrl:'https://pregnantportal-default-rtdb.firebaseio.com'
 
 };
 

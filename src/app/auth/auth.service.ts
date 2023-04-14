@@ -19,7 +19,10 @@ export class AuthService {
 
 
 
+  
+
   isAdmin(email: string) {
+
     if (email === Admin.admin) {
       this.isAdminEvent$.next(true)
       localStorage.setItem('admin', '1')

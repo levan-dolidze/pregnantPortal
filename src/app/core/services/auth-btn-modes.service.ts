@@ -130,6 +130,13 @@ export class AuthBtnModesService {
           permission: "user",
         },
         {
+          text: 'shop',
+          type: 'shop',
+          icon: "update",
+          link: "/admin/admin-shop",
+          permission: "user",
+        },
+        {
           text: 'contact',
           type: 'contact',
           icon: "update",

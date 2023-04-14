@@ -6,14 +6,19 @@ import { CustomMaterialModule } from '../custom-material/custom-material.module'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { LayoutComponent } from './layout/layout.component';
-import { AuthComponent } from '../auth/auth.component';
+import { GridComponent } from './components/grid/grid.component';
+import { GridDirective } from './components/grid/grid.directive';
 
 
 
 @NgModule({
     declarations: [
         AppRootComponent,
-        LayoutComponent
+        LayoutComponent,
+        GridComponent,
+        GridDirective,
+        
+
 
     ],
 
@@ -25,6 +30,8 @@ import { AuthComponent } from '../auth/auth.component';
         TranslateModule,
         CustomMaterialModule,
 
+
+
     ],
 
     exports: [
@@ -33,6 +40,8 @@ import { AuthComponent } from '../auth/auth.component';
         ReactiveFormsModule,
         FormsModule,
         TranslateModule,
+        GridComponent
+
 
 
 
