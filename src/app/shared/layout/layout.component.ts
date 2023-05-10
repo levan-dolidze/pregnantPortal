@@ -11,6 +11,7 @@ import { SignUpComponent } from 'src/app/auth/sign-up/sign-up.component';
 import { AuthBtnModesService } from 'src/app/core/services/auth-btn-modes.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { authActionModes, IActionType } from 'src/app/shared/layout/models/authModel';
+import { LanguageService } from '../services/language.service';
 
 @Component({
   selector: 'app-layout',
@@ -29,25 +30,19 @@ export class LayoutComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private translate: TranslateService,
     private dialog: MatDialog,
     private localStorageService: LocalStorageService,
+    private translate: TranslateService,
+
     public authService: AuthService,
     private autBtnService: AuthBtnModesService,
+    public languageService: LanguageService
 
 
 
   ) {
     this.pageName = this.route.snapshot.data['pageName'];
 
-    translate.use('en');
-
-    const lang = localStorage.getItem('lang');
-    if (lang) {
-      translate.use(lang)
-    } else {
-      translate.setDefaultLang('ka');
-    }
 
     this.localStorageService.getToken().subscribe((res) => {
       this.authBtnInit(res);
@@ -61,10 +56,14 @@ export class LayoutComponent implements OnInit {
   authActions: authActionModes[] = [];
   adminBtns: Array<any> = []
 
-
+  selectedLang: string;
 
 
   ngOnInit(): void {
+
+    this.languageService.setLanguage();
+
+    this.selectedLang = this.languageService.defaultLang;
 
 
   }
@@ -132,7 +131,7 @@ export class LayoutComponent implements OnInit {
 
 
   }
-  
+
 
 
 

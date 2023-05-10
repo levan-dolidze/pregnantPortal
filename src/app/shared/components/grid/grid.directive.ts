@@ -41,7 +41,7 @@ export class GridDirective {
   }
 
   initDelete(service: any, method: string, key: any) {
-    service[method](key).subscribe({
+  this.subscription= service[method](key).subscribe({
       next: ((res: Array<unknown>) => {
         this.adminHttp.dataSubject.subscribe((res) => {
           this.getData(res)
@@ -53,7 +53,11 @@ export class GridDirective {
 
 
 
-  
+  subscription = new Subscription
+  destroy() {
+    this.subscription.unsubscribe();
+  }
+
 
 
 

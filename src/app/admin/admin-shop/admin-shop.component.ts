@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormControlOptions, FormGroup, Validators } from '@angular/forms';
 import { AddStuff, Stuffs } from '../models/shop';
 import { AdminHttpService } from '../admin-http.service';
@@ -7,6 +7,7 @@ import { GridActionTypes } from 'src/app/shared/components/grid/model';
 import { GridDirective } from 'src/app/shared/components/grid/grid.directive';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { Router } from '@angular/router';
+import { Subscription, finalize } from 'rxjs';
 
 
 @Component({
@@ -14,22 +15,26 @@ import { Router } from '@angular/router';
   templateUrl: './admin-shop.component.html',
   styleUrls: ['./admin-shop.component.scss']
 })
-export class AdminShopComponent extends GridDirective implements OnInit {
+export class AdminShopComponent extends GridDirective implements OnInit, OnDestroy {
 
   constructor(private fb: FormBuilder,
-     adminHttp: AdminHttpService,
+    adminHttp: AdminHttpService,
 
     http: ApiService,
-    private router: Router
+    private router: Router,
+    
   ) {
 
 
-    super(http,adminHttp)
+    super(http, adminHttp)
   }
 
 
   form: FormGroup;
   stuffs: Stuffs[];
+
+  subscribtion = new Subscription()
+
 
 
 
@@ -133,7 +138,7 @@ export class AdminShopComponent extends GridDirective implements OnInit {
 
 
   getStuff() {
-    this.adminHttp.getStuffs().subscribe({
+    this.subscribtion = this.adminHttp.getStuffs().subscribe({
       next: (res) => {
         this.stuffs = res
       },
@@ -164,6 +169,64 @@ export class AdminShopComponent extends GridDirective implements OnInit {
 
 
 
+  }
+
+
+  imgURL: unknown;
+  selectedImage: unknown;
+
+
+  showPreview(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => this.imgURL = e.target.result;
+     
+      reader.readAsDataURL(event.target.files[0])
+      this.selectedImage = event.target.files[0];
+  
+    } else {
+      this.imgURL = 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg';
+      this.selectedImage = null;
+ 
+    }
+  };
+
+
+  // addFile(selectedFile: any, obj: any) {
+  //   var filePath = `${selectedFile.name}_${new Date().getTime()}`
+  //   const fileRef = this.storage.ref(filePath)
+  //   this.storage.upload(filePath, selectedFile).snapshotChanges().pipe(
+  //     finalize(() => {
+  //       //url ში გვაქვს ახალი ატვირთული სურათი
+  //       let service = localStorage.getItem('service');
+  //       fileRef.getDownloadURL().subscribe((url) => {
+  //         if (url) {
+
+  //           obj.file = url
+         
+  //               // this.httpAdmin.insertMenu(obj)
+           
+            
+  //         }
+  //       })
+  //     })
+  //   ).subscribe(() => { })
+  // };
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ngOnDestroy(): void {
+    super.destroy()
   }
 }
 

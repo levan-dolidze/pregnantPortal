@@ -1,0 +1,21 @@
+<div class="cont">
+
+    <div class="inner" *ngFor="let stuff of stuffs">
+
+        <div class="item" (click)="addStuffToCart(stuff)">
+
+            {{stuff.title}}
+            {{stuff.description}}
+            {{stuff.prise}}
+            {{stuff.img}}
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+</div>

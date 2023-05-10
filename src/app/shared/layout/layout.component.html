@@ -16,15 +16,21 @@
                 <button mat-button [routerLink]="['/shop']">{{"shop"|translate}}</button>
                 <button mat-button [routerLink]="['/contact']">{{"contact"|translate}}</button>
 
+
+
+     
+
+
                 <span>
-                    <select (change)="changeLang($event.target)">
+                    <mat-icon>notifications</mat-icon>
+
+
+                    <select (change)="changeLang($event.target)"
+                    [(ngModel)]="selectedLang"
+                    >
                         <option value="ka" [selected]="lang =='ka'">KA</option>
                         <option value="en" [selected]="lang =='en'"> ENG</option>
                     </select>
-
-
-                
-
 
 
                     <button *ngFor="let action of authActions" mat-button [matMenuTriggerFor]="action.text==='admin'?adminMenu:null"
@@ -32,7 +38,7 @@
                             (click)="initAuthActions(action.type)"
                            
                             >{{action.text|translate}}
-
+                            
                     </button>
 
                  <mat-menu #adminMenu="matMenu">
@@ -41,12 +47,7 @@
                             <button *ngFor="let link of adminBtns" mat-menu-item [routerLink]="link.link">
                                 {{link.text|translate}}
                             </button>
-                            <!-- <button mat-menu-item [routerLink]="['/admin/admin-pregnancy']">{{'pregnancy_stuff'|translate}}</button>
-                            <button mat-menu-item [routerLink]="['/admin/admin-home']">{{'home'|translate}}</button>
-                            <button mat-menu-item [routerLink]="['/admin/admin-about']">{{'about'|translate}}</button>
-                            <button mat-menu-item [routerLink]="['/admin/admin-books']">{{'book'|translate}}</button>
-                            <button mat-menu-item [routerLink]="['/admin/admin-free-guides']">{{'free-guide'|translate}}</button>
-                            <button mat-menu-item [routerLink]="['/admin/admin-contact']">{{'contact'|translate}}</button> -->
+                     
                         </div>
                     </mat-menu>
 

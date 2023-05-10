@@ -13,7 +13,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +29,6 @@ import { AngularFireModule } from '@angular/fire/compat';
     BrowserAnimationsModule,
 
     AngularFireModule.initializeApp(environment.firebaseConfig),
-
     RouterModule.forRoot([], { enableTracing: false }),
     TranslateModule.forRoot({
       loader: {

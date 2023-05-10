@@ -31,7 +31,6 @@ export class GridComponent implements OnInit {
 
   emitAction(i: number, type: 'cancel' | 'detail',data:any) {
 
-    console.log(data)
 
     const params: GridActionTypes = {
       index: i,

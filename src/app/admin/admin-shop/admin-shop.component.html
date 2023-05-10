@@ -11,6 +11,8 @@
     
         </app-grid>
     </div>
+
+  
   
 
 
@@ -52,7 +54,14 @@
             <div>
                 <mat-form-field appearance="outline">
                     <mat-label>{{'password'|translate}}</mat-label>
-                    <input matInput placeholder="{{'password'|translate}}" formControlName="img">
+                    <input matInput placeholder="{{'password'|translate}}" formControlName="img"
+                    (change)="showPreview($event)" 
+                    accept="PDF/*"
+                    
+                    
+                    
+                    
+                    >
                 </mat-form-field>
             </div>
 
