@@ -1,7 +1,7 @@
 <div class="detail-content">
     <div class="detail-inner" *ngIf="stuffDetails$|async as stuff">
         <div class="productDetail">
-            <img>
+            <img [src]="stuff.img" >
         </div>
 
         <div class="product-info">

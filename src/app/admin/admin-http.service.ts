@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { ApiService } from '../shared/services/api.service';
 import { AddStuff, Stuffs } from './models/shop';
 import { BehaviorSubject, Observable, map, switchMap } from 'rxjs';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database'
+
 const addNewStuff = '/AddNewStuff.json'
 const addNewCourse = '/AddNewCourse.json'
 const deleteStuff = '/AddNewStuff/'
@@ -14,7 +16,9 @@ export class AdminHttpService {
 
 
   constructor(
-    private apiService: ApiService
+    private apiService: ApiService,
+    private firebase: AngularFireDatabase
+
   ) { }
 
 
@@ -78,9 +82,17 @@ export class AdminHttpService {
       })
     );
   };
-  
 
 
+  stuffList: AngularFireList<any>;
+
+
+  insertStuff(imageDetails: any) {
+    this.stuffList.push(imageDetails)
+  }
+  getStuffList() {
+    this.stuffList = this.firebase.list('stuff')
+  };
 
 
 

@@ -14,13 +14,15 @@
     </div>
 
 
-    <div class="input-form" [ngSwitch]="viewMode">
+    <div  class="input-form-cont" [ngSwitch]="viewMode">
 
-        <ng-container *ngSwitchCase="UIList.shopForm">
-            {{ 'add_new_stuff'|translate}}
+        <ng-container  *ngSwitchCase="UIList.shopForm">
+            <span class="title">  {{ 'add_new_stuff'|translate}}</span>
+          
         </ng-container>
         <ng-container *ngSwitchCase="UIList.coursesForm">
-            {{ 'add_new_courses'|translate}}
+            <span  class="title"> {{ 'add_new_courses'|translate}}</span>
+    
         </ng-container>
 
         <mat-icon (click)="miniNavigate()">{{paginGenerator()}}</mat-icon>
@@ -60,21 +62,33 @@
                     </mat-form-field>
                 </div>
                 <div>
-                    <mat-form-field appearance="outline">
+                    <!-- <mat-form-field appearance="outline">
                         <mat-label>{{'password'|translate}}</mat-label>
-                        <input matInput placeholder="{{'password'|translate}}" formControlName="img"
-                            (change)="showPreview($event)" accept="PDF/*">
-                    </mat-form-field>
+                        <input matInput 
+                         placeholder="{{'password'|translate}}" 
+                         formControlName="img"
+                         (change)="showPreview($event)" 
+                         type="file"
+                         accept="PDF/*"
+                         >
+                    </mat-form-field> -->
+
+                    <input type="file" 
+                    placeholder="{{'image'|translate}}" 
+                    name="" 
+                    id=""
+                    formControlName="img"
+                    (change)="showPreview($event)" 
+                    >
                 </div>
 
 
-                <button type="submit" mat-raised-button color="primary">{{'Add'|translate}}</button>
+                <button type="submit" mat-raised-button color="primary">{{'add'|translate}}</button>
             </form>
 
 
         </div>
         <div class="input-form" @menu *ngSwitchCase="UIList.coursesForm">
-
 
             <form (ngSubmit)="onNewCourseAdd()" [formGroup]="courseForm">
                 <div>
@@ -115,11 +129,10 @@
                 </div>
 
 
-                <button type="submit" mat-raised-button color="primary">{{'Add'|translate}}</button>
+                <button type="submit" mat-raised-button color="primary">{{'add'|translate}}</button>
             </form>
-
-
         </div>
+
     </div>
 
 
