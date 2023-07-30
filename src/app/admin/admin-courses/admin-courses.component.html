@@ -1,74 +1,18 @@
-<div class="admin-content">
-       <div class="admin-flex">
+<div class="admin-shop-cont">
 
-        <div @fade class="admin-inner">
-            <h3 class="list-title">{{'ordered_courses'|translate}}</h3>
-            <div class="admin-list-content" >
-                <div class="admin-list-inner" >
-                    <div class="personal-info">
-                        <h3>Personal Info</h3>
-                        <div>
-                            Full name:
-                        </div>
-                        <div>
-                            Email# 
-                        </div>
-                        <div>
-                            Phone:
-                        </div>
+    <div class="list">
+        <app-grid [displayedColumns]="displayedColumns" 
+        [edit]="true" 
+        [cancel]="true"
+        [showDetails]="true"
+        [showConfirm]="true"
 
-
-                    </div>
-                    <div class="event-Info">
-                        <h3>Event Info</h3>
-                        <div>
-                            Order Date:
-                        </div>
-                        <div>
-                            Event Date: 
-                        </div>
-                        <div>
-                            Start Time :
-                            <ng-container>
-                              koko
-                            </ng-container>
-
-                            <ng-container *ngIf="0;else isnotNull">
-                                0
-                            </ng-container>
-                            <ng-template #isnotNull>
-                                koko
-                            </ng-template>
-
-
-                            <ng-container>
-                                AM
-                            </ng-container>
-                            <ng-template #PM>
-                                PM
-                            </ng-template>
-
-
-
-                        </div>
-                        <div>
-                            Number Of People:
-                        </div>
-                        <div>
-                            Event Type: 
-                        </div>
-                        <div>
-                            AdditionalInfo:
-                        </div>
-                    </div>
-
-                    <div>
-                    </div>
-                    <mat-icon style="cursor:pointer;" >cancel
-                    </mat-icon>
-                </div>
-            </div>
-        </div>
-
+        (emitActions)="onAction($event)">
+    
+        </app-grid>
     </div>
+
+  
+
+
 </div>

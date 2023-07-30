@@ -21,7 +21,10 @@
     "customer_message":"customer message",
     "stuffs":"stuffs",
     "addNewStuff":"Add New Stuff",
-    "add":"Add"
+    "add":"Add",
+    "add_to_cart":"Add To Cart",
+    "prise":"prise",
+    "order":"order"
 
 
 

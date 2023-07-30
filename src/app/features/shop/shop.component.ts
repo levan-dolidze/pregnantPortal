@@ -4,6 +4,7 @@ import { Stuffs } from 'src/app/admin/models/shop';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { Cart } from './model';
 import { BehaviorSubject, Observable, filter, find, first, map, of, scan } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shop',
@@ -14,7 +15,8 @@ export class ShopComponent implements OnInit {
 
   constructor(private shopService: ShopService,
 
-    private localStorage: LocalStorageService
+    private localStorage: LocalStorageService,
+    private router:Router
 
   ) { }
 
@@ -91,5 +93,14 @@ export class ShopComponent implements OnInit {
       }
     })
   };
+
+
+
+  viewDetails(key:string){
+
+
+    this.router.navigate([`shop/view-details-shop/${key}`])
+
+  }
 
 }

@@ -10,3 +10,16 @@ export interface Cart {
 
 
 }
+
+
+export interface IOrder {
+    name: string,
+    lastName: string,
+    IDNumber: string,
+    phone: string,
+    address: string,
+    stuff: Cart
+}
+
+
+export type BuyNowActions = 'isLoggedIn' | 'isLoggedOut';

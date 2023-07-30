@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Stuffs } from 'src/app/admin/models/shop';
 import { ApiService } from 'src/app/shared/services/api.service';
+import { IOrder } from './model';
 
-const addNewStuff = '/AddNewStuff.json'
+const addNewStuff = '/AddNewStuff.json';
+const orderBase = '/OrderShop.json';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +18,7 @@ export class ShopService {
   ) { }
 
 
-  
+
 
 
 
@@ -37,5 +39,9 @@ export class ShopService {
 
       })
     )
+  }
+
+  addOrder(params: IOrder): Observable<IOrder> {
+    return this.apiService.post(orderBase, params)
   }
 }

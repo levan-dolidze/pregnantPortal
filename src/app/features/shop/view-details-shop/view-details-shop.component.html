@@ -1,0 +1,31 @@
+<div class="detail-content">
+    <div class="detail-inner" *ngIf="stuffDetails$|async as stuff">
+        <div class="productDetail">
+            <img>
+        </div>
+
+        <div class="product-info">
+            <h3>Description:</h3>
+            <li> title:{{stuff.title}}</li>
+            <li> {{stuff.description}}</li>
+
+          <h3>{{"prise"|translate}} {{stuff.prise}} ₾</h3>
+        </div>
+
+        <div class="buy">
+            <button (click)="buyProductNow(stuff)" 
+                     mat-flat-button color="primary">{{"buy"|translate}}
+           </button>
+
+            <button (click)="addProductInCart(stuff)"
+                      style="margin-left:10px" mat-flat-button color="primary">{{"add to cart"|translate}}
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+<div>
+
+</div>

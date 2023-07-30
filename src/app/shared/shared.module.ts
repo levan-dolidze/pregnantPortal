@@ -8,6 +8,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { LayoutComponent } from './layout/layout.component';
 import { GridComponent } from './components/grid/grid.component';
 import { GridDirective } from './components/grid/grid.directive';
+import { AlertComponent } from './components/alert/alert.component';
 
 
 
@@ -17,7 +18,8 @@ import { GridDirective } from './components/grid/grid.directive';
         LayoutComponent,
         GridComponent,
         GridDirective,
-        
+        AlertComponent
+
 
 
     ],

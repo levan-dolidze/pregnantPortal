@@ -26,6 +26,11 @@
                                     style="cursor:pointer;">cancel
                                 </mat-icon>
                             </div>
+                            <div *ngIf="showConfirm">
+                                <mat-icon (click)="emitAction(i,'confirm',displayedColumns)"
+                                    style="cursor:pointer;">check
+                                </mat-icon>
+                            </div>
                             <div *ngIf="showDetails">
                                 <mat-icon (click)="emitAction(i,'detail',displayedColumns)"
                                     style="cursor:pointer;">detail

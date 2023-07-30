@@ -1,0 +1,31 @@
+<div class="order-stuff-cont">
+
+    <form (ngSubmit)="onSubmit()" [formGroup]="form">
+        <mat-form-field appearance="outline">
+            <mat-label>{{'user'|translate}}</mat-label>
+            <input matInput placeholder="{{'user'|translate}}" formControlName="name">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>{{'user'|translate}}</mat-label>
+            <input matInput placeholder="{{'user'|translate}}" formControlName="lastName">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>{{'user'|translate}}</mat-label>
+            <input matInput placeholder="{{'user'|translate}}" formControlName="IDNumber">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>{{'user'|translate}}</mat-label>
+            <input matInput placeholder="{{'user'|translate}}" formControlName="phone">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>{{'user'|translate}}</mat-label>
+            <input matInput placeholder="{{'user'|translate}}" formControlName="address">
+        </mat-form-field>
+
+
+        <button type="submit" mat-flat-button color="primary">{{"order"|translate}}
+        </button>
+
+    </form>
+
+</div>

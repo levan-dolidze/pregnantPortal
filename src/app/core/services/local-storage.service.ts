@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { Stuffs } from 'src/app/admin/models/shop';
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +43,19 @@ export class LocalStorageService {
     else {
       return of(false)
     }
+
+  }
+
+  getStuffsDetails(key: string):Observable<Stuffs> {
+
+    const allStufs = localStorage.getItem('stuff');
+    if (allStufs) {
+      const stuffs: Stuffs[] = JSON.parse(allStufs)
+      return of(stuffs.find(x => x.key === key)) 
+    }
+    return null
+
+
 
   }
 }

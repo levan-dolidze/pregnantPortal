@@ -8,6 +8,8 @@ import { GridDirective } from 'src/app/shared/components/grid/grid.directive';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { Router } from '@angular/router';
 import { Subscription, finalize } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { AlertComponent } from 'src/app/shared/components/alert/alert.component';
 
 
 @Component({
@@ -21,12 +23,13 @@ export class AdminShopComponent extends GridDirective implements OnInit, OnDestr
     adminHttp: AdminHttpService,
 
     http: ApiService,
+    _snackBar: MatSnackBar,
+
     private router: Router,
-    
   ) {
 
 
-    super(http, adminHttp)
+    super(http, adminHttp,_snackBar)
   }
 
 
@@ -122,12 +125,26 @@ export class AdminShopComponent extends GridDirective implements OnInit, OnDestr
   onAdd() {
 
     if (this.form.invalid) {
+        this._snackBar.openFromComponent(AlertComponent, {
+        duration: 2000,
+        data: {
+          message: 'შევსება სავალდებულოა!',
+          type:'error'
+        }
+      })
       return
+
     } else {
       const params = this.form.value
 
       this.adminHttp.addStuff(params).subscribe(() => {
-
+        this._snackBar.openFromComponent(AlertComponent, {
+          duration: 2000,
+          data: {
+            message: 'წარმატებით დაემატა!',
+            type:'success'
+          }
+        })
         this.initData()
       })
 
@@ -180,14 +197,14 @@ export class AdminShopComponent extends GridDirective implements OnInit, OnDestr
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
       reader.onload = (e: any) => this.imgURL = e.target.result;
-     
+
       reader.readAsDataURL(event.target.files[0])
       this.selectedImage = event.target.files[0];
-  
+
     } else {
       this.imgURL = 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg';
       this.selectedImage = null;
- 
+
     }
   };
 
@@ -203,10 +220,10 @@ export class AdminShopComponent extends GridDirective implements OnInit, OnDestr
   //         if (url) {
 
   //           obj.file = url
-         
+
   //               // this.httpAdmin.insertMenu(obj)
-           
-            
+
+
   //         }
   //       })
   //     })
