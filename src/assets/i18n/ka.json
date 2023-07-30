@@ -19,10 +19,14 @@
             "ordered_courses": "შეკვეთილი კურსები",
             "customer_message": "მომხმარებლის შეტყობინება",
             "stuffs": "პროდუქცია",
-            "addNewStuff": "ახალი ნივთის დამატება",
+            "add_new_stuff": "ახალი ნივთის დამატება",
+            "add_new_courses": "ახალი კურსის დამატება",
             "add": "დამატება",
             "add_to_cart": "კალათაში დამატება",
             "prise":"ფასი",
             "order":"შეკვეთა",
-            "user_courses":"ჩემი კურსები"
+            "user_courses":"ჩემი კურსები",
+            "title":"დასახელება",
+            "description":"აღწერა"
+
         }

@@ -13,10 +13,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AlertComponent } from './shared/components/alert/alert.component';
+import { CoursesViewComponent } from './admin/admin-shop/courses-view/courses-view.component';
+import { ShopViewComponent } from './admin/admin-shop/shop-view/shop-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+
   
 
   ],

@@ -1,7 +1,7 @@
 <div class="navbar-content">
     <div class="navbar-inner">
         <div class="navbar-title">
-            {{"headerTitle"|translate}} {{prise}} 
+            {{"headerTitle"|translate}} {{prise}}
         </div>
         <div class="navbar-navigation">
 
@@ -18,55 +18,50 @@
 
 
 
-     
+
 
 
                 <span>
                     <mat-icon>notifications</mat-icon>
 
 
-                    <select (change)="changeLang($event.target)"
-                    [(ngModel)]="selectedLang"
-                    >
+                    <select (change)="changeLang($event.target)" [(ngModel)]="selectedLang">
                         <option value="ka" [selected]="lang =='ka'">KA</option>
                         <option value="en" [selected]="lang =='en'"> ENG</option>
                     </select>
 
 
-                    <button *ngFor="let action of authActions" mat-button   
-                    
-                    
-                    [matMenuTriggerFor]="action.type === 'admin' ? adminMenu : action.type === 'userWorld' ? userWorldMenu : null"
+                    <button *ngFor="let action of authActions" mat-button
+                        [matMenuTriggerFor]="action.type === 'admin' ? adminMenu : action.type === 'userWorld' ? userWorldMenu : null"
+                        (click)="initAuthActions(action.type)">
+                        <ng-container *ngIf="action.isIcon">
+                            <mat-icon>{{action.icon}}</mat-icon>
+                        </ng-container>
+                        {{action.text|translate}}
 
-                            (click)="initAuthActions(action.type)">
-                            <ng-container  *ngIf="action.isIcon">
-                                <mat-icon>{{action.icon}}</mat-icon>
-                            </ng-container>
-                            {{action.text|translate}}
-                            
                     </button>
 
-                 <mat-menu #adminMenu="matMenu">
+                    <mat-menu #adminMenu="matMenu">
                         <div class="admin-menu">
 
                             <button *ngFor="let link of adminBtns" mat-menu-item [routerLink]="link.link">
                                 {{link.text|translate}}
                             </button>
-                     
+
                         </div>
-                </mat-menu>
-                 <mat-menu #userWorldMenu="matMenu">
+                    </mat-menu>
+                    <mat-menu #userWorldMenu="matMenu">
                         <div class="admin-menu">
 
                             <button *ngFor="let link of userWorldBtns" mat-menu-item [routerLink]="link.link">
                                 {{link.text|translate}}
                             </button>
-                     
+
                         </div>
-                </mat-menu>
+                    </mat-menu>
 
 
-                
+
 
                 </span>
             </div>
@@ -82,7 +77,7 @@
     <div class="page-container">
         <router-outlet></router-outlet>
     </div>
-<!-- 
+    <!-- 
     <div class="footer">
         footer
     </div> -->

@@ -102,13 +102,13 @@ export class AuthBtnModesService {
           link: "/admin/admin-courses",
           permission: "user",
         },
-        // {
-        //   text: 'ordered_pregnancy_stuff',
-        //   type: 'courses',
-        //   icon: "update",
-        //   link: "/admin/admin-pregnancy",
-        //   permission: "user",
-        // },
+        {
+          text: 'ordered_pregnancy_stuff',
+          type: 'courses',
+          icon: "update",
+          link: "/admin/admin-pregnancy",
+          permission: "user",
+        },
         {
           text: 'customer_message',
           type: 'message',

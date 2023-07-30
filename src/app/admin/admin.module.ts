@@ -13,6 +13,8 @@ import { AdminFreeGuideComponent } from './admin-free-guide/admin-free-guide.com
 import { AdminContactComponent } from './admin-contact/admin-contact.component';
 import { AdminCustomerMessageComponent } from './admin-customer-message/admin-customer-message.component';
 import { AdminShopComponent } from './admin-shop/admin-shop.component';
+import { CoursesViewComponent } from './admin-shop/courses-view/courses-view.component';
+import { ShopViewComponent } from './admin-shop/shop-view/shop-view.component';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { AdminShopComponent } from './admin-shop/admin-shop.component';
     AdminFreeGuideComponent,
     AdminContactComponent,
     AdminCustomerMessageComponent,
-    AdminShopComponent
+    AdminShopComponent,
+    CoursesViewComponent,
+    ShopViewComponent,
 
   ],
   imports: [

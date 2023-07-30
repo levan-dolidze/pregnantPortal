@@ -2,20 +2,21 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormControlOptions, FormGroup, Validators } from '@angular/forms';
 import { AddStuff, Stuffs } from '../models/shop';
 import { AdminHttpService } from '../admin-http.service';
-import { GridConfig } from 'src/app/shared/components/grid-config';
-import { GridActionTypes } from 'src/app/shared/components/grid/model';
 import { GridDirective } from 'src/app/shared/components/grid/grid.directive';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { Router } from '@angular/router';
-import { Subscription, finalize } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AlertComponent } from 'src/app/shared/components/alert/alert.component';
+import { UIList } from './enum';
+import { fade, menu } from 'src/app/shared/animations/animations';
 
 
 @Component({
   selector: 'app-admin-shop',
   templateUrl: './admin-shop.component.html',
-  styleUrls: ['./admin-shop.component.scss']
+  styleUrls: ['./admin-shop.component.scss'],
+  animations: [menu, fade],
 })
 export class AdminShopComponent extends GridDirective implements OnInit, OnDestroy {
 
@@ -29,164 +30,136 @@ export class AdminShopComponent extends GridDirective implements OnInit, OnDestr
   ) {
 
 
-    super(http, adminHttp,_snackBar)
+    super(http, adminHttp, _snackBar)
   }
 
 
-  form: FormGroup;
-  stuffs: Stuffs[];
+  shopForm: FormGroup;
+  courseForm: FormGroup;
 
   subscribtion = new Subscription()
 
 
 
+  UIList = UIList;
+  viewMode: string;
 
 
-
-
-  initData() {
-    this.initGet(this.adminHttp, 'getStuffs', null)
-  }
 
 
   ngOnInit(): void {
 
 
-    this.initForm()
-
-    this.initData()
-
-    this.getStuff()
+    this.initShopForm()
+    this.initCourseForm()
+    this.viewMode = 'shopForm';
 
 
   }
 
-  displayedColumns: GridConfig[]
-
-  override getData(data: any): void {
-    this.stuffs = data
-
-    this.displayedColumns = [
-      {
-        title: 'key',
-        label: 'uhuhds',
-        onClick: true,
-        getData: this.stuffs.map(x => x.key),
-      },
-      {
-        title: 'დასახელება',
-        label: 'uhuhds',
-        onClick: true,
-        getData: this.stuffs.map(x => x.title),
-      },
-      {
-        title: 'აღწერა',
-        label: 'uhuhds',
-        onClick: true,
-        getData: this.stuffs.map(x => x.description),
-
-        actions: ['edit']
-
-      },
-      {
-        title: 'ფასი',
-        label: 'label',
-        onClick: true,
-        getData: this.stuffs.map(x => x.prise),
 
 
-      },
-      {
-        title: 'ფოტო',
-        label: 'label',
-        onClick: true,
-        getData: this.stuffs.map(x => x.img),
+  shopView() {
+    this.viewMode = this.UIList.shopForm;
+    sessionStorage.setItem('mode', this.viewMode);
+  };
+  courseView() {
+    this.viewMode = this.UIList.coursesForm;
+    sessionStorage.setItem('mode', this.viewMode)
+  };
 
 
-      },
 
-    ];
+  paginGenerator() {
+    const isRight = this.viewMode === 'shopForm' ? true : false
+    return isRight ? 'arrow_right' : 'arrow_left'
+  }
 
+
+ 
+
+
+  miniNavigate() {
+    this.viewMode = this.viewMode === 'shopForm' ? 'coursesForm' : 'shopForm';
   }
 
 
 
-  initForm() {
-    this.form = this.fb.group({
+
+  initShopForm() {
+    this.shopForm = this.fb.group({
       title: new FormControl(null, [Validators.required]),
       description: new FormControl(null, [Validators.required]),
       prise: new FormControl(null, [Validators.required]),
       img: new FormControl(null, [Validators.required]),
     } as { [key in keyof AddStuff]: FormControlOptions })
-
   }
 
 
-  onAdd() {
+  initCourseForm() {
+    this.courseForm = this.fb.group({
+      title: new FormControl(null, [Validators.required]),
+      description: new FormControl(null, [Validators.required]),
+      prise: new FormControl(null, [Validators.required]),
+      img: new FormControl(null, [Validators.required]),
+    } as { [key in keyof AddStuff]: FormControlOptions })
+  }
 
-    if (this.form.invalid) {
-        this._snackBar.openFromComponent(AlertComponent, {
+
+
+  onNewStuffAdd() {
+    if (this.courseForm.invalid) {
+      this._snackBar.openFromComponent(AlertComponent, {
         duration: 2000,
         data: {
           message: 'შევსება სავალდებულოა!',
-          type:'error'
+          type: 'error'
         }
       })
       return
 
     } else {
-      const params = this.form.value
+      const params = this.shopForm.value
 
-      this.adminHttp.addStuff(params).subscribe(() => {
+      this.adminHttp.addNewStuff(params).subscribe(() => {
         this._snackBar.openFromComponent(AlertComponent, {
           duration: 2000,
           data: {
             message: 'წარმატებით დაემატა!',
-            type:'success'
+            type: 'success'
           }
         })
-        this.initData()
       })
-
-
     }
-
   }
+  
 
+  onNewCourseAdd() {
+    if (this.courseForm.invalid) {
+      this._snackBar.openFromComponent(AlertComponent, {
+        duration: 2000,
+        data: {
+          message: 'შევსება სავალდებულოა!',
+          type: 'error'
+        }
+      })
+      return
 
-  getStuff() {
-    this.subscribtion = this.adminHttp.getStuffs().subscribe({
-      next: (res) => {
-        this.stuffs = res
-      },
-      error: (err) => {
-        console.error(err)
-      }
-    })
-  }
+    } else {
+      const params = this.courseForm.value
 
-
-
-  onAction(message: GridActionTypes) {
-
-    const findKey = message.data.find((res: any) => {
-      return res.title === 'key'
-
-    })
-    const key = findKey.getData[message.index];
-
-    switch (message.types) {
-      case 'cancel':
-        this.initDelete(this.adminHttp, 'deleteStuff', key)
-        break;
-      case 'detail':
-        this.router.navigate([`/admin/admin-shop/${key}/admin-shop-detail`])
-        break;
+      this.adminHttp.addNewCourse(params).subscribe(() => {
+        this._snackBar.openFromComponent(AlertComponent, {
+          duration: 2000,
+          data: {
+            message: 'წარმატებით დაემატა!',
+            type: 'success'
+          }
+        })
+      })
     }
-
-
-
   }
+
 
 
   imgURL: unknown;
@@ -229,15 +202,6 @@ export class AdminShopComponent extends GridDirective implements OnInit, OnDestr
   //     })
   //   ).subscribe(() => { })
   // };
-
-
-
-
-
-
-
-
-
 
 
 

@@ -1,78 +1,127 @@
-
-
 <div class="admin-shop-cont">
 
-    <div class="list">
-        <app-grid [displayedColumns]="displayedColumns" 
-        [edit]="true" 
-        [cancel]="true"
-        [showDetails]="true"
-        (emitActions)="onAction($event)">
+    <div class="list" @fade [ngSwitch]="viewMode">
+
+        <app-shop-view *ngSwitchCase="UIList.shopForm">
+
+        </app-shop-view>
+
+        <app-courses-view *ngSwitchCase="UIList.coursesForm">
+
+        </app-courses-view>
+
     
-        </app-grid>
     </div>
 
-  
-  
+
+    <div class="input-form" [ngSwitch]="viewMode">
+
+        <ng-container *ngSwitchCase="UIList.shopForm">
+            {{ 'add_new_stuff'|translate}}
+        </ng-container>
+        <ng-container *ngSwitchCase="UIList.coursesForm">
+            {{ 'add_new_courses'|translate}}
+        </ng-container>
+
+        <mat-icon (click)="miniNavigate()">{{paginGenerator()}}</mat-icon>
 
 
-
-    <div class="input-form" >
-
-        <h4>{{'addNewStuff'|translate}}</h4>
-
-        <form (ngSubmit)="onAdd()" [formGroup]="form">
-            <div>
-                <mat-form-field appearance="outline">
-                    <mat-label>{{'user'|translate}}</mat-label>
-                    <input matInput placeholder="{{'user'|translate}}" formControlName="title">
-
-                    <ng-container *ngIf="form.get('title')?.dirty">
-                        <mat-error *ngIf="form.get('title').errors?.['required']">
-                            ველი სავალდებულოა
-                        </mat-error>
-                        <mat-error *ngIf="form.get('title').errors?.['pattern']">
-                            არასწორი ფორმატი
-                        </mat-error>
-                    </ng-container>
-                </mat-form-field>
-            </div>
+        <div class="input-form" @menu *ngSwitchCase="UIList.shopForm">
 
 
-            <div>
-                <mat-form-field appearance="outline">
-                    <mat-label>{{'password'|translate}}</mat-label>
-                    <input matInput placeholder="{{'password'|translate}}" formControlName="description">
-                </mat-form-field>
-            </div>
-            <div>
-                <mat-form-field appearance="outline">
-                    <mat-label>{{'password'|translate}}</mat-label>
-                    <input matInput placeholder="{{'password'|translate}}" formControlName="prise">
-                </mat-form-field>
-            </div>
-            <div>
-                <mat-form-field appearance="outline">
-                    <mat-label>{{'password'|translate}}</mat-label>
-                    <input matInput placeholder="{{'password'|translate}}" formControlName="img"
-                    (change)="showPreview($event)" 
-                    accept="PDF/*"
-                    
-                    
-                    
-                    
-                    >
-                </mat-form-field>
-            </div>
+            <form (ngSubmit)="onNewStuffAdd()" [formGroup]="shopForm">
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>{{'title'|translate}}</mat-label>
+                        <input matInput placeholder="{{'title'|translate}}" formControlName="title">
+
+                        <ng-container *ngIf="shopForm.get('title')?.dirty">
+                            <mat-error *ngIf="shopForm.get('title').errors?.['required']">
+                                ველი სავალდებულოა
+                            </mat-error>
+                            <mat-error *ngIf="shopForm.get('title').errors?.['pattern']">
+                                არასწორი ფორმატი
+                            </mat-error>
+                        </ng-container>
+                    </mat-form-field>
+                </div>
 
 
-            <button type="submit" mat-raised-button color="primary">{{'Add'|translate}}</button>
-        </form>
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>{{'description'|translate}}</mat-label>
+                        <input matInput placeholder="{{'description'|translate}}" formControlName="description">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>{{'prise'|translate}}</mat-label>
+                        <input matInput placeholder="{{'prise'|translate}}" formControlName="prise">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>{{'password'|translate}}</mat-label>
+                        <input matInput placeholder="{{'password'|translate}}" formControlName="img"
+                            (change)="showPreview($event)" accept="PDF/*">
+                    </mat-form-field>
+                </div>
 
 
+                <button type="submit" mat-raised-button color="primary">{{'Add'|translate}}</button>
+            </form>
+
+
+        </div>
+        <div class="input-form" @menu *ngSwitchCase="UIList.coursesForm">
+
+
+            <form (ngSubmit)="onNewCourseAdd()" [formGroup]="courseForm">
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>{{'title'|translate}}</mat-label>
+                        <input matInput placeholder="{{'title'|translate}}" formControlName="title">
+
+                        <ng-container *ngIf="courseForm.get('title')?.dirty">
+                            <mat-error *ngIf="courseForm.get('title').errors?.['required']">
+                                ველი სავალდებულოა
+                            </mat-error>
+                            <mat-error *ngIf="courseForm.get('title').errors?.['pattern']">
+                                არასწორი ფორმატი
+                            </mat-error>
+                        </ng-container>
+                    </mat-form-field>
+                </div>
+
+
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>{{'description'|translate}}</mat-label>
+                        <input matInput placeholder="{{'description'|translate}}" formControlName="description">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>{{'prise'|translate}}</mat-label>
+                        <input matInput placeholder="{{'prise'|translate}}" formControlName="prise">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>{{'password'|translate}}</mat-label>
+                        <input matInput placeholder="{{'password'|translate}}" formControlName="img"
+                            (change)="showPreview($event)" accept="PDF/*">
+                    </mat-form-field>
+                </div>
+
+
+                <button type="submit" mat-raised-button color="primary">{{'Add'|translate}}</button>
+            </form>
+
+
+        </div>
     </div>
+
 
 
 </div>
-
-

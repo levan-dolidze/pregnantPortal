@@ -5,6 +5,7 @@ import { ApiService } from 'src/app/shared/services/api.service';
 import { IOrder } from './model';
 
 const addNewStuff = '/AddNewStuff.json';
+const addNewCourse = '/AddNewCourse.json';
 const orderBase = '/OrderShop.json';
 
 @Injectable({
@@ -24,6 +25,24 @@ export class ShopService {
 
   getStuffs(): Observable<Stuffs[]> {
     return this.apiService.get(addNewStuff).pipe(
+
+      map((res) => {
+        if (res) {
+          const stuffs = []
+          for (const key in res) {
+            stuffs.push({ ...res[key], key: key })
+          }
+          return stuffs
+
+        } else {
+          return []
+        }
+
+      })
+    )
+  }
+  getCourses(): Observable<Stuffs[]> {
+    return this.apiService.get(addNewCourse).pipe(
 
       map((res) => {
         if (res) {

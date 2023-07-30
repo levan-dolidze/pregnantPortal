@@ -3,6 +3,7 @@ import { ApiService } from '../shared/services/api.service';
 import { AddStuff, Stuffs } from './models/shop';
 import { BehaviorSubject, Observable, map, switchMap } from 'rxjs';
 const addNewStuff = '/AddNewStuff.json'
+const addNewCourse = '/AddNewCourse.json'
 const deleteStuff = '/AddNewStuff/'
 
 @Injectable({
@@ -19,12 +20,33 @@ export class AdminHttpService {
 
   //show
 
-  addStuff(newStuff: AddStuff): Observable<AddStuff> {
+  addNewStuff(newStuff: AddStuff): Observable<AddStuff> {
     return this.apiService.post(addNewStuff, newStuff)
+  }
+  addNewCourse(newCourse: AddStuff): Observable<AddStuff> {
+    return this.apiService.post(addNewCourse, newCourse)
   }
 
   getStuffs(): Observable<Stuffs[]> {
     return this.apiService.get(addNewStuff).pipe(
+
+      map((res) => {
+        if (res) {
+          const stuffs = []
+          for (const key in res) {
+            stuffs.push({ ...res[key], key: key })
+          }
+          return stuffs
+
+        } else {
+          return []
+        }
+
+      })
+    )
+  }
+  getCourses(): Observable<Stuffs[]> {
+    return this.apiService.get(addNewCourse).pipe(
 
       map((res) => {
         if (res) {
