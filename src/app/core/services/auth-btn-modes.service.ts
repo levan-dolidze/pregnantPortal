@@ -29,6 +29,13 @@ export class AuthBtnModesService {
           icon: "edit",
           permission: "admin",
         },
+        {
+          text: '',
+          type: 'userWorld',
+          icon: "supervised_user_circle",
+          isIcon:true,
+          permission: "user",
+        },
 
       )
 
@@ -42,6 +49,13 @@ export class AuthBtnModesService {
           text: 'logOut',
           type: 'logOut',
           icon: "update",
+          permission: "user",
+        },
+        {
+          text: '',
+          type: 'userWorld',
+          icon: "supervised_user_circle",
+          isIcon:true,
           permission: "user",
         },
       )
@@ -58,6 +72,7 @@ export class AuthBtnModesService {
           type: 'logIn',
           icon: "update",
           permission: "user",
+          
         },
         {
           text: 'signUp',
@@ -148,6 +163,26 @@ export class AuthBtnModesService {
       )
 
 
+    }
+    else {
+      container = []
+    }
+    return of(container)
+  }
+  getMyWorldBtns(container: Array<any>, token: boolean, admin: boolean) {
+
+
+    if (token && admin) {
+      container = []
+      container.push(
+        {
+          text: 'user_courses',
+          type: 'userWorld',
+          icon: "update",
+          link: "/my-courses",
+          permission: "user",
+        },
+      )
     }
     else {
       container = []

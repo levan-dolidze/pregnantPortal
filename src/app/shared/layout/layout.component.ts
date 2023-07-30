@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 // import { MatDialog } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,6 +12,7 @@ import { AuthBtnModesService } from 'src/app/core/services/auth-btn-modes.servic
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { authActionModes, IActionType } from 'src/app/shared/layout/models/authModel';
 import { LanguageService } from '../services/language.service';
+import { MatMenu } from '@angular/material/menu';
 
 @Component({
   selector: 'app-layout',
@@ -55,6 +56,7 @@ export class LayoutComponent implements OnInit {
 
   authActions: authActionModes[] = [];
   adminBtns: Array<any> = []
+  userWorldBtns: Array<any> = []
 
   selectedLang: string;
 
@@ -69,7 +71,6 @@ export class LayoutComponent implements OnInit {
   }
 
 
-
   authBtnInit(storedAdmin: boolean) {
 
     combineLatest({
@@ -82,6 +83,9 @@ export class LayoutComponent implements OnInit {
       })
       this.autBtnService.getAdminBtns(this.adminBtns, res.token, storedAdmin ? storedAdmin : res.admin).subscribe((res) => {
         this.adminBtns = res
+      })
+      this.autBtnService.getMyWorldBtns(this.adminBtns, res.token, storedAdmin ? storedAdmin : res.admin).subscribe((res) => {
+        this.userWorldBtns = res
       })
     });
   }

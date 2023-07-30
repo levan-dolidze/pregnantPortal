@@ -33,11 +33,16 @@
                     </select>
 
 
-                    <button *ngFor="let action of authActions" mat-button [matMenuTriggerFor]="action.text==='admin'?adminMenu:null"
+                    <button *ngFor="let action of authActions" mat-button   
+                    
+                    
+                    [matMenuTriggerFor]="action.type === 'admin' ? adminMenu : action.type === 'userWorld' ? userWorldMenu : null"
 
-                            (click)="initAuthActions(action.type)"
-                           
-                            >{{action.text|translate}}
+                            (click)="initAuthActions(action.type)">
+                            <ng-container  *ngIf="action.isIcon">
+                                <mat-icon>{{action.icon}}</mat-icon>
+                            </ng-container>
+                            {{action.text|translate}}
                             
                     </button>
 
@@ -49,8 +54,19 @@
                             </button>
                      
                         </div>
-                    </mat-menu>
+                </mat-menu>
+                 <mat-menu #userWorldMenu="matMenu">
+                        <div class="admin-menu">
 
+                            <button *ngFor="let link of userWorldBtns" mat-menu-item [routerLink]="link.link">
+                                {{link.text|translate}}
+                            </button>
+                     
+                        </div>
+                </mat-menu>
+
+
+                
 
                 </span>
             </div>
