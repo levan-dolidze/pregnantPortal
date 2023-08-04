@@ -41,20 +41,22 @@ export class AdminCoursesComponent extends GridDirective implements OnInit,OnDes
 
     this.initData()
 
-    this.getStuff()
+    this.getCourses()
 
 
   }
 
 
   initData() {
-    this.initGet(this.adminHttp, 'getStuffs', null)
+    this.initGet(this.adminHttp, 'getCourses', null)
   }
   displayedColumns: GridConfig[]
 
   override getData(data: any): void {
     this.stuffs = data
 
+
+    console.log(this.stuffs)
     this.displayedColumns = [
       {
         title: 'key',
@@ -85,13 +87,17 @@ export class AdminCoursesComponent extends GridDirective implements OnInit,OnDes
 
 
       },
+      // {
+      //   title: 'ფოტო',
+      //   label: 'label',
+      //   onClick: true,
+      //   getData: this.stuffs.map(x => x.img),
+      // },
       {
-        title: 'ფოტო',
+        title: 'პროდუქტის ტიპი',
         label: 'label',
         onClick: true,
-        getData: this.stuffs.map(x => x.img),
-
-
+        getData: this.stuffs.map(x => x.productType),
       },
 
     ];
@@ -113,8 +119,8 @@ export class AdminCoursesComponent extends GridDirective implements OnInit,OnDes
 
  
 
-  getStuff() {
-    this.subscribtion = this.adminHttp.getStuffs().subscribe({
+  getCourses() {
+    this.subscribtion = this.adminHttp.getCourses().subscribe({
       next: (res) => {
         this.stuffs = res
       },

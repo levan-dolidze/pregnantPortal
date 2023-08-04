@@ -3,23 +3,22 @@
     <div class="inner" *ngFor="let stuff of stuffs">
 
         <div class="item" (click)="addStuffToCart(stuff)"
-         (click)="viewDetails(stuff.key)" 
-        >
+         (click)="viewDetails(stuff.key)">
 
             {{stuff.title}}
             {{stuff.description}}
             {{stuff.prise}}
+          
+             
+          <video *ngIf="stuff.productType==='courses'" controls >
+            <source [src]="stuff.img" type="video/mp4">
+          </video>
 
-
-            <img [src]="stuff.img"  alt="">
+         <img *ngIf="stuff.productType==='stuffs'" [src]="stuff.img" >
 
         </div>
 
 
     </div>
-
-
-
-
 
 </div>

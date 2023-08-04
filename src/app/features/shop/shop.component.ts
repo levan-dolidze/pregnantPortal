@@ -39,6 +39,8 @@ export class ShopComponent implements OnInit {
     this.shopService.getStuffs().subscribe({
       next: ((res) => {
        this.stuffs=res
+
+       console.log(this.stuffs)
       }),
       error: ((res) => {
 
@@ -59,8 +61,6 @@ export class ShopComponent implements OnInit {
     return itemInCart
 
   }
-
-
 
 
 

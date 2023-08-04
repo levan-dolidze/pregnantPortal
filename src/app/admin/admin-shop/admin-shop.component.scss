@@ -2,21 +2,48 @@
 
 .admin-content {
     @include adminList(30%, 70%)
-};
+}
+
+;
 
 .cancel-icon {
     @include adminListCancelIcons;
-};
+}
+
+;
 
 .form-control,
 .addEventBtn {
     margin-top: marginTop(10px);
-};
+}
+
+;
+
+@mixin centerElement {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
 
 .input-form {
     @include admin-form;
 
-};
+    button {
+        position: relative;
+
+        mat-spinner {
+            @include centerElement;
+        }
+    }
+
+}
+
+:host::ng-deep {
+    .mat-spinner circle {
+        stroke: #fff;
+    }
+}
 
 
 
@@ -29,8 +56,8 @@
         width: 70%;
     }
 
-    .input-form-cont{
-        
+    .input-form-cont {
+
         @include admin-form;
 
         .title {

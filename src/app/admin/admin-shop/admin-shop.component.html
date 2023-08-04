@@ -10,19 +10,19 @@
 
         </app-courses-view>
 
-    
+
     </div>
 
 
-    <div  class="input-form-cont" [ngSwitch]="viewMode">
+    <div class="input-form-cont" [ngSwitch]="viewMode">
 
-        <ng-container  *ngSwitchCase="UIList.shopForm">
-            <span class="title">  {{ 'add_new_stuff'|translate}}</span>
-          
+        <ng-container *ngSwitchCase="UIList.shopForm">
+            <span class="title"> {{ 'add_new_stuff'|translate}}</span>
+
         </ng-container>
         <ng-container *ngSwitchCase="UIList.coursesForm">
-            <span  class="title"> {{ 'add_new_courses'|translate}}</span>
-    
+            <span class="title"> {{ 'add_new_courses'|translate}}</span>
+
         </ng-container>
 
         <mat-icon (click)="miniNavigate()">{{paginGenerator()}}</mat-icon>
@@ -73,14 +73,24 @@
                          >
                     </mat-form-field> -->
 
-                    <input type="file" 
-                    placeholder="{{'image'|translate}}" 
-                    name="" 
-                    id=""
-                    formControlName="img"
-                    (change)="showPreview($event)" 
-                    >
+                    <input type="file" placeholder="{{'image'|translate}}" name="" id="" formControlName="img"
+                        (change)="showPreview($event)">
                 </div>
+
+                
+                <div>
+                    <!-- <label id="example-radio-group-label">Pick your favorite season</label> -->
+                    <mat-radio-group
+                      aria-labelledby="example-radio-group-label"
+                      class="example-radio-group"
+                      formControlName="productType"
+                     >
+                      <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
+                        {{season|translate}}
+                      </mat-radio-button>
+                    </mat-radio-group>
+                </div>
+
 
 
                 <button type="submit" mat-raised-button color="primary">{{'add'|translate}}</button>
@@ -96,11 +106,11 @@
                         <mat-label>{{'title'|translate}}</mat-label>
                         <input matInput placeholder="{{'title'|translate}}" formControlName="title">
 
-                        <ng-container *ngIf="courseForm.get('title')?.dirty">
-                            <mat-error *ngIf="courseForm.get('title').errors?.['required']">
+                        <ng-container *ngIf="shopForm.get('title')?.dirty">
+                            <mat-error *ngIf="shopForm.get('title').errors?.['required']">
                                 ველი სავალდებულოა
                             </mat-error>
-                            <mat-error *ngIf="courseForm.get('title').errors?.['pattern']">
+                            <mat-error *ngIf="shopForm.get('title').errors?.['pattern']">
                                 არასწორი ფორმატი
                             </mat-error>
                         </ng-container>
@@ -121,15 +131,43 @@
                     </mat-form-field>
                 </div>
                 <div>
-                    <mat-form-field appearance="outline">
+                    <!-- <mat-form-field appearance="outline">
                         <mat-label>{{'password'|translate}}</mat-label>
-                        <input matInput placeholder="{{'password'|translate}}" formControlName="img"
-                            (change)="showPreview($event)" accept="PDF/*">
-                    </mat-form-field>
+                        <input matInput 
+                         placeholder="{{'password'|translate}}" 
+                         formControlName="img"
+                         (change)="showPreview($event)" 
+                         type="file"
+                         accept="PDF/*"
+                         >
+                    </mat-form-field> -->
+
+                    <input type="file" placeholder="{{'image'|translate}}" name="" id="" formControlName="img"
+                        (change)="showPreview($event)">
+                </div>
+
+                
+                <div>
+                    <!-- <label id="example-radio-group-label">Pick your favorite season</label> -->
+                    <mat-radio-group
+                      aria-labelledby="example-radio-group-label"
+                      class="example-radio-group"
+                      formControlName="productType"
+                     >
+                      <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
+                        {{season|translate}}
+                      </mat-radio-button>
+                    </mat-radio-group>
                 </div>
 
 
-                <button type="submit" mat-raised-button color="primary">{{'add'|translate}}</button>
+
+                <button type="submit" mat-raised-button color="primary">
+                    <mat-spinner *ngIf="isLoading"  [diameter]=20></mat-spinner>
+                    
+                    {{'add'|translate}}
+
+                </button>
             </form>
         </div>
 

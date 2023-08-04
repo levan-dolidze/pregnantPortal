@@ -84,17 +84,19 @@ export class AdminPregnancyStuffComponent extends GridDirective implements OnIni
         label: 'label',
         onClick: true,
         getData: this.stuffs.map(x => x.prise),
-
-
       },
       {
-        title: 'ფოტო',
+        title: 'პროდუქტის ტიპი',
         label: 'label',
         onClick: true,
-        getData: this.stuffs.map(x => x.img),
-
-
+        getData: this.stuffs.map(x => x.productType),
       },
+      // {
+      //   title: 'ფოტო',
+      //   label: 'label',
+      //   onClick: true,
+      //   getData: this.stuffs.map(x => x.img),
+      // },
 
     ];
 

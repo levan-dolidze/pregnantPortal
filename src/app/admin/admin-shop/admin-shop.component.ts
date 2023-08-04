@@ -34,6 +34,8 @@ export class AdminShopComponent extends GridDirective implements OnInit, OnDestr
   }
 
 
+  seasons: string[] = ['stuffs','courses'];
+
   shopForm: FormGroup;
   courseForm: FormGroup;
 
@@ -47,6 +49,11 @@ export class AdminShopComponent extends GridDirective implements OnInit, OnDestr
   selectedStuff: unknown;
   stuffURL: unknown;
 
+  isLoading:boolean=false
+
+  onItemValChange(e: any) {
+
+  }
 
 
 
@@ -95,6 +102,7 @@ export class AdminShopComponent extends GridDirective implements OnInit, OnDestr
       description: new FormControl(null, [Validators.required]),
       prise: new FormControl(null, [Validators.required]),
       img: new FormControl(null),
+      productType: new FormControl(null)
     } as { [key in keyof AddStuff]: FormControlOptions })
   }
 
@@ -105,6 +113,7 @@ export class AdminShopComponent extends GridDirective implements OnInit, OnDestr
       description: new FormControl(null, [Validators.required]),
       prise: new FormControl(null, [Validators.required]),
       img: new FormControl(null, [Validators.required]),
+      productType: new FormControl(null, [Validators.required]),
     } as { [key in keyof AddStuff]: FormControlOptions })
   }
 
@@ -157,6 +166,8 @@ export class AdminShopComponent extends GridDirective implements OnInit, OnDestr
     } else {
       const params = this.courseForm.value
 
+      params.img =this.reqCourseImg
+
       this.adminHttp.addNewCourse(params).subscribe(() => {
         this._snackBar.openFromComponent(AlertComponent, {
           duration: 2000,
@@ -197,7 +208,10 @@ export class AdminShopComponent extends GridDirective implements OnInit, OnDestr
   }
 
   reqStuffImg: string
+  reqCourseImg: string
   addFile(selectedFile: any) {
+
+    this.isLoading=true
     var filePath = `${selectedFile.name}_${new Date().getTime()}`
     const fileRef = this.storage.ref(filePath)
     this.storage.upload(filePath, selectedFile).snapshotChanges().pipe(
@@ -207,7 +221,10 @@ export class AdminShopComponent extends GridDirective implements OnInit, OnDestr
         fileRef.getDownloadURL().subscribe((url: any) => {
           if (url) {
             this.reqStuffImg = url
+            this.reqCourseImg=url
 
+            this.isLoading=false
+            console.log(this.reqCourseImg)
             // this.httpAdmin.insertMenu(obj)
 
 
