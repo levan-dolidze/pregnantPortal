@@ -77,23 +77,23 @@
                         (change)="showPreview($event)">
                 </div>
 
-                
+
                 <div>
                     <!-- <label id="example-radio-group-label">Pick your favorite season</label> -->
-                    <mat-radio-group
-                      aria-labelledby="example-radio-group-label"
-                      class="example-radio-group"
-                      formControlName="productType"
-                     >
-                      <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
-                        {{season|translate}}
-                      </mat-radio-button>
+                    <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                        formControlName="productType">
+                        <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
+                            {{season|translate}}
+                        </mat-radio-button>
                     </mat-radio-group>
                 </div>
 
 
 
-                <button type="submit" mat-raised-button color="primary">{{'add'|translate}}</button>
+                <button type="submit" mat-raised-button color="primary">
+                    <mat-spinner *ngIf="isLoading" [diameter]=20></mat-spinner>
+                    {{'add'|translate}}
+                </button>
             </form>
 
 
@@ -146,25 +146,22 @@
                         (change)="showPreview($event)">
                 </div>
 
-                
+
                 <div>
                     <!-- <label id="example-radio-group-label">Pick your favorite season</label> -->
-                    <mat-radio-group
-                      aria-labelledby="example-radio-group-label"
-                      class="example-radio-group"
-                      formControlName="productType"
-                     >
-                      <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
-                        {{season|translate}}
-                      </mat-radio-button>
+                    <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                        formControlName="productType">
+                        <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
+                            {{season|translate}}
+                        </mat-radio-button>
                     </mat-radio-group>
                 </div>
 
 
 
                 <button type="submit" mat-raised-button color="primary">
-                    <mat-spinner *ngIf="isLoading"  [diameter]=20></mat-spinner>
-                    
+                    <mat-spinner *ngIf="isLoading" [diameter]=20></mat-spinner>
+
                     {{'add'|translate}}
 
                 </button>

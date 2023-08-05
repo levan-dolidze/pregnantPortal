@@ -10,6 +10,7 @@ import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { AdminPregnancyStuffComponent } from './admin-pregnancy-stuff/admin-pregnancy-stuff.component';
 import { AdminComponent } from './admin.component';
 import { AdminShopComponent } from './admin-shop/admin-shop.component';
+import { AdminUploadedFullCoursesComponent } from './admin-uploaded-full-courses/admin-uploaded-full-courses.component';
 
 const routes: Routes = [
   {
@@ -59,8 +60,17 @@ const routes: Routes = [
           {
             path: 'admin-shop',
             component: AdminShopComponent,
-
           },
+          {
+            path: 'admin-shop',
+            component: AdminShopComponent,
+        
+          },
+          {
+            path: 'admin-uploaded-full-courses/:key',
+            component: AdminUploadedFullCoursesComponent,
+          },
+        
         ]
       }
 

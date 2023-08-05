@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { GridDirective } from 'src/app/shared/components/grid/grid.directive';
 import { AdminHttpService } from '../../admin-http.service';
@@ -8,13 +8,15 @@ import { Router } from '@angular/router';
 import { GridActionTypes } from 'src/app/shared/components/grid/model';
 import { Stuffs } from '../../models/shop';
 import { GridConfig } from 'src/app/shared/components/grid-config';
+import { MatDialog } from '@angular/material/dialog';
+import { AdminAddFullCoursePopComponent } from '../../admin-add-full-course-pop/admin-add-full-course-pop.component';
 
 @Component({
   selector: 'app-courses-view',
   templateUrl: './courses-view.component.html',
   styleUrls: ['./courses-view.component.scss']
 })
-export class CoursesViewComponent  extends GridDirective implements OnInit  {
+export class CoursesViewComponent extends GridDirective implements OnInit {
 
 
   constructor(private fb: FormBuilder,
@@ -24,6 +26,8 @@ export class CoursesViewComponent  extends GridDirective implements OnInit  {
     _snackBar: MatSnackBar,
 
     private router: Router,
+    private dialog: MatDialog,
+
   ) {
 
 
@@ -34,16 +38,16 @@ export class CoursesViewComponent  extends GridDirective implements OnInit  {
   courses: Stuffs[];
   displayedColumns: GridConfig[]
 
-  ngOnInit(){
+  ngOnInit() {
     this.initData()
     this.getCourses()
-    
+
   }
 
   initData() {
     this.initGet(this.adminHttp, 'getCourses', null)
   }
-  
+
   override getData(data: any): void {
     this.courses = data
 
@@ -83,7 +87,7 @@ export class CoursesViewComponent  extends GridDirective implements OnInit  {
         onClick: true,
         getData: this.courses.map(x => x.img),
       }
-   
+
     ];
   }
 
@@ -99,7 +103,7 @@ export class CoursesViewComponent  extends GridDirective implements OnInit  {
   }
 
 
-  
+
   onAction(message: GridActionTypes) {
 
     const findKey = message.data.find((res: any) => {
@@ -113,7 +117,17 @@ export class CoursesViewComponent  extends GridDirective implements OnInit  {
         this.initDelete(this.adminHttp, 'deleteStuff', key)
         break;
       case 'detail':
-        this.router.navigate([`/admin/admin-shop/${key}/admin-shop-detail`])
+        this.router.navigate(['/admin/', 'admin-uploaded-full-courses',key])
+        break;
+      case 'add':
+
+      const dialogRef = this.dialog.open(AdminAddFullCoursePopComponent, {
+        width: '383px',
+        height: 'auto',
+        panelClass: "right-popUp",
+        data: { key: key }
+      });
+
         break;
     }
 

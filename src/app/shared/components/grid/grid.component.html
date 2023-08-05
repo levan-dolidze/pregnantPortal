@@ -33,8 +33,15 @@
                                 </mat-icon>
                             </div>
                             <div *ngIf="showDetails">
+                                
                                 <mat-icon (click)="emitAction(i,'detail',displayedColumns)"
-                                    style="cursor:pointer;">detail
+                                    style="cursor:pointer;">pageview
+                                </mat-icon>
+                            </div>
+                            <div *ngIf="showAdd">
+                                
+                                <mat-icon (click)="emitAction(i,'add',displayedColumns)"
+                                    style="cursor:pointer;">add
                                 </mat-icon>
                             </div>
                         </div>

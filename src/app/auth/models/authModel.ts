@@ -17,6 +17,7 @@ export const adminValidation = (user: string) => user === Admin.admin;
 
 
 export interface IsAdminCheck {
-    isAdmin: boolean,
+    admin: boolean,
     token: boolean
 }
+

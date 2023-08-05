@@ -18,9 +18,6 @@
 
 
 
-
-
-
                 <span>
                     <mat-icon>notifications</mat-icon>
 
@@ -31,9 +28,13 @@
                     </select>
 
 
+
+                 
                     <button *ngFor="let action of authActions" mat-button
                         [matMenuTriggerFor]="action.type === 'admin' ? adminMenu : action.type === 'userWorld' ? userWorldMenu : null"
-                        (click)="initAuthActions(action.type)">
+                        (click)="initAuthActions(action.type)"
+                        
+                        >
                         <ng-container *ngIf="action.isIcon">
                             <mat-icon>{{action.icon}}</mat-icon>
                         </ng-container>

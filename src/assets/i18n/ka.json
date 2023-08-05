@@ -23,10 +23,10 @@
             "add_new_courses": "ახალი კურსის დამატება",
             "add": "დამატება",
             "add_to_cart": "კალათაში დამატება",
-            "prise":"ფასი",
-            "order":"შეკვეთა",
-            "user_courses":"ჩემი კურსები",
-            "title":"დასახელება",
-            "description":"აღწერა"
-
+            "prise": "ფასი",
+            "order": "შეკვეთა",
+            "user_courses": "ჩემი კურსები",
+            "title": "დასახელება",
+            "description": "აღწერა",
+            "full_courses": "სრული კურსები"
         }

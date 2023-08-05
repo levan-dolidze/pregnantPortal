@@ -15,10 +15,14 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AlertComponent } from './shared/components/alert/alert.component';
 import { CoursesViewComponent } from './admin/admin-shop/courses-view/courses-view.component';
 import { ShopViewComponent } from './admin/admin-shop/shop-view/shop-view.component';
+import { AdminUploadedFullCoursesComponent } from './admin/admin-uploaded-full-courses/admin-uploaded-full-courses.component';
+import { AdminAddFullCoursePopComponent } from './admin/admin-add-full-course-pop/admin-add-full-course-pop.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    AdminUploadedFullCoursesComponent,
+    AdminAddFullCoursePopComponent,
 
   
 

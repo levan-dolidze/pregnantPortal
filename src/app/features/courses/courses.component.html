@@ -6,15 +6,16 @@
          (click)="viewDetails(stuff.key)">
 
             {{stuff.title}}
+            <video *ngIf="stuff.productType==='courses'" controls >
+              <source [src]="stuff.img" type="video/mp4">
+            </video>
             {{stuff.description}}
-            {{stuff.prise}}
+            {{stuff.prise}} ₾
           
              
-          <video *ngIf="stuff.productType==='courses'" controls >
-            <source [src]="stuff.img" type="video/mp4">
-          </video>
+       
 
-         <img *ngIf="stuff.productType==='stuffs'" [src]="stuff.img" >
+         <!-- <img *ngIf="stuff.productType==='stuffs'" [src]="stuff.img" > -->
 
         </div>
 

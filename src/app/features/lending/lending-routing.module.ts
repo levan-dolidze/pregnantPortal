@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
-    data: { pageName: 'ლენდინგი' },
+    data: { pageName: 'დეშბორდი' },
     children: [
       {
         path: '',
