@@ -4,7 +4,8 @@ export interface AddStuff {
     description: string,
     prise: string,
     img: string,
-    productType?: 'stuffs' | 'courses'
+    productType?: 'stuffs' | 'courses',
+    parentKey?: string
 
 }
 

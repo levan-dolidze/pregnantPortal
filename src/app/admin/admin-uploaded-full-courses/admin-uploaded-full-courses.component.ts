@@ -1,8 +1,6 @@
-import { Component, Optional, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
-import { ShopService } from 'src/app/features/shop/shop.service';
 import { FullCourse, Stuffs } from '../models/shop';
 import { AdminHttpService } from '../admin-http.service';
 
@@ -30,15 +28,14 @@ export class AdminUploadedFullCoursesComponent implements OnInit {
 
     this.getFullCourses()
 
+
   }
 
 
   getFullCourses() {
     this.adminService.getFullCourses().subscribe({
       next: ((res) => {
-       this.fullCourses=res
-       console.log(this.fullCourses)
-
+        this.fullCourses = res.filter((x => x.parentKey === this.key))
       }),
       error: ((res) => {
 

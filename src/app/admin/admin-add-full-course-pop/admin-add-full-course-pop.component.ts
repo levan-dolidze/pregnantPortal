@@ -65,6 +65,13 @@ export class AdminAddFullCoursePopComponent extends GridDirective implements OnI
 
   seasons: string[] = ['stuffs', 'courses'];
 
+  buildParams() {
+    return {
+      ... this.form.value,
+      parentKey: this.data.key
+    }
+  }
+
   onNewCourseAdd() {
     if (this.form.invalid) {
       this._snackBar.openFromComponent(AlertComponent, {
@@ -77,9 +84,11 @@ export class AdminAddFullCoursePopComponent extends GridDirective implements OnI
       return
 
     } else {
-      const params = this.form.value
+      const params =this.buildParams()
 
       params.img = this.reqCourseImg
+
+      console.log(params)
 
       this.adminHttp.addNewFullCourse(params).subscribe(() => {
         this._snackBar.openFromComponent(AlertComponent, {
