@@ -149,7 +149,7 @@ export class AdminCoursesComponent extends GridDirective implements OnInit,OnDes
         console.log(123)
         break;
       case 'detail':
-        this.router.navigate([`/admin/admin-shop/${key}/admin-shop-detail`])
+        this.router.navigate([`/admin/admin-courses/${key}/admin-shop-detail`])
         break;
     }
 

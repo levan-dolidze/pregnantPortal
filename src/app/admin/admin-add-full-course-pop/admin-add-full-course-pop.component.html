@@ -1,1 +1,70 @@
-<p>admin-add-full-course-pop works!</p>
+<div class="input-form-cont" >
+
+    <ng-container >
+        <span class="title"> {{ 'add_full_course'|translate}}</span>
+
+    </ng-container>
+
+
+    <div class="input-form" @menu >
+
+        <form (ngSubmit)="onNewCourseAdd()" [formGroup]="form">
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>{{'title'|translate}}</mat-label>
+                    <input matInput placeholder="{{'title'|translate}}" formControlName="title">
+
+                    <ng-container *ngIf="form.get('title')?.dirty">
+                        <mat-error *ngIf="form.get('title').errors?.['required']">
+                            ველი სავალდებულოა
+                        </mat-error>
+                        <mat-error *ngIf="form.get('title').errors?.['pattern']">
+                            არასწორი ფორმატი
+                        </mat-error>
+                    </ng-container>
+                </mat-form-field>
+            </div>
+
+
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>{{'description'|translate}}</mat-label>
+                    <input matInput placeholder="{{'description'|translate}}" formControlName="description">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>{{'prise'|translate}}</mat-label>
+                    <input matInput placeholder="{{'prise'|translate}}" formControlName="prise">
+                </mat-form-field>
+            </div>
+            <div>
+             
+
+                <input type="file" placeholder="{{'image'|translate}}" name="" id="" formControlName="img"
+                    (change)="showPreview($event)">
+            </div>
+
+
+            <div>
+                <!-- <label id="example-radio-group-label">Pick your favorite season</label> -->
+                <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                    formControlName="productType">
+                    <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
+                        {{season|translate}}
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+
+
+
+            <button type="submit" mat-raised-button color="primary">
+                <mat-spinner *ngIf="isLoading" [diameter]=20></mat-spinner>
+
+                {{'add'|translate}}
+
+            </button>
+        </form>
+    </div>
+
+</div>

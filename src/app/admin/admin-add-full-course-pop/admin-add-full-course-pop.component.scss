@@ -1,0 +1,44 @@
+@import '../../../app/config.scss';
+
+
+.input-form-cont {
+
+    @include admin-form;
+
+    .title {
+        cursor: pointer;
+
+    }
+}
+
+@mixin centerElement {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.input-form {
+    @include admin-form;
+
+    button {
+        position: relative;
+
+        mat-spinner {
+            @include centerElement;
+        }
+    }
+
+}
+
+:host::ng-deep {
+    .mat-spinner circle {
+        stroke: #fff;
+    }
+}
+
+:host::ng-deep {
+    .mat-spinner circle {
+        stroke: #fff;
+    }
+}

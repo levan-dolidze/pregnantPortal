@@ -1,1 +1,22 @@
-<p>admin-uploaded-full-courses works!</p>
+<div class="cont">
+
+    <div class="inner" *ngFor="let course of fullCourses">
+  
+      <div class="item" >
+  
+        {{course.title}}
+  
+        <video  controls>
+          <source [src]="course.img" type="video/mp4">
+        </video> 
+        {{course.description}}
+        {{course.prise}} ₾
+  
+  
+  
+      </div>
+  
+  
+    </div>
+  
+  </div>

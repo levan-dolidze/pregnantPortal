@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../shared/services/api.service';
-import { AddStuff, Stuffs } from './models/shop';
+import { AddStuff, FullCourse, Stuffs } from './models/shop';
 import { BehaviorSubject, Observable, map, switchMap } from 'rxjs';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database'
 
 const addNewStuff = '/AddNewStuff.json'
 const addNewCourse = '/AddNewCourse.json'
+const addNewFullCourse = '/AddNewFullCourse.json'
 const deleteStuff = '/AddNewStuff/'
 
 @Injectable({
@@ -29,6 +30,9 @@ export class AdminHttpService {
   }
   addNewCourse(newCourse: AddStuff): Observable<AddStuff> {
     return this.apiService.post(addNewCourse, newCourse)
+  }
+  addNewFullCourse(newCourse: AddStuff): Observable<AddStuff> {
+    return this.apiService.post(addNewFullCourse, newCourse)
   }
 
   getStuffs(): Observable<Stuffs[]> {
@@ -59,6 +63,24 @@ export class AdminHttpService {
             stuffs.push({ ...res[key], key: key })
           }
           return stuffs
+
+        } else {
+          return []
+        }
+
+      })
+    )
+  }
+  getFullCourses(): Observable<FullCourse[]> {
+    return this.apiService.get(addNewFullCourse).pipe(
+
+      map((res) => {
+        if (res) {
+          const courses = []
+          for (const key in res) {
+            courses.push({ ...res[key], key: key })
+          }
+          return courses
 
         } else {
           return []

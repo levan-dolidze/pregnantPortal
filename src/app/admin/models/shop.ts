@@ -11,3 +11,8 @@ export interface AddStuff {
 export interface Stuffs extends AddStuff {
     key: string
 }
+
+export interface FullCourse extends AddStuff {
+    key: string
+
+}
