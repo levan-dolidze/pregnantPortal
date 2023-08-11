@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { Stuffs } from 'src/app/admin/models/shop';
+import { OrderedFullCourse, Stuffs } from 'src/app/admin/models/shop';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { IOrder } from './model';
 
@@ -62,5 +62,23 @@ export class ShopService {
 
   addOrder(params: IOrder): Observable<IOrder> {
     return this.apiService.post(orderBase, params)
+  }
+  getOrderedCourse(): Observable<OrderedFullCourse[]> {
+    return this.apiService.get(orderBase).pipe(
+
+      map((res) => {
+        if (res) {
+          const courses = []
+          for (const key in res) {
+            courses.push({ ...res[key], key: key })
+          }
+          return courses
+
+        } else {
+          return []
+        }
+
+      })
+    )
   }
 }

@@ -1,0 +1,22 @@
+<div class="cont">
+
+    <div class="inner" *ngFor="let myCourse of fullCourses">
+
+        <div class="item" 
+         >
+         
+
+            {{myCourse.title}}
+            <video *ngIf="myCourse.productType==='courses'" controls >
+              <source [src]="myCourse.img" type="video/mp4">
+            </video>
+            {{myCourse.description}}
+            {{myCourse.prise}} ₾
+          
+
+        </div>
+
+
+    </div>
+
+</div>

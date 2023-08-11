@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../shared/services/api.service';
-import { AddStuff, FullCourse, Stuffs } from './models/shop';
+import { AddStuff, FullCourse, OrderedFullCourse, Stuffs } from './models/shop';
 import { BehaviorSubject, Observable, map, switchMap } from 'rxjs';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database'
 
 const addNewStuff = '/AddNewStuff.json'
 const addNewCourse = '/AddNewCourse.json'
 const addNewFullCourse = '/AddNewFullCourse.json'
+const addConfirmedCourse = '/AddConfirmedCourse.json'
 const deleteStuff = '/AddNewStuff/'
 
 @Injectable({
@@ -73,6 +74,29 @@ export class AdminHttpService {
   }
   getFullCourses(): Observable<FullCourse[]> {
     return this.apiService.get(addNewFullCourse).pipe(
+
+      map((res) => {
+        if (res) {
+          const courses = []
+          for (const key in res) {
+            courses.push({ ...res[key], key: key })
+          }
+          return courses
+
+        } else {
+          return []
+        }
+
+      })
+    )
+  }
+
+
+  confirmFullCourse (confirmedCourse: OrderedFullCourse){
+    return this.apiService.post(addConfirmedCourse, confirmedCourse)
+  }
+  getMyConfirmedCourses():Observable<OrderedFullCourse[]> {
+    return this.apiService.get(addConfirmedCourse).pipe(
 
       map((res) => {
         if (res) {

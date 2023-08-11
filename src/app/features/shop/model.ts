@@ -19,6 +19,7 @@ export interface IOrder {
     phone: string,
     address: string,
     stuff: Cart
+    uid: string
 }
 
 

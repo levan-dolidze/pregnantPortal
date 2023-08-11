@@ -1,4 +1,4 @@
-import { Component,OnInit,OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { GridDirective } from 'src/app/shared/components/grid/grid.directive';
 import { ApiService } from 'src/app/shared/services/api.service';
@@ -6,34 +6,36 @@ import { AdminHttpService } from '../admin-http.service';
 import { FormBuilder, FormControl, FormControlOptions, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GridActionTypes } from 'src/app/shared/components/grid/model';
-import { AddStuff, Stuffs } from '../models/shop';
+import { AddStuff, OrderedFullCourse, Stuffs } from '../models/shop';
 import { Subscription } from 'rxjs';
 import { GridConfig } from 'src/app/shared/components/grid-config';
+import { ShopService } from 'src/app/features/shop/shop.service';
 
 @Component({
   selector: 'app-admin-courses',
   templateUrl: './admin-courses.component.html',
   styleUrls: ['./admin-courses.component.scss']
 })
-export class AdminCoursesComponent extends GridDirective implements OnInit,OnDestroy {
+export class AdminCoursesComponent extends GridDirective implements OnInit, OnDestroy {
 
-  
+
   constructor(
-    
+
     http: ApiService,
     _snackBar: MatSnackBar,
     adminHttp: AdminHttpService,
     private fb: FormBuilder,
-    private router:Router
+    private router: Router,
+    private shopService: ShopService,
 
-  ){
+  ) {
 
-    super(http, adminHttp,_snackBar)
+    super(http, adminHttp, _snackBar)
 
   }
 
   form: FormGroup;
-  stuffs: Stuffs[];
+  orderedCourses: OrderedFullCourse[];
 
   subscribtion = new Subscription()
   ngOnInit(): void {
@@ -41,40 +43,41 @@ export class AdminCoursesComponent extends GridDirective implements OnInit,OnDes
 
     this.initData()
 
-    this.getCourses()
+    // this.getCourses()
 
 
   }
 
 
   initData() {
-    this.initGet(this.adminHttp, 'getCourses', null)
+    this.initGet(this.shopService, 'getOrderedCourse', null)
   }
   displayedColumns: GridConfig[]
 
   override getData(data: any): void {
-    this.stuffs = data
+    this.orderedCourses = data
 
 
-    console.log(this.stuffs)
+    console.log(this.orderedCourses)
     this.displayedColumns = [
       {
         title: 'key',
         label: 'uhuhds',
         onClick: true,
-        getData: this.stuffs.map(x => x.key),
+        forBackOnly: true,
+        getData: this.orderedCourses.map(x => x.key),
       },
       {
         title: 'დასახელება',
         label: 'uhuhds',
         onClick: true,
-        getData: this.stuffs.map(x => x.title),
+        getData: this.orderedCourses.map(x => x.stuff.title),
       },
       {
         title: 'აღწერა',
         label: 'uhuhds',
         onClick: true,
-        getData: this.stuffs.map(x => x.description),
+        getData: this.orderedCourses.map(x => x.stuff.description),
 
         actions: ['edit']
 
@@ -83,21 +86,22 @@ export class AdminCoursesComponent extends GridDirective implements OnInit,OnDes
         title: 'ფასი',
         label: 'label',
         onClick: true,
-        getData: this.stuffs.map(x => x.prise),
+        getData: this.orderedCourses.map(x => x.stuff.prise),
 
 
       },
-      // {
-      //   title: 'ფოტო',
-      //   label: 'label',
-      //   onClick: true,
-      //   getData: this.stuffs.map(x => x.img),
-      // },
+      {
+        title: 'uid',
+        label: 'label',
+        onClick: true,
+        forBackOnly: true,
+        getData: this.orderedCourses.map(x => x.stuff.uid),
+      },
       {
         title: 'პროდუქტის ტიპი',
         label: 'label',
         onClick: true,
-        getData: this.stuffs.map(x => x.productType),
+        getData: this.orderedCourses.map(x => x.stuff.productType),
       },
 
     ];
@@ -117,19 +121,33 @@ export class AdminCoursesComponent extends GridDirective implements OnInit,OnDes
   }
 
 
- 
 
-  getCourses() {
-    this.subscribtion = this.adminHttp.getCourses().subscribe({
-      next: (res) => {
-        this.stuffs = res
-      },
-      error: (err) => {
+
+  // getCourses() {
+  //   this.subscribtion = this.adminHttp.getCourses().subscribe({
+  //     next: (res) => {
+  //       this.orderedCourses = res
+  //       console.log(this.orderedCourses)
+  //     },
+  //     error: (err) => {
+  //       console.error(err)
+  //     }
+  //   })
+  // }
+
+
+  confirmFullCourse(data: OrderedFullCourse) {
+    this.adminHttp.confirmFullCourse(data).subscribe({
+      next: ((res) => {
+
+      }),
+      error: ((err) => {
         console.error(err)
-      }
-    })
-  }
 
+      })
+    })
+
+  }
 
 
   onAction(message: GridActionTypes) {
@@ -145,16 +163,13 @@ export class AdminCoursesComponent extends GridDirective implements OnInit,OnDes
         this.initDelete(this.adminHttp, 'deleteStuff', key)
         break;
       case 'confirm':
-        //should share video data into users my courses page
-        console.log(123)
+        const confirmed = this.orderedCourses[message.index]
+        this.confirmFullCourse(confirmed)
         break;
       case 'detail':
         this.router.navigate([`/admin/admin-courses/${key}/admin-shop-detail`])
         break;
     }
-
-
-
   }
 
 

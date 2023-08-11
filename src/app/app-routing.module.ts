@@ -21,7 +21,8 @@ const routes: Routes = [
       { path: 'shop', loadChildren: () => import('./features/shop/shop.module').then(m => m.ShopModule) },
       { path: 'contact', loadChildren: () => import('./features/contact/contact.module').then(m => m.ContactModule) },
       { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
-      { path: 'my-courses', loadChildren: () => import('./user/my-courses/my-courses.module').then(m => m.MyCoursesModule) },
+      { path: 'my-courses', loadChildren: () => import('./features/user/my-courses.module').then(m => m.MyCoursesModule) },
+
 
 
     ]

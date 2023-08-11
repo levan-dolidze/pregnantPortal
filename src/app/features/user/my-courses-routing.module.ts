@@ -10,7 +10,7 @@ const routes: Routes = [
     data: { pageName: 'ჩემი კურსები' },
     children: [
       {
-        path: 'admin-courses',
+        path: '',
         component: MyCoursesComponent,
       }
     ]

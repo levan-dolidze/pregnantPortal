@@ -6,6 +6,7 @@ export interface GridConfig {
     onClick?: boolean,
     getData?: any;
     actions?: any
+    forBackOnly?: boolean
 
 
 

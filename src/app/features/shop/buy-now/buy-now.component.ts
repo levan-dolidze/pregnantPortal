@@ -6,6 +6,7 @@ import { LanguageService } from 'src/app/shared/services/language.service';
 import { ShopService } from '../shop.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AlertComponent } from 'src/app/shared/components/alert/alert.component';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 
 @Component({
   selector: 'app-buy-now',
@@ -19,7 +20,8 @@ export class BuyNowComponent implements OnInit {
     @Optional() public dialogRef: MatDialogRef<BuyNowComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { stuffDetails: Stuffs },
     private shopService: ShopService,
-    public _snackBar: MatSnackBar
+    public _snackBar: MatSnackBar,
+    private localStorage: LocalStorageService
 
 
   ) {
@@ -30,6 +32,13 @@ export class BuyNowComponent implements OnInit {
   ngOnInit(): void {
 
     this.initForm()
+
+    console.log()
+
+  }
+
+  get uid():any {
+    return this.localStorage.getTokenResult 
   }
 
 
@@ -58,8 +67,10 @@ export class BuyNowComponent implements OnInit {
       const params = {
         ...
         this.form.value,
-        stuff: this.data.stuffDetails
+        stuff: this.data.stuffDetails,
+        uid:this.uid.uid
       }
+
 
       this.shopService.addOrder(params).subscribe({
 
