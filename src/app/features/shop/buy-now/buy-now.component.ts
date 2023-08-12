@@ -1,12 +1,13 @@
 import { Component, OnInit, Optional, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Stuffs } from 'src/app/admin/models/shop';
 import { LanguageService } from 'src/app/shared/services/language.service';
 import { ShopService } from '../shop.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AlertComponent } from 'src/app/shared/components/alert/alert.component';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
+import { BankAccountsComponent } from 'src/app/shared/components/bank-accounts/bank-accounts.component';
 
 @Component({
   selector: 'app-buy-now',
@@ -21,7 +22,9 @@ export class BuyNowComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: { stuffDetails: Stuffs },
     private shopService: ShopService,
     public _snackBar: MatSnackBar,
-    private localStorage: LocalStorageService
+    private localStorage: LocalStorageService,
+    private dialog: MatDialog,
+
 
 
   ) {
@@ -33,7 +36,6 @@ export class BuyNowComponent implements OnInit {
 
     this.initForm()
 
-    console.log()
 
   }
 
@@ -84,7 +86,11 @@ export class BuyNowComponent implements OnInit {
             }
           })
           this.dialogRef.close()
-
+       
+          const dialogRef = this.dialog.open(BankAccountsComponent, {
+            width: 'auto',
+            height: 'auto',
+          });
 
 
         }),

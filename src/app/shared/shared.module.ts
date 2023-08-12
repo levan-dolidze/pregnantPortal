@@ -9,6 +9,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { GridComponent } from './components/grid/grid.component';
 import { GridDirective } from './components/grid/grid.directive';
 import { AlertComponent } from './components/alert/alert.component';
+import { BankAccountsComponent } from './components/bank-accounts/bank-accounts.component';
 
 
 
@@ -18,7 +19,9 @@ import { AlertComponent } from './components/alert/alert.component';
         LayoutComponent,
         GridComponent,
         GridDirective,
-        AlertComponent
+        AlertComponent,
+        BankAccountsComponent,
+
 
 
 

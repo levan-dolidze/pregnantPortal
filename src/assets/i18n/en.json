@@ -1,41 +1,36 @@
 {
-
-    "headerTitle":"Online Support Your Parenting Journey From",
+    "headerTitle": "Online Support Your Parenting Journey From",
     "home": "Home",
-    "about":"About",
-    "courses":"Courses",
-    "book":"Book",
-    "free-guide":"free-guides",
-    "shop":"shop",
-    "contact":"contact",
-    "logIn":"logIn",
-    "logOut":"logOut",
-    "signUp":"signUp",
-    "admin":"admin",
-    "user":"user",
-    "password":"password",
-    "email":"email",
-    "pregnancy_stuff":"pregnancy stuff",
-    "ordered_pregnancy_stuff":"ordered pregnancy stuff",
-    "ordered_courses":"ordered courses",
-    "customer_message":"customer message",
-    "stuffs":"stuffs",
-    "add_new_stuff":"Add New Stuff",
-    "add_new_courses":"Add New Courses",
-    "add_full_course":"Add Full Course",
-    "add":"Add",
-    "add_to_cart":"Add To Cart",
-    "prise":"prise",
-    "order":"order",
-    "user_courses":"My Courses",
-    "full_courses":"full_courses"
-
-
-
-
-
-
+    "about": "About",
+    "courses": "Courses",
+    "book": "Book",
+    "free-guide": "free-guides",
+    "shop": "shop",
+    "contact": "contact",
+    "logIn": "logIn",
+    "logOut": "logOut",
+    "signUp": "signUp",
+    "admin": "admin",
+    "user": "user",
+    "password": "password",
+    "email": "email",
+    "pregnancy_stuff": "pregnancy stuff",
+    "ordered_pregnancy_stuff": "ordered pregnancy stuff",
+    "ordered_courses": "ordered courses",
+    "customer_message": "customer message",
+    "stuffs": "stuffs",
+    "add_new_stuff": "Add New Stuff",
+    "add_new_courses": "Add New Courses",
+    "add_full_course": "Add Full Course",
+    "add": "Add",
+    "add_to_cart": "Add To Cart",
+    "prise": "prise",
+    "order": "order",
+    "user_courses": "My Courses",
+    "full_courses": "Full Courses",
+    "name": "Name",
+    "lastname": "Lastname",
+    "idNumber": "ID Number",
+    "phone": "Phone Number",
+    "address": "Address"
 }
-
-
-

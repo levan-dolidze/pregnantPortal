@@ -1,8 +1,13 @@
 <div class="detail-content">
     <div class="detail-inner" *ngIf="stuffDetails$|async as stuff">
-        <div class="productDetail">
+
+        <div *ngIf="stuff.productType==='stuffs'" class="productDetail">
             <img [src]="stuff.img" >
         </div>
+
+         <video *ngIf="stuff.productType==='courses'" controls  class="productDetail">
+        <source [src]="stuff.img" type="video/mp4">
+        </video>
 
         <div class="product-info">
             <h3>Description:</h3>

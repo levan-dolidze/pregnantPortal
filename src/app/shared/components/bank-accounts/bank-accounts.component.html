@@ -1,0 +1,16 @@
+<div class="bank-account-cont">
+    <h4>საბანკო რეკვიზიტები</h4>
+
+    <div class="bank-account-inner">
+        <div class="item" *ngFor="let bankInfo of bankAccounts" (click)="redirectIBank(bankInfo)">
+            <div class="left-side">
+                <img [src]="bankInfo.logo" alt="logo">
+            </div>
+            <div class="right-side">
+                <div class="bank-name">{{bankInfo.bankName}}</div>
+                <div class="bank-account">{{bankInfo.bankAccount}}</div>
+                <div class="recipient">{{bankInfo.recipient}}</div>
+            </div>
+        </div>
+    </div>
+</div>

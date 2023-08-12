@@ -1,0 +1,34 @@
+.bank-account-cont {
+    .bank-account-inner {
+        display: flex;
+        flex-direction: column; // Display items in a column
+    }
+
+    .item {
+        display: flex;
+        align-items: center; // Align items vertically
+        cursor: pointer;
+
+        .left-side {
+            margin-right: 10px; // Add spacing between logo and bank info
+            width: 100px;
+            height: 100px;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .right-side {
+            display: flex;
+            flex-direction: column; // Display bank info in a column
+        }
+
+        .bank-name,
+        .bank-account,
+        .recipient {
+            margin: 5px 0; // Add spacing between bank info sections
+        }
+    }
+}

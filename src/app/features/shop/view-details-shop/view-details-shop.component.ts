@@ -38,6 +38,7 @@ export class ViewDetailsShopComponent implements OnInit {
 
   ngOnInit(): void {
     this.getStuffDetails()
+
   }
 
   buyProductNow(stuff:Stuffs) {

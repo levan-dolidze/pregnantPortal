@@ -29,5 +29,11 @@
             "user_courses": "ჩემი კურსები",
             "title": "დასახელება",
             "description": "აღწერა",
-            "full_courses": "სრული კურსები"
+            "full_courses": "სრული კურსები",
+            "name":"სახელი",
+            "lastname":"გვარი",
+            "idNumber":"პირადი ნომერი",
+            "phone":"ტელეფონი",
+            "address":"მისამართი"
+
         }
