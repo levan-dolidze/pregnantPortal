@@ -3,11 +3,15 @@ import { ApiService } from '../shared/services/api.service';
 import { AddStuff, FullCourse, OrderedFullCourse, Stuffs } from './models/shop';
 import { BehaviorSubject, Observable, map, switchMap } from 'rxjs';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database'
+import { Question } from '../features/contact/model';
+import { DoctorAnswer } from './admin-contact/models';
 
 const addNewStuff = '/AddNewStuff.json'
 const addNewCourse = '/AddNewCourse.json'
 const addNewFullCourse = '/AddNewFullCourse.json'
 const addConfirmedCourse = '/AddConfirmedCourse.json'
+const askQuestion = '/Question.json'
+const doctorAnswer = '/doctorAnswer.json'
 const deleteStuff = '/AddNewStuff/'
 
 @Injectable({
@@ -34,6 +38,31 @@ export class AdminHttpService {
   }
   addNewFullCourse(newCourse: AddStuff): Observable<AddStuff> {
     return this.apiService.post(addNewFullCourse, newCourse)
+  }
+  askQuestion(question: Question): Observable<Question> {
+    return this.apiService.post(askQuestion, question)
+  }
+  doctorAnswer(answer: DoctorAnswer): Observable<Question> {
+    return this.apiService.post(doctorAnswer, answer)
+  }
+
+  getQuestions():Observable<OrderedFullCourse[]> {
+    return this.apiService.get(askQuestion).pipe(
+
+      map((res) => {
+        if (res) {
+          const questions = []
+          for (const key in res) {
+            questions.push({ ...res[key], key: key })
+          }
+          return questions
+
+        } else {
+          return []
+        }
+
+      })
+    )
   }
 
   getStuffs(): Observable<Stuffs[]> {

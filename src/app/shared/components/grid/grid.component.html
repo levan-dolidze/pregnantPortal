@@ -44,6 +44,12 @@
                                     style="cursor:pointer;">add
                                 </mat-icon>
                             </div>
+                            <div *ngIf="feedback">
+                                
+                                <mat-icon (click)="emitAction(i,'feedback',displayedColumns)"
+                                    style="cursor:pointer;">question_answer
+                                </mat-icon>
+                            </div>
                         </div>
                     </div>
                 </div>

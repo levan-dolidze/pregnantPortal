@@ -13,6 +13,7 @@ export class GridComponent implements OnInit {
 
   @Input() edit: boolean = true
   @Input() cancel: boolean;
+  @Input() feedback: boolean;
   @Input() showDetails: boolean;
   @Input() showAdd: boolean
   @Input() showConfirm: boolean;
@@ -31,7 +32,7 @@ export class GridComponent implements OnInit {
 
 
 
-  emitAction(i: number, type: 'cancel' | 'detail' | 'confirm'|'add', data: any) {
+  emitAction(i: number, type: 'cancel' | 'detail' | 'confirm'|'add'|'feedback', data: any) {
 
 
     const params: GridActionTypes = {

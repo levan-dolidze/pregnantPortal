@@ -1,1 +1,11 @@
-<p>admin-contact works!</p>
+<div class="admin-shop-cont">
+
+    <div class="list">
+        <app-grid [displayedColumns]="displayedColumns" 
+        [cancel]="true"
+        [feedback]="true"
+        (emitActions)="onAction($event)">
+        </app-grid>
+    </div>
+
+</div>

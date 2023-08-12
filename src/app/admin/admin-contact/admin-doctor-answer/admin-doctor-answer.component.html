@@ -1,0 +1,33 @@
+<div class="answer-cont">
+    <div class="answer-inner">
+
+        <form (ngSubmit)="onAnswer()"  [formGroup]="form">
+
+
+         <textarea name="" id="" 
+            formControlName="answer"
+            placeholder="{{'answer'|translate}}"
+            cols="70" rows="10">
+        </textarea>
+
+        <ng-container *ngIf="form.get('answer')?.dirty">
+            <mat-error *ngIf="form.get('answer').errors?.['required']">
+                ველი სავალდებულოა
+            </mat-error>
+       
+        </ng-container>
+
+
+            <div>
+                
+            <button type="submit" mat-raised-button color="primary">
+
+                {{'add'|translate}}
+
+            </button>
+            </div>
+
+        </form>
+
+    </div>
+</div>

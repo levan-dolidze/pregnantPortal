@@ -1,1 +1,33 @@
-<p>contact works!</p>
+<div class="contact-cont">
+    <div class="contact-inner">
+
+        <form (ngSubmit)="onSubmit()" [formGroup]="form">
+
+
+            <div>
+                <textarea formControlName="question" 
+                         name="" id="" cols="70" rows="10"
+                         placeholder="დაუსვი შეკითხვა მეან-გინეკოლოგს"
+                         >
+                </textarea>
+
+            
+            </div>
+            <div>
+                <ng-container *ngIf="form.get('question')?.dirty">
+                    <mat-error *ngIf="form.get('question').errors?.['required']">
+                        ველი სავალდებულოა
+                    </mat-error>
+               
+                </ng-container>
+            </div>
+        
+            
+            <button type="submit" mat-raised-button color="primary">
+                {{'add'|translate}}
+            </button>
+            
+
+        </form>
+    </div>
+</div>

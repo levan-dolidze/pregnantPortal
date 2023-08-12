@@ -15,6 +15,7 @@ import { AdminCustomerMessageComponent } from './admin-customer-message/admin-cu
 import { AdminShopComponent } from './admin-shop/admin-shop.component';
 import { CoursesViewComponent } from './admin-shop/courses-view/courses-view.component';
 import { ShopViewComponent } from './admin-shop/shop-view/shop-view.component';
+import { AdminDoctorAnswerComponent } from './admin-contact/admin-doctor-answer/admin-doctor-answer.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { ShopViewComponent } from './admin-shop/shop-view/shop-view.component';
     AdminShopComponent,
     CoursesViewComponent,
     ShopViewComponent,
+    AdminDoctorAnswerComponent,
 
   ],
   imports: [
