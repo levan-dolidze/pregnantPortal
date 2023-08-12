@@ -1,0 +1,45 @@
+// @import '/src/config.scss';
+.story-content {
+    // @include absoluteSizes;
+    overflow: scroll;
+};
+.story-inner {
+    // @include absoluteSizes;
+    .description-content{
+        padding: 20px;
+        .description-inner {
+            width: 70%;
+            margin: 0 auto;
+        }
+    }
+    .team-content{
+        width: 100%;
+        .team-inner{
+            width: 70%;
+            display: flex;
+            justify-content: center;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            .team-member{
+                width: 350px;
+                height: 500px;
+                padding: 10px;
+                text-align: center;
+                cursor: pointer;
+                img{
+                    width: 100%;
+                    height: 90%;
+                    object-fit: cover;
+                    border-radius: 10px;
+                }
+            }
+        }
+    }
+    .restaurant-foto-content{
+        width: 100%;
+        img{
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+};

@@ -1,1 +1,52 @@
-<p>about works!</p>
+<div class="story-content">
+    <div class="story-inner">
+        <div class="description-content">
+            <div class="description-inner">
+                <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio quasi est deleniti dignissimos
+                    ratione
+                    laborum odit consequuntur hic unde natus, eum, nulla numquam enim suscipit totam deserunt? Non, ad.
+                    Veniam
+                    totam possimus qui neque suscipit nesciunt ipsam voluptatibus.</p>
+
+                <p>Aspernatur distinctio blanditiis, nesciunt
+                    perspiciatis ipsa eum consequuntur rem laborum voluptatem ipsam cum, illo beatae expedita a rerum
+                    optio
+                    ea
+                    ipsum in? Illo qui est placeat odit incidunt facilis, modi rem quas. Impedit eaque deserunt dolorem
+                    tenetur,
+               
+                </p>
+                <p> fugiat, porro in iusto voluptatem repellat nemo quis veniam sapiente enim ipsa! Aliquam cupiditate
+                    molestiae
+                    consectetur officiis
+                </p>
+
+
+            </div>
+        </div>
+
+
+        <!-- <h3 style="text-align: center">{{'our_team'|translate}}</h3> -->
+
+        <div class="team-content">
+            <div @fade @show class="team-inner">
+                <div class="team-member" *ngFor="let member of (membersArray$|async);let i=index">
+                    <img (click)="openEmployeeInfo(i)" 
+                    [src]="member.file">
+                    {{member.name|translate}} 
+                    {{member.lastname|translate}}
+                    <div>
+                        <h2> {{member.position|translate}}</h2>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+     
+    </div>
+
+  
+
+</div>

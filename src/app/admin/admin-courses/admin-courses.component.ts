@@ -10,6 +10,7 @@ import { AddStuff, OrderedFullCourse, Stuffs } from '../models/shop';
 import { Subscription } from 'rxjs';
 import { GridConfig } from 'src/app/shared/components/grid-config';
 import { ShopService } from 'src/app/features/shop/shop.service';
+import { AlertComponent } from 'src/app/shared/components/alert/alert.component';
 
 @Component({
   selector: 'app-admin-courses',
@@ -139,6 +140,14 @@ export class AdminCoursesComponent extends GridDirective implements OnInit, OnDe
   confirmFullCourse(data: OrderedFullCourse) {
     this.adminHttp.confirmFullCourse(data).subscribe({
       next: ((res) => {
+
+        this._snackBar.openFromComponent(AlertComponent, {
+          duration: 2000,
+          data: {
+            message: 'კურსი დადასტურდა!',
+            type: 'success'
+          }
+        })
 
       }),
       error: ((err) => {

@@ -32,5 +32,6 @@
     "lastname": "Lastname",
     "idNumber": "ID Number",
     "phone": "Phone Number",
-    "address": "Address"
+    "address": "Address",
+    "our_team": "About Us"
 }
