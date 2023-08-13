@@ -1,0 +1,21 @@
+<div class="my-communication-cont">
+    <div class="my-communication-inner">
+
+
+        <div *ngFor="let faq of doctorAnswers">
+            <div class="q">
+                {{'question'|translate}} : {{faq.question}}
+
+            </div>
+            <div class="a">
+                {{'answer'|translate}}: {{faq.answer}}
+            </div>
+
+          <mat-divider></mat-divider>
+
+
+        </div>
+
+    </div>
+
+</div>

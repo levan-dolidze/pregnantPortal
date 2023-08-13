@@ -12,7 +12,8 @@ import { LocalStorageService } from 'src/app/core/services/local-storage.service
 export class MyCoursesComponent implements OnInit {
 
 
-  constructor(private adminService: AdminHttpService,
+  constructor(
+    private adminService: AdminHttpService,
     private localStorage: LocalStorageService,
     private route: ActivatedRoute
   ) {
@@ -41,7 +42,6 @@ export class MyCoursesComponent implements OnInit {
 
   getFullCourses(keys: string[]) {
 
-    console.log(keys)
     this.adminService.getFullCourses().subscribe({
       next: ((res) => {
         this.fullCourses = res.filter(item => keys.includes(item.parentKey));

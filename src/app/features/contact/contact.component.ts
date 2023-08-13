@@ -32,7 +32,7 @@ export class ContactComponent extends GridDirective implements OnInit {
 
 
 
-  get uEmail(): any {
+  get uid(): any {
     return this.localStorage.getTokenResult
   }
 
@@ -51,7 +51,7 @@ export class ContactComponent extends GridDirective implements OnInit {
   buildParams() {
     return {
       ...this.form.value,
-      email: this.uEmail.email
+      uid: this.uid.uid
     } as Question
   }
 

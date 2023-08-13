@@ -62,10 +62,10 @@ export class AdminContactComponent extends GridDirective implements OnInit {
         getData: this.questions.map(x => x.question),
       },
       {
-        title: 'იმეილი',
+        title: 'მომხმარებელი',
         label: 'uhuhds',
         onClick: true,
-        getData: this.questions.map(x => x.email),
+        getData: this.questions.map(x => x.uid),
       },
 
 
@@ -83,18 +83,24 @@ export class AdminContactComponent extends GridDirective implements OnInit {
       return res.title === 'შეკითხვა'
 
     })
+    const userId = message.data.find((res: any) => {
+      return res.title === 'მომხმარებელი'
+
+    })
     const key = findKey.getData[message.index];
+    const question = findQ.getData[message.index];
+    const user = userId.getData[message.index];
 
     switch (message.types) {
       case 'cancel':
         // this.initDelete(this.adminHttp, 'deleteStuff', key)
         break;
       case 'feedback':
-        
-      const dialogRef = this.dialog.open(AdminDoctorAnswerComponent, {
-     
-        data: { key: key,question:findQ }
-      });
+
+        const dialogRef = this.dialog.open(AdminDoctorAnswerComponent, {
+
+          data: { key: key, question: question, uid: user }
+        });
         break;
 
     }

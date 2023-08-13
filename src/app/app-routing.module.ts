@@ -22,7 +22,7 @@ const routes: Routes = [
       { path: 'contact', loadChildren: () => import('./features/contact/contact.module').then(m => m.ContactModule) },
       { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
       { path: 'my-courses', loadChildren: () => import('./features/user/my-courses.module').then(m => m.MyCoursesModule) },
-
+      { path: 'my-communication', loadChildren: () => import('./features/user/my-communication/my-communication.module').then(m => m.MyCommunicationModule) },
 
 
     ]

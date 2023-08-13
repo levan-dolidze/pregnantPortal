@@ -27,6 +27,7 @@
             "prise": "ფასი",
             "order": "შეკვეთა",
             "user_courses": "ჩემი კურსები",
+            "user_communications":"ჩემი კომუნიკაცია",
             "title": "დასახელება",
             "description": "აღწერა",
             "full_courses": "სრული კურსები",
@@ -35,5 +36,7 @@
             "idNumber": "პირადი ნომერი",
             "phone": "ტელეფონი",
             "address": "მისამართი",
-            "our_team": "ჩვენს შესახებ"
+            "our_team": "ჩვენს შესახებ",
+            "question": "კითხვა",
+            "answer": "პასუხი"
         }

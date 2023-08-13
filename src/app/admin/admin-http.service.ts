@@ -142,6 +142,23 @@ export class AdminHttpService {
       })
     )
   }
+  getDoctorAnswers():Observable<DoctorAnswer[]> {
+    return this.apiService.get(doctorAnswer).pipe(
+
+      map((res) => {
+        if (res) {
+          const answers = []
+          for (const key in res) {
+            answers.push({ ...res[key], key: key })
+          }
+          return answers
+
+        } else {
+          return []
+        }
+      })
+    )
+  }
 
   public dataSubject = new BehaviorSubject<any>(null);
 

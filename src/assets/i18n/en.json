@@ -27,11 +27,15 @@
     "prise": "prise",
     "order": "order",
     "user_courses": "My Courses",
+    "user_communications":"My Communications",
     "full_courses": "Full Courses",
     "name": "Name",
     "lastname": "Lastname",
     "idNumber": "ID Number",
     "phone": "Phone Number",
     "address": "Address",
-    "our_team": "About Us"
+    "our_team": "About Us",
+    "question": "Question",
+    "answer": "Answer"
+
 }

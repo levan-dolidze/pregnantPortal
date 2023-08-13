@@ -224,7 +224,6 @@ export class AdminShopComponent extends GridDirective implements OnInit, OnDestr
             this.reqCourseImg=url
 
             this.isLoading=false
-            console.log(this.reqCourseImg)
             // this.httpAdmin.insertMenu(obj)
 
 

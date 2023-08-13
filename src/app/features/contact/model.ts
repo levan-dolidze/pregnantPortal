@@ -1,6 +1,6 @@
 export interface Question {
     question: string,
-    email: string,
+    uid: string,
     key?:string
 
 }

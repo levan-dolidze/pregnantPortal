@@ -182,6 +182,13 @@ export class AuthBtnModesService {
           link: "/my-courses",
           permission: "user",
         },
+        {
+          text: 'user_communications',
+          type: 'userWorld',
+          icon: "update",
+          link: "/my-communication",
+          permission: "user",
+        },
       )
     }
     else {

@@ -19,10 +19,11 @@ export class AdminDoctorAnswerComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private adminHttp: AdminHttpService,
     @Optional() public dialogRef: MatDialogRef<AdminDoctorAnswerComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { key: string, question: string },
+    @Inject(MAT_DIALOG_DATA) public data: { key: string, question: string,uid:string },
 
 
   ) {
+
 
   }
 
@@ -31,8 +32,9 @@ export class AdminDoctorAnswerComponent implements OnInit {
   buildParams() {
     return {
       ...this.form.value,
+      uid:this.data.uid,
+      questionKey:this.data.key,
       question: this.data.question,
-      questionKey:this.data.key
     } as DoctorAnswer
   }
 
