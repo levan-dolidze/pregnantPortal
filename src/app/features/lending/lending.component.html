@@ -1,3 +1,31 @@
-<p >lending works!</p>
+<div class="dashboard-cont">
+
+    <div class="team-member" *ngFor="let member of (membersArray$|async);let i=index">
+
+        <div class="image">
+            <img (click)="openEmployeeInfo(i)" [src]="member.file">
+        </div>
 
 
+        <div class="info-box">
+
+            <div>
+                <h2>
+                    {{member.name|translate}}
+                    {{member.lastname|translate}}
+
+                </h2>
+
+                <p>{{member.position|translate}}</p>
+
+            </div>
+            <div class="description">
+
+                {{member.description}}
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
