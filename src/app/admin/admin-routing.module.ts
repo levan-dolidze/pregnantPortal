@@ -11,66 +11,90 @@ import { AdminPregnancyStuffComponent } from './admin-pregnancy-stuff/admin-preg
 import { AdminComponent } from './admin.component';
 import { AdminShopComponent } from './admin-shop/admin-shop.component';
 import { AdminUploadedFullCoursesComponent } from './admin-uploaded-full-courses/admin-uploaded-full-courses.component';
+import { AuthGuard } from '../core/guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
     data: { pageName: 'ადმინი' },
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
         component: AdminComponent,
+        canActivate: [AuthGuard],
+
         children: [
           {
             path: 'admin-courses',
             component: AdminCoursesComponent,
+            canActivate: [AuthGuard],
+
 
           },
           {
             path: 'admin-pregnancy',
             component: AdminPregnancyStuffComponent,
+            canActivate: [AuthGuard],
+
 
           },
           {
             path: 'admin-home',
             component: AdminHomeComponent,
+            canActivate: [AuthGuard],
+
 
           },
           {
             path: 'admin-about',
             component: AdminAboutComponent,
 
+            canActivate: [AuthGuard],
+
           },
           {
             path: 'admin-books',
             component: AdminBookComponent,
+            canActivate: [AuthGuard],
+
 
           },
           {
             path: 'admin-free-guides',
             component: AdminFreeGuideComponent,
+            canActivate: [AuthGuard],
+
 
           },
           {
             path: 'admin-contact',
             component: AdminContactComponent,
+            canActivate: [AuthGuard],
+
 
           },
           {
             path: 'admin-shop',
             component: AdminShopComponent,
+            canActivate: [AuthGuard],
+
           },
           {
             path: 'admin-shop',
             component: AdminShopComponent,
-        
+            canActivate: [AuthGuard],
+
+
           },
           {
             path: 'admin-uploaded-full-courses/:key',
             component: AdminUploadedFullCoursesComponent,
+            canActivate: [AuthGuard],
+
           },
-        
+
         ]
       }
 

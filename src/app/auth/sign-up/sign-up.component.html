@@ -7,7 +7,18 @@
                 <mat-label>{{'email'|translate}}</mat-label>
                 <input matInput placeholder="{{'email'|translate}}" value="Sushi" formControlName="email">
             </mat-form-field>
+            <ng-container *ngIf="form.get('email')?.dirty">
+                <mat-error
+                  *ngIf="form.get('email').errors?.['required']">
+                  ველი სავალდებულოა
+                </mat-error>
+                <mat-error
+                  *ngIf="form.get('email').errors?.['pattern']">
+                  არასწორი ფორმატი
+                </mat-error>
+              </ng-container>
         </div>
+     
       
 
         <div>
@@ -15,6 +26,16 @@
                 <mat-label>{{'password'|translate}}</mat-label>
                 <input matInput placeholder="{{'password'|translate}}" formControlName="password" value="Sushi">
             </mat-form-field>
+            <ng-container *ngIf="form.get('password')?.dirty">
+                <mat-error
+                  *ngIf="form.get('password').errors?.['required']">
+                  ველი სავალდებულოა
+                </mat-error>
+                <mat-error
+                  *ngIf="form.get('password')?.hasError('minLength')">
+                  პაროლის არასწორი ფორმატი
+                </mat-error>
+              </ng-container>
         </div>
 
 

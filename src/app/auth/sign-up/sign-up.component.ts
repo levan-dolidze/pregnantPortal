@@ -5,6 +5,7 @@ import { AuthService } from '../auth.service';
 import { SignUp } from '../models/authModel';
 import { getAuth, sendEmailVerification } from "firebase/auth";
 import { Router } from '@angular/router';
+import { regExp } from 'src/app/shared/validations/regex';
 
 
 @Component({
@@ -33,8 +34,8 @@ export class SignUpComponent implements OnInit {
 
   initForm() {
     this.form = this.fb.group({
-      email: [null, [Validators.required]],
-      password: [null, [Validators.required]]
+      email: [null, [Validators.required,Validators.pattern(regExp.email)]],
+      password: [null, [Validators.required,Validators.minLength(6)]]
     } as { [key in keyof SignUp]: FormControlOptions })
   }
 

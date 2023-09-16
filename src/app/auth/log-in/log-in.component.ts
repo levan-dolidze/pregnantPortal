@@ -69,9 +69,6 @@ export class LogInComponent implements OnInit {
           isAdmin: this.authService.isAdmin(username)
         }).subscribe((res) => {
 
-
-
-
           this.dialogRef.close();
           this.router.navigate([''])
 

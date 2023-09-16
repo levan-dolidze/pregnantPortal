@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 import { authActionModes } from 'src/app/shared/layout/models/authModel';
 
 @Injectable({
@@ -7,14 +8,16 @@ import { authActionModes } from 'src/app/shared/layout/models/authModel';
 })
 export class AuthBtnModesService {
 
-  constructor() { }
+  constructor(private authService:AuthService) { }
 
 
 
-  getAuthBtnMode(container: Array<any>, token: boolean, admin: boolean): Observable<Array<authActionModes>> {
+  getAuthBtnMode(container: Array<any>, token: any, admin: boolean): Observable<Array<authActionModes>> {
 
 
-    if (token && admin) {
+   
+
+    if (token.emailVerified && this.authService.isAdminNew()) {
       container = []
       container.push(
         {
@@ -42,7 +45,7 @@ export class AuthBtnModesService {
 
     }
 
-    else if (token && !admin) {
+    else if (token.emailVerified && !this.authService.isAdminNew()) {
       container = []
       container.push(
         {
@@ -63,7 +66,7 @@ export class AuthBtnModesService {
 
     }
 
-    else if (!token) {
+    else if (!token.emailVerified) {
       container = []
 
       container.push(
@@ -92,7 +95,7 @@ export class AuthBtnModesService {
   getAdminBtns(container: Array<any>, token: boolean, admin: boolean) {
 
 
-    if (token && admin) {
+    if (token && admin&&this.authService.isAdminNew()) {
       container = []
       container.push(
         {
@@ -169,10 +172,10 @@ export class AuthBtnModesService {
     }
     return of(container)
   }
-  getMyWorldBtns(container: Array<any>, token: boolean, admin: boolean) {
+  getMyWorldBtns(container: Array<any>, token: any, admin: boolean) {
 
 
-    if (token && admin) {
+    if (token.emailVerified && this.authService.isAdminNew()) {
       container = []
       container.push(
         {
