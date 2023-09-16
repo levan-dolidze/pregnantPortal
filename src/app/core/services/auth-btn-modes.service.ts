@@ -175,7 +175,7 @@ export class AuthBtnModesService {
   getMyWorldBtns(container: Array<any>, token: any, admin: boolean) {
 
 
-    if (token.emailVerified && this.authService.isAdminNew()) {
+    if (token.emailVerified && !this.authService.isAdminNew()) {
       container = []
       container.push(
         {

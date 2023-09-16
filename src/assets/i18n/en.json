@@ -38,6 +38,8 @@
     "question": "Question",
     "answer": "Answer",
     "buy":"Buy",
-    "pmt_link":"Payment link"
+    "pmt_link":"Payment link",
+    "for_pay":"For payment navigate on link",
+    "bank_for_pay":"Or pay with following bank accounts"
 
 }
