@@ -6,6 +6,8 @@ import { SignUp } from '../models/authModel';
 import { getAuth, sendEmailVerification } from "firebase/auth";
 import { Router } from '@angular/router';
 import { regExp } from 'src/app/shared/validations/regex';
+import { AlertComponent } from 'src/app/shared/components/alert/alert.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -20,7 +22,9 @@ export class SignUpComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: { promoCodeDetails: any },
     private authservice: AuthService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private _snackBar: MatSnackBar,
+
 
   ) { }
 
@@ -49,6 +53,15 @@ export class SignUpComponent implements OnInit {
       this.verifyEmail();
       this.dialogRef.close();
       this.router.navigate([''])
+      
+      this._snackBar.openFromComponent(AlertComponent, {
+        duration: 5000,
+        data: {
+          message: 'თქვენს მეილზე გაგზავნილია ვერიფიკაციის ლინკი, გთხოვთ გახნათ გამოგზავნილი ლინკი!',
+          type: 'error'
+        }
+      })
+
 
     }
   };
