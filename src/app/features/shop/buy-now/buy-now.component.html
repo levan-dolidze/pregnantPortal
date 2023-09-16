@@ -5,7 +5,7 @@
             <mat-label>{{'name'|translate}}</mat-label>
             <input matInput placeholder="{{'name'|translate}}" formControlName="name">
         </mat-form-field>
-        <mat-form-field appearance="outline">
+        <mat-form-field style="margin-left:35px;" appearance="outline">
             <mat-label>{{'lastname'|translate}}</mat-label>
             <input matInput placeholder="{{'lastname'|translate}}" formControlName="lastName">
         </mat-form-field>
@@ -13,7 +13,7 @@
             <mat-label>{{'idNumber'|translate}}</mat-label>
             <input matInput placeholder="{{'idNumber'|translate}}" formControlName="IDNumber">
         </mat-form-field>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" style="margin-left:35px;">
             <mat-label>{{'phone'|translate}}</mat-label>
             <input matInput placeholder="{{'phone'|translate}}" formControlName="phone">
         </mat-form-field>
@@ -23,8 +23,11 @@
         </mat-form-field>
 
 
-        <button type="submit" mat-flat-button color="primary">{{"order"|translate}}
-        </button>
+
+        <div>
+            <button style="width: 100%;" type="submit" mat-flat-button color="primary">{{"order"|translate}}
+            </button>
+        </div>
 
     </form>
 
