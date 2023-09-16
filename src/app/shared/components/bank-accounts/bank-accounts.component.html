@@ -1,5 +1,14 @@
 <div class="bank-account-cont">
-    <h4>საბანკო რეკვიზიტები</h4>
+
+    <div>
+        <h4>გადასახდელათ გადადი ლინკზე:</h4>
+        <div>
+            <a href="https://ecom.tbcpayments.ge/New/pay/product/tQoeDvqdcH6?lang=KA" target="_blank">{{'pmt_link'|translate}}</a>
+        </div>
+    </div>
+
+
+    <h4>ან გადაიხადე წვემოთ მოცემულ რეკვიზიტებზე:</h4>
 
     <div class="bank-account-inner">
         <div class="item" *ngFor="let bankInfo of bankAccounts" (click)="redirectIBank(bankInfo)">
@@ -13,4 +22,6 @@
             </div>
         </div>
     </div>
+
+ 
 </div>
