@@ -107,7 +107,7 @@ export class AuthBtnModesService {
         },
         {
           text: 'ordered_pregnancy_stuff',
-          type: 'courses',
+          type: 'items',
           icon: "update",
           link: "/admin/admin-pregnancy",
           permission: "user",

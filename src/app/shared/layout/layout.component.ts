@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 // import { MatDialog } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { combineLatest, concatMap, forkJoin, from, switchMap } from 'rxjs';
+import { Observable, Subscription, combineLatest, concatMap, forkJoin, from, shareReplay, switchMap } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { LogInComponent } from 'src/app/auth/log-in/log-in.component';
 import { IsAdminCheck } from 'src/app/auth/models/authModel';
@@ -13,6 +13,9 @@ import { LocalStorageService } from 'src/app/core/services/local-storage.service
 import { authActionModes, IActionType } from 'src/app/shared/layout/models/authModel';
 import { LanguageService } from '../services/language.service';
 import { MatMenu } from '@angular/material/menu';
+import { OrderedFullCourse } from 'src/app/admin/models/shop';
+import { ShopService } from 'src/app/features/shop/shop.service';
+import { AdminHttpService } from 'src/app/admin/admin-http.service';
 
 @Component({
   selector: 'app-layout',
@@ -26,7 +29,9 @@ export class LayoutComponent implements OnInit {
 
 
   isAdmin: IsAdminCheck;
-  prise: number = 15
+  prise: number = 15;
+  subscriobtion$ = new Subscription();
+
 
   constructor(
     private route: ActivatedRoute,
@@ -37,7 +42,12 @@ export class LayoutComponent implements OnInit {
 
     public authService: AuthService,
     private autBtnService: AuthBtnModesService,
-    public languageService: LanguageService
+    public languageService: LanguageService,
+    private shopService: ShopService,
+    private adminHttp: AdminHttpService,
+
+
+
 
 
 
@@ -67,7 +77,58 @@ export class LayoutComponent implements OnInit {
 
     this.selectedLang = this.languageService.defaultLang;
 
+    this.returnNotifications()
+  }
 
+  observable$: Observable<any>;
+
+  orderedCourses: OrderedFullCourse[];
+  orderedItems: Array<any>
+  contact: Array<any>
+
+
+  returnNotifications() {
+    this.observable$ = forkJoin({
+      orderedCourses: this.shopService.getOrderedCourse(),
+      orderedItems: this.adminHttp.getStuffs(),
+      contact: this.adminHttp.getQuestions()
+      // messages: this.httpAdmin.getOnlineOrders(),
+
+    }).pipe(
+      shareReplay()
+    )
+    this.subscriobtion$ = this.observable$.subscribe((notifications) => {
+
+      console.log(notifications)
+
+      this.orderedCourses = notifications.orderedCourses;
+      this.orderedItems = notifications.orderedItems;
+      this.contact = notifications.contact;
+
+      this.commonNotifications(notifications)
+    })
+  };
+
+
+  generalNotification: number;
+
+  commonNotifications(i: any) {
+    let arr = [];
+    let notifications: Array<Array<object>> = [i.orderedCourses, i.orderedItems, i.contact]
+    for (const n of notifications) {
+      for (const i of n) {
+        arr.push(i)
+      }
+      this.generalNotification = arr?.length
+    }
+  };
+
+  notificationObs$: Observable<any>
+
+
+
+  ngOnDestroy(): void {
+    this.subscriobtion$.unsubscribe();
   }
 
 

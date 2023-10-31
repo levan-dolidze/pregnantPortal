@@ -19,7 +19,7 @@
 
 
                 <span>
-                    <mat-icon>notifications</mat-icon>
+
 
 
                     <select (change)="changeLang($event.target)" [(ngModel)]="selectedLang">
@@ -33,11 +33,14 @@
                     <button *ngFor="let action of authActions" mat-button
                         [matMenuTriggerFor]="action.type === 'admin' ? adminMenu : action.type === 'userWorld' ? userWorldMenu : null"
                         (click)="initAuthActions(action.type)"
-                        
                         >
                         <ng-container *ngIf="action.isIcon">
                             <mat-icon>{{action.icon}}</mat-icon>
                         </ng-container>
+                        <span *ngIf="action.type === 'admin'&&generalNotification" [matBadge]='generalNotification' matBadgeColor="warn">
+
+                        </span>
+
                         {{action.text|translate}}
 
                     </button>
@@ -46,11 +49,32 @@
                         <div class="admin-menu">
 
                             <button *ngFor="let link of adminBtns" mat-menu-item [routerLink]="link.link">
-                                <div>
-                                    
-                                </div>
-                                {{link.text|translate}}
+
+                        <span> 
+
+                            {{link.courses}}
+
+                       <span *ngIf="orderedCourses?.length&&link.type==='courses'"  [matBadge]='orderedCourses?.length' 
+                       matBadgeColor="warn">
+
+                       </span>
+                       <span *ngIf="orderedItems?.length&&link.type==='items'"  [matBadge]='orderedItems?.length' 
+                       matBadgeColor="warn">
+
+                       </span>
+                       <span *ngIf="contact?.length&&link.type==='contact'"  [matBadge]='contact?.length' 
+                       matBadgeColor="warn">
+
+                       </span>
+                            
+                        </span>
+
+                                  
+                            {{link.text|translate}}  
+
                             </button>
+
+
 
                         </div>
                     </mat-menu>
