@@ -14,6 +14,7 @@ const askQuestion = '/Question.json'
 const doctorAnswer = '/doctorAnswer.json'
 const deleteStuff = '/AddNewStuff/'
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -31,6 +32,7 @@ export class AdminHttpService {
   //show
 
   addNewStuff(newStuff: AddStuff): Observable<AddStuff> {
+    
     return this.apiService.post(addNewStuff, newStuff)
   }
   addNewCourse(newCourse: AddStuff): Observable<AddStuff> {

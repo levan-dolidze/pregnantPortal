@@ -2,36 +2,43 @@
 
 .admin-content {
     @include adminList(30%, 70%)
-}
-
-;
+};
 
 .cancel-icon {
     @include adminListCancelIcons;
 }
-
-;
 
 .form-control,
 .addEventBtn {
     margin-top: marginTop(10px);
 }
 
-;
-
 @mixin centerElement {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-}
+};
 
 .input-form {
     @include admin-form;
 
+    form{
+
+        div {
+            .example-radio-group{
+                .example-radio-button{
+                    margin:15px 10px 15px 0px
+
+                }
+            }
+        }
+    }
+
     button {
         position: relative;
 
+        width: 100%;
         mat-spinner {
             @include centerElement;
         }
@@ -65,4 +72,4 @@
 
         }
     }
-}
+};

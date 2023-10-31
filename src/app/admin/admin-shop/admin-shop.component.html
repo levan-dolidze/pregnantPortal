@@ -30,7 +30,6 @@
 
         <div class="input-form" @menu *ngSwitchCase="UIList.shopForm">
 
-
             <form (ngSubmit)="onNewStuffAdd()" [formGroup]="shopForm">
                 <div>
                     <mat-form-field appearance="outline">
@@ -82,7 +81,7 @@
                     <!-- <label id="example-radio-group-label">Pick your favorite season</label> -->
                     <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
                         formControlName="productType">
-                        <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
+                        <mat-radio-button  class="example-radio-button" *ngFor="let season of seasons" [value]="season">
                             {{season|translate}}
                         </mat-radio-button>
                     </mat-radio-group>

@@ -31,7 +31,7 @@ export class AuthService {
     const user = localStorage.getItem('user');
     if (user) {
       const parsedUser = JSON.parse(user)
-      if (parsedUser.emailVerified && parsedUser.uid === 'FbcuoFP18GRxhnMMb1gi57GUt2a2') {
+      if (parsedUser.emailVerified && parsedUser.uid === 'osQEYxPug4ZekILcy7XnIYZc1VD2') {
         return true
       }
       return false
