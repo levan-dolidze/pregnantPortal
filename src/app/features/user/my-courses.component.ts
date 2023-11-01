@@ -45,6 +45,7 @@ export class MyCoursesComponent implements OnInit {
 
     this.adminService.getFullCourses().subscribe({
       next: ((res) => {
+        console.log(res)
         this.fullCourses = res.filter(item => keys.includes(item.parentKey));
       }),
       error: ((res) => {
@@ -57,6 +58,8 @@ export class MyCoursesComponent implements OnInit {
   getMyCourses() {
     this.adminService.getMyConfirmedCourses().subscribe({
       next: ((res) => {
+
+      
 
 
         const keys = res.filter((x => x.uid === this.uid.uid)).map((x=>x.stuff.key))

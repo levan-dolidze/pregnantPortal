@@ -90,7 +90,7 @@ export class LayoutComponent implements OnInit {
   returnNotifications() {
     this.observable$ = forkJoin({
       orderedCourses: this.shopService.getOrderedCourse(),
-      orderedItems: this.adminHttp.getStuffs(),
+      orderedItems: this.shopService.getOrderedStuff(),
       contact: this.adminHttp.getQuestions()
       // messages: this.httpAdmin.getOnlineOrders(),
 

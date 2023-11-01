@@ -9,6 +9,8 @@ import { AddStuff, Stuffs } from '../models/shop';
 import { Subscription } from 'rxjs';
 import { GridConfig } from 'src/app/shared/components/grid-config';
 import { Router } from '@angular/router';
+import { ShopService } from 'src/app/features/shop/shop.service';
+import { IOrder } from 'src/app/features/shop/model';
 
 @Component({
   selector: 'app-admin-pregnancy-stuff',
@@ -25,7 +27,8 @@ export class AdminPregnancyStuffComponent extends GridDirective implements OnIni
     _snackBar: MatSnackBar,
     adminHttp: AdminHttpService,
     private fb: FormBuilder,
-    private router:Router
+    private router:Router,
+    private shopService:ShopService
 
   ){
 
@@ -35,7 +38,7 @@ export class AdminPregnancyStuffComponent extends GridDirective implements OnIni
 
 
   form: FormGroup;
-  stuffs: Stuffs[];
+  stuffs: any[];
 
   subscribtion = new Subscription()
   ngOnInit(): void {
@@ -50,12 +53,14 @@ export class AdminPregnancyStuffComponent extends GridDirective implements OnIni
 
 
   initData() {
-    this.initGet(this.adminHttp, 'getStuffs', null)
+    this.initGet(this.shopService, 'getOrderedStuff', null)
   }
   displayedColumns: GridConfig[]
 
   override getData(data: any): void {
     this.stuffs = data
+
+    console.log(this.stuffs)
 
     this.displayedColumns = [
       {
@@ -68,13 +73,13 @@ export class AdminPregnancyStuffComponent extends GridDirective implements OnIni
         title: 'დასახელება',
         label: 'uhuhds',
         onClick: true,
-        getData: this.stuffs.map(x => x.title),
+        getData: this.stuffs.map(x => x.stuff.title),
       },
       {
         title: 'აღწერა',
         label: 'uhuhds',
         onClick: true,
-        getData: this.stuffs.map(x => x.description),
+        getData: this.stuffs.map(x => x.stuff.description),
 
         actions: ['edit']
 
@@ -83,13 +88,13 @@ export class AdminPregnancyStuffComponent extends GridDirective implements OnIni
         title: 'ფასი',
         label: 'label',
         onClick: true,
-        getData: this.stuffs.map(x => x.prise),
+        getData: this.stuffs.map(x => x.stuff.prise),
       },
       {
         title: 'პროდუქტის ტიპი',
         label: 'label',
         onClick: true,
-        getData: this.stuffs.map(x => x.productType),
+        getData: this.stuffs.map(x => x.stuff.productType),
       },
       // {
       //   title: 'ფოტო',

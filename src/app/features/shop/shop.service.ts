@@ -6,7 +6,8 @@ import { IOrder } from './model';
 
 const addNewStuff = '/AddNewStuff.json';
 const addNewCourse = '/AddNewCourse.json';
-const orderBase = '/OrderShop.json';
+const orderBaseCourse = '/CourseOrder.json';
+const orderBaseStuff = '/StuffOrder.json';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,6 @@ export class ShopService {
     private apiService: ApiService
 
   ) { }
-
-
 
 
 
@@ -46,11 +45,11 @@ export class ShopService {
 
       map((res) => {
         if (res) {
-          const stuffs = []
+          const stuff:any = []
           for (const key in res) {
-            stuffs.push({ ...res[key], key: key })
+            stuff.push({ ...res[key], key: key })
           }
-          return stuffs
+          return stuff
 
         } else {
           return []
@@ -60,11 +59,14 @@ export class ShopService {
     )
   }
 
-  addOrder(params: IOrder): Observable<IOrder> {
-    return this.apiService.post(orderBase, params)
+  buyCourse(params: IOrder): Observable<IOrder> {
+    return this.apiService.post(orderBaseCourse, params)
+  }
+  buyStuff(params: IOrder): Observable<IOrder> {
+    return this.apiService.post(orderBaseStuff, params)
   }
   getOrderedCourse(): Observable<OrderedFullCourse[]> {
-    return this.apiService.get(orderBase).pipe(
+    return this.apiService.get(orderBaseCourse).pipe(
 
       map((res) => {
         if (res) {
@@ -81,4 +83,21 @@ export class ShopService {
       })
     )
   }
-}
+  getOrderedStuff(): Observable<OrderedFullCourse[]> {
+    return this.apiService.get(orderBaseStuff).pipe(
+
+      map((res) => {
+        if (res) {
+          const stuff = []
+          for (const key in res) {
+            stuff.push({ ...res[key], key: key })
+          }
+          return stuff
+
+        } else {
+          return []
+        }
+      })
+    )
+  }
+};

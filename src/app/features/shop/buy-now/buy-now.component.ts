@@ -37,6 +37,8 @@ export class BuyNowComponent implements OnInit {
     this.initForm()
 
 
+    console.log(this.data.stuffDetails.productType)
+
   }
 
   get uid():any {
@@ -74,38 +76,80 @@ export class BuyNowComponent implements OnInit {
       }
 
 
-      this.shopService.addOrder(params).subscribe({
+      switch (this.data.stuffDetails.productType) {
+        case 'courses':
+          this.shopService.buyCourse(params).subscribe({
 
-        next: (() => {
-
-          this._snackBar.openFromComponent(AlertComponent, {
-            duration: 2000,
-            data: {
-              message: 'შეკვეთა წარმატებით შესრულდა!',
-              type: 'success'
-            }
+            next: (() => {
+    
+              this._snackBar.openFromComponent(AlertComponent, {
+                duration: 2000,
+                data: {
+                  message: 'შეკვეთა წარმატებით შესრულდა!',
+                  type: 'success'
+                }
+              })
+              this.dialogRef.close()
+           
+              const dialogRef = this.dialog.open(BankAccountsComponent, {
+                width: 'auto',
+                height: 'auto',
+              });
+    
+    
+            }),
+            error: ((err) => {
+              this._snackBar.openFromComponent(AlertComponent, {
+                duration: 2000,
+                data: {
+                  message: 'შეკვეთა ვერ მოხდა!',
+                  type: 'error'
+                }
+              })
+              console.error(err)
+    
+            })
           })
-          this.dialogRef.close()
-       
-          const dialogRef = this.dialog.open(BankAccountsComponent, {
-            width: 'auto',
-            height: 'auto',
-          });
+          break;
+        case 'stuffs':
+          this.shopService.buyStuff(params).subscribe({
 
-
-        }),
-        error: ((err) => {
-          this._snackBar.openFromComponent(AlertComponent, {
-            duration: 2000,
-            data: {
-              message: 'შეკვეთა ვერ მოხდა!',
-              type: 'error'
-            }
+            next: (() => {
+    
+              this._snackBar.openFromComponent(AlertComponent, {
+                duration: 2000,
+                data: {
+                  message: 'შეკვეთა წარმატებით შესრულდა!',
+                  type: 'success'
+                }
+              })
+              this.dialogRef.close()
+           
+              const dialogRef = this.dialog.open(BankAccountsComponent, {
+                width: 'auto',
+                height: 'auto',
+              });
+    
+    
+            }),
+            error: ((err) => {
+              this._snackBar.openFromComponent(AlertComponent, {
+                duration: 2000,
+                data: {
+                  message: 'შეკვეთა ვერ მოხდა!',
+                  type: 'error'
+                }
+              })
+              console.error(err)
+    
+            })
           })
-          console.error(err)
-
-        })
-      })
+          break;
+      
+        default:
+          break;
+      }
+   
 
 
     }
