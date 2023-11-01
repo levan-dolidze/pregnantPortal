@@ -30,13 +30,14 @@ export class AdminPregnancyStuffComponent extends GridDirective implements OnIni
     private router:Router,
     private shopService:ShopService
  
-    
+
   ){
 
     super(http, adminHttp,_snackBar)
 
   }
 
+  
 
   form: FormGroup;
   stuffs: any[];
