@@ -29,7 +29,8 @@ export class AdminPregnancyStuffComponent extends GridDirective implements OnIni
     private fb: FormBuilder,
     private router:Router,
     private shopService:ShopService
-
+ 
+    
   ){
 
     super(http, adminHttp,_snackBar)
