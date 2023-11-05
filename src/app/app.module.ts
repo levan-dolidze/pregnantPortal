@@ -17,6 +17,7 @@ import { CoursesViewComponent } from './admin/admin-shop/courses-view/courses-vi
 import { ShopViewComponent } from './admin/admin-shop/shop-view/shop-view.component';
 import { AdminUploadedFullCoursesComponent } from './admin/admin-uploaded-full-courses/admin-uploaded-full-courses.component';
 import { AdminAddFullCoursePopComponent } from './admin/admin-add-full-course-pop/admin-add-full-course-pop.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,7 @@ import { AdminAddFullCoursePopComponent } from './admin/admin-add-full-course-po
 
 
   ],
-  providers: [],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
