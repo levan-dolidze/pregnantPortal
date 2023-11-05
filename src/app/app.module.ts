@@ -48,11 +48,11 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
   ],
-  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
-  return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http,"assets/i18n/", ".json");
 }
