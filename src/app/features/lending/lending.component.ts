@@ -25,7 +25,6 @@ export class LendingComponent implements OnInit {
 
 
     const data = [
-
       {
         file: 'assets/doctorimg.jpg',
         name: 'თამარ',
