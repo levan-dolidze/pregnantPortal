@@ -48,7 +48,7 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "assets",
+              "src/assets",
               "src/styles.scss"
 
 
@@ -123,7 +123,7 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "assets"
+              "src/assets"
             ],
             "styles": [
               "src/styles.scss"
