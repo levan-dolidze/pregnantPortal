@@ -29,6 +29,7 @@ export class AdminPregnancyStuffComponent extends GridDirective implements OnIni
     private fb: FormBuilder,
     private router:Router,
     private shopService:ShopService
+ 
 
   ){
 
@@ -36,6 +37,7 @@ export class AdminPregnancyStuffComponent extends GridDirective implements OnIni
 
   }
 
+  
 
   form: FormGroup;
   stuffs: any[];

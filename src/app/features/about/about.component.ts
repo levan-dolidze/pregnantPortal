@@ -33,7 +33,7 @@ export class AboutComponent implements OnInit {
     const data = [
 
       {
-        file: '../../../assets/images/doctorimg.jpg',
+        file: 'assets/doctorimg.jpg',
         name: 'თამარ',
         lastname: 'თევზაძე',
         position: 'მეან - გინეკოლოგი',

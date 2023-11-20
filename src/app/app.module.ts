@@ -17,16 +17,13 @@ import { CoursesViewComponent } from './admin/admin-shop/courses-view/courses-vi
 import { ShopViewComponent } from './admin/admin-shop/shop-view/shop-view.component';
 import { AdminUploadedFullCoursesComponent } from './admin/admin-uploaded-full-courses/admin-uploaded-full-courses.component';
 import { AdminAddFullCoursePopComponent } from './admin/admin-add-full-course-pop/admin-add-full-course-pop.component';
-import { BankAccountsComponent } from './shared/components/bank-accounts/bank-accounts.component';
-import { AdminDoctorAnswerComponent } from './admin/admin-contact/admin-doctor-answer/admin-doctor-answer.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminUploadedFullCoursesComponent,
     AdminAddFullCoursePopComponent,
-
-  
 
   ],
   imports: [
@@ -57,5 +54,5 @@ import { AdminDoctorAnswerComponent } from './admin/admin-contact/admin-doctor-a
 export class AppModule { }
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
-  return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http,"assets/i18n/", ".json");
 }
