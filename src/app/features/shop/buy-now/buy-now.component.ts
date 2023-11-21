@@ -34,6 +34,7 @@ export class BuyNowComponent implements OnInit {
 
 
   seasons: string[] = ['terms'];
+  color: 'primary'
 
   order: any
   ngOnInit(): void {

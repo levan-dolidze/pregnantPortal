@@ -41,7 +41,8 @@
     "pmt_link":"Payment link",
     "for_pay":"For payment navigate on link",
     "bank_for_pay":"Or pay with following bank accounts",
-    "terms":"Terms and conditions"
+    "terms":"Terms and conditions",
+    "order_form":"Order form"
 
 
 }
