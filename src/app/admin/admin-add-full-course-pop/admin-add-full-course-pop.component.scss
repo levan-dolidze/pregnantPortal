@@ -61,6 +61,7 @@
 
     button {
         position: relative;
+        width: 100%;
 
         mat-spinner {
             @include centerElement;
