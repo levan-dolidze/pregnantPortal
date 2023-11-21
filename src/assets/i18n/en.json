@@ -40,6 +40,8 @@
     "buy":"Buy",
     "pmt_link":"Payment link",
     "for_pay":"For payment navigate on link",
-    "bank_for_pay":"Or pay with following bank accounts"
+    "bank_for_pay":"Or pay with following bank accounts",
+    "terms":"Terms and conditions"
+
 
 }
