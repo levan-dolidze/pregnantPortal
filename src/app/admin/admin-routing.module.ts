@@ -10,6 +10,7 @@ import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { AdminPregnancyStuffComponent } from './admin-pregnancy-stuff/admin-pregnancy-stuff.component';
 import { AdminComponent } from './admin.component';
 import { AdminShopComponent } from './admin-shop/admin-shop.component';
+import { AdminBlogComponent } from './admin-blog/admin-blog.component';
 import { AdminUploadedFullCoursesComponent } from './admin-uploaded-full-courses/admin-uploaded-full-courses.component';
 import { AuthGuard } from '../core/guards/auth.guard';
 
@@ -65,21 +66,17 @@ const routes: Routes = [
             path: 'admin-free-guides',
             component: AdminFreeGuideComponent,
             canActivate: [AuthGuard],
-
-
           },
+          {
+            path: 'admin-blog',
+            component: AdminBlogComponent,
+            canActivate: [AuthGuard],
+          },
+        
           {
             path: 'admin-contact',
             component: AdminContactComponent,
             canActivate: [AuthGuard],
-
-
-          },
-          {
-            path: 'admin-shop',
-            component: AdminShopComponent,
-            canActivate: [AuthGuard],
-
           },
           {
             path: 'admin-shop',

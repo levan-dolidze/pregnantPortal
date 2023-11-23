@@ -18,6 +18,7 @@ import { ShopViewComponent } from './admin/admin-shop/shop-view/shop-view.compon
 import { AdminUploadedFullCoursesComponent } from './admin/admin-uploaded-full-courses/admin-uploaded-full-courses.component';
 import { AdminAddFullCoursePopComponent } from './admin/admin-add-full-course-pop/admin-add-full-course-pop.component';
 import { BlogDetailsComponent } from './features/blog/blog-details/blog-details.component';
+import { AdminBlogComponent } from './admin/admin-blog/admin-blog.component';
 
 @NgModule({
   declarations: [

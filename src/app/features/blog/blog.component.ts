@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -6,13 +6,17 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.scss']
 })
-export class BlogComponent {
+export class BlogComponent implements OnInit {
 
 
 
   private route = inject(ActivatedRoute)
   private router = inject(Router)
 
+
+  ngOnInit(): void {
+    console.log('parent')
+  }
 
 
   dummy = [
