@@ -43,7 +43,9 @@
     "bank_for_pay":"Or pay with following bank accounts",
     "terms":"Terms and conditions",
     "order_form":"Order form",
-    "upload":"Upload"
+    "upload":"Upload",
+    "blog":"Blog",
+    "show_more":"Show more"
 
 
 }

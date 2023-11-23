@@ -1,0 +1,22 @@
+<div class="blog-container">
+    <div class="content"  *ngFor="let blog of dummy">
+
+        <div class="image-section">
+            <img [src]="blog.image"
+                alt="Image">
+        </div>
+
+        <div class="sections">
+          
+            <div class="text-section">
+                <h2>{{blog.title}}</h2>
+                <p>{{blog.text}}</p>
+
+            </div>
+            <div (click)="viewDetails(blog.key)" class="text-section">
+                <p>{{'show_more'|translate}}</p>
+            </div>
+        </div>
+
+    </div>
+</div>

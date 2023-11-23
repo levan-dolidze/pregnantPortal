@@ -19,6 +19,8 @@ const routes: Routes = [
       // { path: 'book', loadChildren: () => import('./features/book/book.module').then(m => m.BookModule) },
       // { path: 'free-guides', loadChildren: () => import('./features/free-guides/free-guides.module').then(m => m.FreeGuidesModule) },
       { path: 'shop', loadChildren: () => import('./features/shop/shop.module').then(m => m.ShopModule) },
+      { path: 'blog', loadChildren: () => import('./features/blog/blog.module').then(m => m.BlogModule) },
+
       { path: 'contact', loadChildren: () => import('./features/contact/contact.module').then(m => m.ContactModule) },
       { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
       { path: 'my-courses', loadChildren: () => import('./features/user/my-courses.module').then(m => m.MyCoursesModule) },
