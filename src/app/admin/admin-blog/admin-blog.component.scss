@@ -1,0 +1,28 @@
+form{
+
+    div{
+        display: flex;
+        gap: 20px;
+        #fileInput{
+            display: none;
+        }
+    
+        .custom-file-upload {
+            display: flex;
+            align-items: center; /* Align items vertically in the center */
+            justify-content: center;
+            text-align: center;
+            padding: 5px 12px;
+            cursor: pointer;
+            background-color: #6772b2;
+            color: white;
+            border-radius: 5px;
+            border: 1px solid #6772b2;
+            width: 10%;
+        
+          }
+
+    }
+  
+      
+}

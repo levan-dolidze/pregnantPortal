@@ -1,9 +1,30 @@
-<form  [formGroup]="form">
+<form (ngSubmit)="onAddBlog()" [formGroup]="form">
     <angular-editor formControlName="htmlContent" [config]="editorConfig"></angular-editor>
 
+
+    <div>
+
+        <button type="submit" mat-raised-button color="primary">
+            <mat-spinner *ngIf="isLoading" [diameter]=20></mat-spinner>
+
+            {{'add_blog'|translate}}
+
+        </button>
+
+    <input id="fileInput" type="file" placeholder="{{'image'|translate}}" name="" formControlName="img"
+    (change)="showPreview($event)">
+
+    <label for="fileInput" class="custom-file-upload">
+       {{'upload'|translate}} <mat-icon>upload
+        
+       </mat-icon>
+      </label>
+
+    </div>
 
 </form>
 
 
+<div [innerHTML]="this.f['htmlContent'].value">
 
-{{this.f['htmlContent'].value}}
+</div>
