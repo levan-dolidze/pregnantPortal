@@ -5,26 +5,40 @@
     <div>
 
         <button type="submit" mat-raised-button color="primary">
-            <mat-spinner *ngIf="isLoading" [diameter]=20></mat-spinner>
 
             {{'add_blog'|translate}}
 
         </button>
 
-    <input id="fileInput" type="file" placeholder="{{'image'|translate}}" name="" formControlName="img"
-    (change)="showPreview($event)">
+        <input id="fileInput" type="file" placeholder="{{'image'|translate}}" name="" formControlName="img"
+            (change)="showPreview($event)">
 
-    <label for="fileInput" class="custom-file-upload">
-       {{'upload'|translate}} <mat-icon>upload
-        
-       </mat-icon>
-      </label>
+        <label for="fileInput" class="custom-file-upload">
+            {{'upload'|translate}} <mat-icon>upload
+
+
+
+            </mat-icon>
+    <mat-spinner *ngIf="isLoading" [diameter]=20></mat-spinner>
+
+        </label>
 
     </div>
+
+
 
 </form>
 
 
-<div [innerHTML]="this.f['htmlContent'].value">
+<mat-spinner *ngIf="addBlogLoading" [diameter]=30></mat-spinner>
+
+<div class="innerHtml" [innerHTML]="this.f['htmlContent'].value">
+
+
+
+</div>
+
+<div class="photo-cont">
+    <img [src]="photoUrl?photoUrl:defaultImage" alt="">
 
 </div>

@@ -1,16 +1,15 @@
 <div class="blog-container">
-    <div class="content"  *ngFor="let blog of dummy">
+    <div class="content"  *ngFor="let blog of blogPosts$|async">
 
         <div class="image-section">
-            <img [src]="blog.image"
+            <img [src]="blog.img"
                 alt="Image">
         </div>
 
         <div class="sections">
           
             <div class="text-section">
-                <h2>{{blog.title}}</h2>
-                <p>{{blog.text}}</p>
+                <div [innerHTML]="blog.htmlContent|truncate"></div>
 
             </div>
             <div (click)="viewDetails(blog.key)" class="text-section">

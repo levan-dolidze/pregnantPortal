@@ -4,18 +4,20 @@ import { BlogRoutingModule } from './blog-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { BlogComponent } from './blog.component';
 import { BlogDetailsComponent } from './blog-details/blog-details.component';
+import { TruncatePipe } from 'src/app/shared/pipes/truncate.pipe';
 
 
 @NgModule({
   declarations: [
     BlogComponent,
     BlogDetailsComponent,
+    TruncatePipe
 
   ],
   imports: [
     CommonModule,
     BlogRoutingModule,
-    SharedModule
+    SharedModule,
   ]
 })
 export class BlogModule { }

@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../shared/services/api.service';
 import { AddStuff, FullCourse, OrderedFullCourse, Stuffs } from './models/shop';
-import { BehaviorSubject, Observable, map, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, map, shareReplay, switchMap } from 'rxjs';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database'
 import { Question } from '../features/contact/model';
 import { DoctorAnswer } from './admin-contact/models';
+import { BlogReq, BlogResponse } from '../shared/models/interfaces';
 
 const addNewStuff = '/AddNewStuff.json'
 const addNewCourse = '/AddNewCourse.json'
@@ -13,6 +14,7 @@ const addConfirmedCourse = '/AddConfirmedCourse.json'
 const askQuestion = '/Question.json'
 const doctorAnswer = '/doctorAnswer.json'
 const deleteStuff = '/AddNewStuff/'
+const addBlogPost = '/AddBlogPost.json'
 
 
 @Injectable({
@@ -32,7 +34,7 @@ export class AdminHttpService {
   //show
 
   addNewStuff(newStuff: AddStuff): Observable<AddStuff> {
-    
+
     return this.apiService.post(addNewStuff, newStuff)
   }
   addNewCourse(newCourse: AddStuff): Observable<AddStuff> {
@@ -41,6 +43,9 @@ export class AdminHttpService {
   addNewFullCourse(newCourse: AddStuff): Observable<AddStuff> {
     return this.apiService.post(addNewFullCourse, newCourse)
   }
+  addBlogPost(params: BlogReq): Observable<BlogReq> {
+    return this.apiService.post(addBlogPost, params)
+  }
   askQuestion(question: Question): Observable<Question> {
     return this.apiService.post(askQuestion, question)
   }
@@ -48,7 +53,27 @@ export class AdminHttpService {
     return this.apiService.post(doctorAnswer, answer)
   }
 
-  getQuestions():Observable<OrderedFullCourse[]> {
+  getBlogPost(): Observable<BlogResponse[]> {
+    return this.apiService.get(addBlogPost).pipe(
+
+      map((res) => {
+        if (res) {
+          const blogs = []
+          for (const key in res) {
+            blogs.push({ ...res[key], key: key })
+          }
+          return blogs
+
+        } else {
+          return []
+        }
+
+      }),
+      shareReplay()
+
+    )
+  }
+  getQuestions(): Observable<OrderedFullCourse[]> {
     return this.apiService.get(askQuestion).pipe(
 
       map((res) => {
@@ -123,10 +148,10 @@ export class AdminHttpService {
   }
 
 
-  confirmFullCourse (confirmedCourse: OrderedFullCourse){
+  confirmFullCourse(confirmedCourse: OrderedFullCourse) {
     return this.apiService.post(addConfirmedCourse, confirmedCourse)
   }
-  getMyConfirmedCourses():Observable<OrderedFullCourse[]> {
+  getMyConfirmedCourses(): Observable<OrderedFullCourse[]> {
     return this.apiService.get(addConfirmedCourse).pipe(
 
       map((res) => {
@@ -144,7 +169,7 @@ export class AdminHttpService {
       })
     )
   }
-  getDoctorAnswers():Observable<DoctorAnswer[]> {
+  getDoctorAnswers(): Observable<DoctorAnswer[]> {
     return this.apiService.get(doctorAnswer).pipe(
 
       map((res) => {

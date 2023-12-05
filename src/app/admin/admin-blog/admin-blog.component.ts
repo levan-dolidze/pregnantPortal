@@ -1,8 +1,12 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { finalize } from 'rxjs';
+import { BlogReq } from 'src/app/shared/models/interfaces';
+import { AdminHttpService } from '../admin-http.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { AlertComponent } from 'src/app/shared/components/alert/alert.component';
 
 @Component({
   selector: 'app-admin-blog',
@@ -12,20 +16,30 @@ import { finalize } from 'rxjs';
 export class AdminBlogComponent implements OnInit {
 
 
+  constructor(
+    private _snackBar: MatSnackBar,
+
+
+  ) {
+
+  }
+
+  private httpAdmin = inject(AdminHttpService)
+
 
   ngOnInit(): void {
     this.initForm()
   }
 
   fb = inject(FormBuilder)
-   storage = inject(AngularFireStorage) 
+  storage = inject(AngularFireStorage)
 
 
 
   initForm() {
     this.form = this.fb.group({
-      htmlContent: new FormControl(null),
-      img:new FormControl(null)
+      htmlContent: new FormControl(null, [Validators.required]),
+      img: new FormControl(null)
     })
   }
 
@@ -88,6 +102,7 @@ export class AdminBlogComponent implements OnInit {
 
   selectedStuff: unknown;
 
+  defaultImage = 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg'
 
   showPreview(event: any) {
     if (event.target.files && event.target.files[0]) {
@@ -100,18 +115,19 @@ export class AdminBlogComponent implements OnInit {
       this.addFile(this.selectedStuff)
 
     } else {
-      this.imgURL = 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg';
+      this.imgURL = this.defaultImage
       this.selectedStuff = null;
     }
   };
 
-  isLoading:boolean=false
+  isLoading: boolean = false;
 
-  reqStuffImg: string
-  reqCourseImg: string
+  addBlogLoading: boolean = false
+
+  photoUrl: string
   addFile(selectedFile: any) {
 
-    this.isLoading=true
+    this.isLoading = true
     var filePath = `${selectedFile.name}_${new Date().getTime()}`
     const fileRef = this.storage.ref(filePath)
     this.storage.upload(filePath, selectedFile).snapshotChanges().pipe(
@@ -120,10 +136,8 @@ export class AdminBlogComponent implements OnInit {
         let service = localStorage.getItem('service');
         fileRef.getDownloadURL().subscribe((url: any) => {
           if (url) {
-            this.reqStuffImg = url
-            this.reqCourseImg=url
-
-            this.isLoading=false
+            this.photoUrl = url
+            this.isLoading = false
             // this.httpAdmin.insertMenu(obj)
 
 
@@ -136,7 +150,50 @@ export class AdminBlogComponent implements OnInit {
 
 
 
-  onAddBlog(){
-    console.log(this.form.value)
+  buildParams(): BlogReq {
+
+    const params = this.form.value
+    params.img = this.photoUrl;
+    return params
+  }
+
+  onAddBlog() {
+
+
+    if (this.form.invalid) {
+      return
+    }
+    else {
+      const params = this.buildParams();
+
+
+      this.httpAdmin.addBlogPost(params).subscribe({
+        next: ((res) => {
+
+          this._snackBar.openFromComponent(AlertComponent, {
+            duration: 2000,
+            data: {
+              message: 'წარმატებით დაემატა!',
+              type: 'success'
+            }
+          })
+        }),
+        error: ((err) => {
+          console.error(err)
+          this._snackBar.openFromComponent(AlertComponent, {
+            duration: 2000,
+            data: {
+              message: 'დამატება ვერ მოხდა!!',
+              type: 'error'
+            }
+          })
+        })
+      })
+
+
+      console.log(params)
+    }
+
+
   }
 }

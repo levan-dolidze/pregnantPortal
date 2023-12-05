@@ -1,5 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AdminHttpService } from 'src/app/admin/admin-http.service';
+import { BlogResponse } from 'src/app/shared/models/interfaces';
 
 @Component({
   selector: 'app-blog',
@@ -10,15 +13,24 @@ export class BlogComponent implements OnInit {
 
 
 
-  private route = inject(ActivatedRoute)
+   route = inject(ActivatedRoute)
   private router = inject(Router)
+  private adminHttp = inject(AdminHttpService)
 
 
+
+  blogPosts$: Observable<BlogResponse[]>
   ngOnInit(): void {
     console.log('parent')
+
+    this.getBlogPosts()
   }
 
 
+
+  getBlogPosts() {
+    this.blogPosts$ = this.adminHttp.getBlogPost()
+  }
   dummy = [
     {
       title: 'Lorem ipsum dolor sit amet',
