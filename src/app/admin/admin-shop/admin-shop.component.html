@@ -72,8 +72,14 @@
                          >
                     </mat-form-field> -->
 
-                    <input type="file" placeholder="{{'image'|translate}}" name="" id="" formControlName="img"
+                    <input id="fileInput" type="file" placeholder="{{'image'|translate}}" name="" formControlName="img"
                         (change)="showPreview($event)">
+
+                        <label for="fileInput" class="custom-file-upload">
+                           {{'upload'|translate}} <mat-icon>upload
+                            
+                           </mat-icon>
+                          </label>
                 </div>
 
 
@@ -141,8 +147,14 @@
                          >
                     </mat-form-field> -->
 
-                    <input type="file" placeholder="{{'image'|translate}}" name="" id="" formControlName="img"
+                    <input type="file"  placeholder="{{'image'|translate}}" name="" id="fileInput" formControlName="img"
                         (change)="showPreview($event)">
+
+                        <label for="fileInput" class="custom-file-upload">
+                            {{'upload'|translate}} <mat-icon>upload
+                             
+                            </mat-icon>
+                           </label>
                 </div>
 
 

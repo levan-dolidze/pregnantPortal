@@ -21,13 +21,57 @@
 .input-form {
     @include admin-form;
 
+    form{
+
+        div {
+
+            .example-radio-group{
+                .example-radio-button{
+                    margin:15px 10px 15px 0px
+
+                }
+            }
+            #fileInput{
+                display: none;
+            }
+            .custom-file-upload {
+                display: flex;
+                align-items: center; /* Align items vertically in the center */
+                justify-content: center;
+                text-align: center;
+                padding: 5px 12px;
+                cursor: pointer;
+                background-color: #6772b2;
+                color: white;
+                border-radius: 5px;
+                border: 1px solid #6772b2;
+            
+              }
+              
+              .custom-file-upload mat-icon {
+                margin-right: 5px; 
+              }
+
+              mat-form-field{
+                width: 100%;
+              }
+            
+        }
+       
+    }
+
     button {
         position: relative;
+        width: 100%;
 
         mat-spinner {
             @include centerElement;
         }
     }
+
+
+
+
 
 }
 

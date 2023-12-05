@@ -15,7 +15,9 @@ import { AdminCustomerMessageComponent } from './admin-customer-message/admin-cu
 import { AdminShopComponent } from './admin-shop/admin-shop.component';
 import { CoursesViewComponent } from './admin-shop/courses-view/courses-view.component';
 import { ShopViewComponent } from './admin-shop/shop-view/shop-view.component';
+import { AdminBlogComponent } from './admin-blog/admin-blog.component';
 import { AdminDoctorAnswerComponent } from './admin-contact/admin-doctor-answer/admin-doctor-answer.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 
 @NgModule({
@@ -33,12 +35,16 @@ import { AdminDoctorAnswerComponent } from './admin-contact/admin-doctor-answer/
     CoursesViewComponent,
     ShopViewComponent,
     AdminDoctorAnswerComponent,
+    AdminBlogComponent,
+ 
 
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     SharedModule,
+    AngularEditorModule
+
 
   ]
 })

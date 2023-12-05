@@ -1,0 +1,9 @@
+<div class="blog-details-cont" *ngIf="blogPosts">
+    <div class="center-content">
+        <div class="img">
+            <img [src]="blogPosts.img" alt="">
+        </div>
+        <div [innerHTML]="blogPosts.htmlContent"></div>
+    </div>
+</div>
+
