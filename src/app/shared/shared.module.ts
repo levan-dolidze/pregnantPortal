@@ -12,7 +12,6 @@ import { AlertComponent } from './components/alert/alert.component';
 import { BankAccountsComponent } from './components/bank-accounts/bank-accounts.component';
 
 
-
 @NgModule({
     declarations: [
         AppRootComponent,
@@ -45,7 +44,7 @@ import { BankAccountsComponent } from './components/bank-accounts/bank-accounts.
         ReactiveFormsModule,
         FormsModule,
         TranslateModule,
-        GridComponent
+        GridComponent,
 
 
 

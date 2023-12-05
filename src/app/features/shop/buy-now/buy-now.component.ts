@@ -8,6 +8,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { AlertComponent } from 'src/app/shared/components/alert/alert.component';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { BankAccountsComponent } from 'src/app/shared/components/bank-accounts/bank-accounts.component';
+import { FieldModeControl } from 'src/app/shared/functions/sharedFunctions';
 
 @Component({
   selector: 'app-buy-now',
@@ -31,6 +32,10 @@ export class BuyNowComponent implements OnInit {
 
   }
 
+
+  seasons: string[] = ['terms'];
+  color: 'primary'
+
   order: any
   ngOnInit(): void {
 
@@ -39,12 +44,34 @@ export class BuyNowComponent implements OnInit {
 
     console.log(this.data.stuffDetails.productType)
 
+
+    this.getTermTxt()
+
   }
 
-  get uid():any {
-    return this.localStorage.getTokenResult 
+  get uid(): any {
+    return this.localStorage.getTokenResult
   }
 
+  termTxt: string;
+  getTermTxt() {
+
+    switch (this.data.stuffDetails.productType) {
+      case 'stuffs':
+
+        this.termTxt = ''
+        break;
+      case 'courses':
+        this.termTxt = 'assets/pdfs/terms-school.pdf';
+
+        console.log(this.termTxt)
+        break;
+
+      default:
+        break;
+    }
+
+  }
 
   form: FormGroup;
 
@@ -57,6 +84,7 @@ export class BuyNowComponent implements OnInit {
       IDNumber: [null, [Validators.required]],
       phone: [null, [Validators.required]],
       address: [null, [Validators.required]],
+      terms: [null, [Validators.required]]
     })
 
   }
@@ -65,6 +93,9 @@ export class BuyNowComponent implements OnInit {
 
 
     if (this.form.invalid) {
+
+      console.log(this.form.value)
+      FieldModeControl.formFieldsModeControl('markAsDirty', this.form)
       return
     } else {
 
@@ -72,7 +103,7 @@ export class BuyNowComponent implements OnInit {
         ...
         this.form.value,
         stuff: this.data.stuffDetails,
-        uid:this.uid.uid
+        uid: this.uid.uid
       }
 
 
@@ -81,7 +112,7 @@ export class BuyNowComponent implements OnInit {
           this.shopService.buyCourse(params).subscribe({
 
             next: (() => {
-    
+
               this._snackBar.openFromComponent(AlertComponent, {
                 duration: 2000,
                 data: {
@@ -90,13 +121,13 @@ export class BuyNowComponent implements OnInit {
                 }
               })
               this.dialogRef.close()
-           
+
               const dialogRef = this.dialog.open(BankAccountsComponent, {
                 width: 'auto',
                 height: 'auto',
               });
-    
-    
+
+
             }),
             error: ((err) => {
               this._snackBar.openFromComponent(AlertComponent, {
@@ -107,7 +138,7 @@ export class BuyNowComponent implements OnInit {
                 }
               })
               console.error(err)
-    
+
             })
           })
           break;
@@ -115,7 +146,7 @@ export class BuyNowComponent implements OnInit {
           this.shopService.buyStuff(params).subscribe({
 
             next: (() => {
-    
+
               this._snackBar.openFromComponent(AlertComponent, {
                 duration: 2000,
                 data: {
@@ -124,13 +155,13 @@ export class BuyNowComponent implements OnInit {
                 }
               })
               this.dialogRef.close()
-           
+
               const dialogRef = this.dialog.open(BankAccountsComponent, {
                 width: 'auto',
                 height: 'auto',
               });
-    
-    
+
+
             }),
             error: ((err) => {
               this._snackBar.openFromComponent(AlertComponent, {
@@ -141,15 +172,15 @@ export class BuyNowComponent implements OnInit {
                 }
               })
               console.error(err)
-    
+
             })
           })
           break;
-      
+
         default:
           break;
       }
-   
+
 
 
     }

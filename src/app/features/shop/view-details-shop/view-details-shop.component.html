@@ -5,9 +5,13 @@
             <img [src]="stuff.img" >
         </div>
 
-         <video *ngIf="stuff.productType==='courses'" controls  class="productDetail">
-        <source [src]="stuff.img" type="video/mp4">
-        </video>
+        <div *ngIf="stuff.productType==='courses'" class="productDetail">
+
+            <video  controls  class="productDetail">
+                <source [src]="stuff.img" type="video/mp4">
+                </video>
+        </div>
+        
 
         <div class="product-info">
             <h3>{{'description'|translate}}:</h3>
@@ -15,9 +19,9 @@
             <li> {{'description'|translate}} {{ stuff.description}}</li>
 
           <h3>{{"prise"|translate}} {{stuff.prise}} ₾</h3>
-        </div>
 
-        <div class="buy">
+
+          <div class="buy">
             <button (click)="buyProductNow(stuff)" 
                      mat-flat-button color="primary">{{"buy"|translate}}
            </button>
@@ -26,6 +30,11 @@
                       style="margin-left:10px" mat-flat-button color="primary">{{"add to cart"|translate}}
             </button> -->
         </div>
+        </div>
+
+
+
+     
 
     </div>
 

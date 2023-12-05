@@ -122,7 +122,7 @@ export class CoursesViewComponent extends GridDirective implements OnInit {
       case 'add':
 
       const dialogRef = this.dialog.open(AdminAddFullCoursePopComponent, {
-        width: '383px',
+        maxWidth: '383px',
         height: 'auto',
         panelClass: "right-popUp",
         data: { key: key }

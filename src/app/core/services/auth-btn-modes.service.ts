@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { shareReplay } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth/auth.service';
 import { authActionModes } from 'src/app/shared/layout/models/authModel';
 
@@ -88,7 +89,9 @@ export class AuthBtnModesService {
 
     }
 
-    return of(container)
+    return of(container).pipe(
+      shareReplay()
+    )
   }
 
 
@@ -152,6 +155,13 @@ export class AuthBtnModesService {
           type: 'shop',
           icon: "update",
           link: "/admin/admin-shop",
+          permission: "user",
+        },
+        {
+          text: 'blog',
+          type: 'blog',
+          icon: "update",
+          link: "/admin/admin-blog",
           permission: "user",
         },
         {
