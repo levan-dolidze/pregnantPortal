@@ -31,14 +31,13 @@
 
 
 <mat-spinner *ngIf="addBlogLoading" [diameter]=30></mat-spinner>
-
-<div class="innerHtml" [innerHTML]="this.f['htmlContent'].value">
-
-
-
-</div>
-
 <div class="photo-cont">
     <img [src]="photoUrl?photoUrl:defaultImage" alt="">
 
 </div>
+
+<div class="innerHtml" [innerHTML]="this.f['htmlContent'].value">
+
+
+</div>
+
