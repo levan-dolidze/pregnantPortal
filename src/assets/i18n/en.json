@@ -46,7 +46,8 @@
     "upload":"Upload",
     "blog":"Blog",
     "show_more":"Show more",
-    "add_blog":"Add blog"
+    "add_blog":"Add blog",
+    "current_blogs":"Show blog list"
 
 
 }

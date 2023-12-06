@@ -1,43 +1,95 @@
-<form (ngSubmit)="onAddBlog()" [formGroup]="form">
-    <angular-editor formControlName="htmlContent" [config]="editorConfig"></angular-editor>
 
+<div class="blog-cont">
 
-    <div>
-
-        <button type="submit" mat-raised-button color="primary">
-
-            {{'add_blog'|translate}}
-
-        </button>
-
-        <input id="fileInput" type="file" placeholder="{{'image'|translate}}" name="" formControlName="img"
-            (change)="showPreview($event)">
-
-        <label for="fileInput" class="custom-file-upload">
-            {{'upload'|translate}} <mat-icon>upload
-
-
-
-            </mat-icon>
-    <mat-spinner *ngIf="isLoading" [diameter]=20></mat-spinner>
-
-        </label>
-
+    <div class="blog-editor-cont">
+        <form (ngSubmit)="onAddBlog()" [formGroup]="form">
+            <angular-editor formControlName="htmlContent" [config]="editorConfig"></angular-editor>
+        
+        
+            <div>
+        
+                <button type="submit" mat-raised-button color="primary">
+        
+                    {{'add_blog'|translate}}
+        
+                </button>
+        
+                <input id="fileInput" type="file" placeholder="{{'image'|translate}}" name="" formControlName="img"
+                    (change)="showPreview($event)">
+        
+                <label for="fileInput" class="custom-file-upload">
+                    {{'upload'|translate}} <mat-icon>upload
+        
+        
+        
+                    </mat-icon>
+            <mat-spinner *ngIf="isLoading" [diameter]=20></mat-spinner>
+        
+                </label>
+        
+            </div>
+        
+        
+        
+        </form>
+        
+        
+        <mat-spinner *ngIf="addBlogLoading" [diameter]=30></mat-spinner>
+        <div class="photo-cont">
+            <img [src]="photoUrl?photoUrl:defaultImage" alt="">
+        
+        </div>
+        
+        <div class="innerHtml" [innerHTML]="this.f['htmlContent'].value">
+        
+        
+        </div>
     </div>
 
+    <div class="accordeon-cont">
+        <cdk-accordion class="example-accordion"
+        
+        *ngFor="let item of blogPosts;let index = index"
+        >
+   
+              <cdk-accordion-item
+          
+                #accordionItem="cdkAccordionItem"
+                class="example-accordion-item"
+                role="button"
+                tabindex="0"
+                [attr.id]="'accordion-header-' + index"
+                [attr.aria-expanded]="accordionItem.expanded"
+                [attr.aria-controls]="'accordion-body-' + index">
+                <div class="example-accordion-item-header" >
+                  {{ item.key }}
+                  <span class="example-accordion-item-description" (click)="accordionItem.toggle()">
+                    Click to {{ accordionItem.expanded ? 'close' : 'open' }}
+                  </span>
+                  <span (click)="deleteBlog(item.key)"><mat-icon>delete</mat-icon></span>
+                </div>
+                <div
+                  class="example-accordion-item-body"
+                  role="region"
+                  [style.display]="accordionItem.expanded ? '' : 'none'"
+                  [attr.id]="'accordion-body-' + index"
+                  [attr.aria-labelledby]="'accordion-header-' + index">
+                  
+                  <div [innerHTML]="item.htmlContent|truncate">
 
-
-</form>
-
-
-<mat-spinner *ngIf="addBlogLoading" [diameter]=30></mat-spinner>
-<div class="photo-cont">
-    <img [src]="photoUrl?photoUrl:defaultImage" alt="">
-
+                  </div>
+           
+                </div>
+              </cdk-accordion-item>
+          </cdk-accordion>
+          
+          
+    </div>
 </div>
 
-<div class="innerHtml" [innerHTML]="this.f['htmlContent'].value">
 
 
-</div>
+
+
+
 

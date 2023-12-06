@@ -10,6 +10,7 @@ import { GridComponent } from './components/grid/grid.component';
 import { GridDirective } from './components/grid/grid.directive';
 import { AlertComponent } from './components/alert/alert.component';
 import { BankAccountsComponent } from './components/bank-accounts/bank-accounts.component';
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { BankAccountsComponent } from './components/bank-accounts/bank-accounts.
         GridDirective,
         AlertComponent,
         BankAccountsComponent,
+        TruncatePipe
 
 
 
@@ -33,7 +35,7 @@ import { BankAccountsComponent } from './components/bank-accounts/bank-accounts.
         FormsModule,
         TranslateModule,
         CustomMaterialModule,
-
+        
 
 
     ],
@@ -45,13 +47,12 @@ import { BankAccountsComponent } from './components/bank-accounts/bank-accounts.
         FormsModule,
         TranslateModule,
         GridComponent,
-
-
-
-
-
+        TruncatePipe
 
     ]
+    ,
+        
+        providers:[TruncatePipe]
 })
 
 export class SharedModule { }

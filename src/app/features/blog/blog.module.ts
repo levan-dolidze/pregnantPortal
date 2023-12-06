@@ -11,7 +11,6 @@ import { TruncatePipe } from 'src/app/shared/pipes/truncate.pipe';
   declarations: [
     BlogComponent,
     BlogDetailsComponent,
-    TruncatePipe
 
   ],
   imports: [
