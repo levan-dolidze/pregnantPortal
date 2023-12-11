@@ -73,6 +73,12 @@ export class AdminAddFullCoursePopComponent extends GridDirective implements OnI
   }
 
   onNewCourseAdd() {
+
+    const params =this.buildParams()
+    params.img = this.reqCourseImg;
+    console.log(params)
+    console.log(this.reqCourseImg)
+
     if (this.form.invalid) {
       this._snackBar.openFromComponent(AlertComponent, {
         duration: 2000,
@@ -85,10 +91,8 @@ export class AdminAddFullCoursePopComponent extends GridDirective implements OnI
 
     } else {
       const params =this.buildParams()
-
       params.img = this.reqCourseImg
 
-      console.log(params)
 
       this.adminHttp.addNewFullCourse(params).subscribe(() => {
         this._snackBar.openFromComponent(AlertComponent, {
@@ -140,6 +144,7 @@ export class AdminAddFullCoursePopComponent extends GridDirective implements OnI
         let service = localStorage.getItem('service');
         fileRef.getDownloadURL().subscribe((url: any) => {
           if (url) {
+            console.log(url)
             this.reqCourseImg = url
 
             this.isLoading = false
