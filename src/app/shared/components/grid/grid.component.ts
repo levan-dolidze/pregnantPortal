@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, inject } from '@angular/core';
 import { GridConfig } from '../grid-config';
 import { GridActionTypes } from './model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-grid',
@@ -24,11 +25,18 @@ export class GridComponent implements OnInit {
 
 
 
-  pageTitle: string = 'Stuffs';
+  pageTitle: string;
+
+  route =inject(ActivatedRoute)
 
   ngOnInit(): void {
 
 
+  }
+
+
+  get stepName() {
+    return this.route?.snapshot?.data['stepName'];
   }
 
 
