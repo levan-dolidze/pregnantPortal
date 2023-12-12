@@ -7,6 +7,7 @@ example-user-input {
   background-color: rgb(226, 237, 243);
   height: 100vh;
   position: relative;
+  border-radius: 14px;
 
   .team-member {
     width: 100%;
@@ -19,11 +20,15 @@ example-user-input {
       margin-top: 2%;
       position: absolute;
       margin-left: 15%;
+      border-radius: 14px;
+
 
       img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        border-radius: 14px;
+
       }
     }
 
@@ -36,6 +41,8 @@ example-user-input {
       left: 55%;
       top: 10%;
       padding: 10px;
+      border-radius: 14px;
+
     }
 
   }
@@ -43,38 +50,43 @@ example-user-input {
 
 
 @media screen and (max-width: 900px) {
-  .dashboard-cont{
-    .team-member{
-    display: initial!important;
+  .dashboard-cont {
+    .team-member {
+      display: initial !important;
 
-    .image {
-      width: 200px;
-      height: 300px;
-      margin-top: 2%;
-      position: absolute;
-      margin-left: 20%;
-    }
-    .info-box {
+      .image {
+        width: 200px;
+        height: 300px;
+        margin-top: 2%;
+        position: absolute;
+        margin-left: 20%;
+      }
+
+      .info-box {
 
 
-      width: 180px;
-      height: auto;
-      background-color: white;
-      left: 25%;
-      top: 32%;
-      padding: 10px;
-      div {
-        h2,p {
-          font-size: smaller;
+        width: 180px;
+        height: auto;
+        background-color: white;
+        left: 25%;
+        top: 32%;
+        padding: 10px;
+
+        div {
+
+          h2,
+          p {
+            font-size: smaller;
+          }
+
         }
-      
-      }
-      .description {
-        font-size: smaller;
 
+        .description {
+          font-size: smaller;
+
+        }
       }
-    }
     }
   }
- 
+
 }

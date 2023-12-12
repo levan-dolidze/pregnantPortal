@@ -36,14 +36,16 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     ShopViewComponent,
     AdminDoctorAnswerComponent,
     AdminBlogComponent,
+    
  
 
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
+    AngularEditorModule,
     SharedModule,
-    AngularEditorModule
+   
 
 
   ]

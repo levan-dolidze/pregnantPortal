@@ -14,6 +14,7 @@ const addConfirmedCourse = '/AddConfirmedCourse.json'
 const askQuestion = '/Question.json'
 const doctorAnswer = '/doctorAnswer.json'
 const deleteStuff = '/AddNewStuff/'
+const deleteBlog = '/AddBlogPost/'
 const addBlogPost = '/AddBlogPost.json'
 
 
@@ -193,6 +194,18 @@ export class AdminHttpService {
     return this.apiService.delete(deleteStuff, key).pipe(
       switchMap(() => {
         return this.getStuffs().pipe(
+          map((res) => {
+            this.dataSubject.next(res);
+            return res;
+          })
+        );
+      })
+    );
+  };
+  deleteBlogPost(key: any) {
+    return this.apiService.delete(deleteBlog, key).pipe(
+      switchMap(() => {
+        return this.getBlogPost().pipe(
           map((res) => {
             this.dataSubject.next(res);
             return res;
