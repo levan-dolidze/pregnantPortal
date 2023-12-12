@@ -6,9 +6,25 @@
             <div class="admin-list-inner">
                 <div class="personal-info" *ngFor="let column of displayedColumns">
                     <h5 [hidden]="column.forBackOnly">{{column.title}}</h5>
-                    <div *ngFor="let item of column.getData"  style="border-bottom: 1px solid #e9e9e9!important;" >
+                    <div *ngFor="let item of column.getData;let i = index"  style="border-bottom: 1px solid #e9e9e9!important;" >
                         <div [hidden]="column.forBackOnly">
-                            {{item}}
+
+                            <ng-container *ngIf="column.isVideo">
+                                <video *ngIf="item[i]" width="40" height="40" controls>
+                                    <source [src]="item[i]" type="video/mp4">
+                                </video>
+                            </ng-container>
+                            
+                            <ng-container *ngIf="column.isImage">
+                                <img  [src]="item" alt="" width="40" height="40">
+                            </ng-container>
+                            
+                            <ng-container *ngIf="!column.isVideo && !column.isImage">
+                                {{ item }}
+                            </ng-container>
+                            
+                       
+                         
                         </div>
                         <!-- <img *ngIf="item==='stuffs'" [src]="item"> -->
                     </div>

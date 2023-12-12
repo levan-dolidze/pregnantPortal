@@ -115,6 +115,7 @@ export class AdminAddFullCoursePopComponent extends GridDirective implements OnI
   selectedStuff: unknown;
 
   showPreview(event: any) {
+    console.log(event)
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
       reader.onload = (e: any) => this.imgURL = e.target.result;
