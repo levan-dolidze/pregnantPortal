@@ -2,8 +2,8 @@ import { Component, OnInit, inject } from '@angular/core';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { finalize } from 'rxjs';
-import { BlogReq } from 'src/app/shared/models/interfaces';
+import { Observable, finalize } from 'rxjs';
+import { BlogReq, BlogResponse } from 'src/app/shared/models/interfaces';
 import { AdminHttpService } from '../admin-http.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AlertComponent } from 'src/app/shared/components/alert/alert.component';
@@ -16,6 +16,9 @@ import { AlertComponent } from 'src/app/shared/components/alert/alert.component'
 export class AdminBlogComponent implements OnInit {
 
 
+  items = ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5'];
+  expandedIndex = 0;
+
   constructor(
     private _snackBar: MatSnackBar,
 
@@ -24,17 +27,42 @@ export class AdminBlogComponent implements OnInit {
 
   }
 
-  private httpAdmin = inject(AdminHttpService)
+  private adminHttp = inject(AdminHttpService)
+
 
 
   ngOnInit(): void {
-    this.initForm()
+    this.initForm();
+    this.getBlogPosts()
   }
 
   fb = inject(FormBuilder)
   storage = inject(AngularFireStorage)
 
+  blogPosts: BlogResponse[]
 
+
+  deleteBlog(key: string) {
+
+    this.adminHttp.deleteBlogPost(key).subscribe({
+      next: ((res) => {
+        this.blogPosts = res
+      }),
+      error: (() => {
+      })
+    })
+
+  }
+
+
+  getBlogPosts() {
+    this.adminHttp.getBlogPost().subscribe({
+      next: ((res) => {
+        this.blogPosts = res
+
+      })
+    })
+  }
 
   initForm() {
     this.form = this.fb.group({
@@ -52,7 +80,7 @@ export class AdminBlogComponent implements OnInit {
   editorConfig: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
-    height: 'auto',
+    height: '200px',
     minHeight: '0',
     maxHeight: 'auto',
     width: 'auto',
@@ -60,7 +88,7 @@ export class AdminBlogComponent implements OnInit {
     translate: 'yes',
     enableToolbar: true,
     showToolbar: true,
-    placeholder: 'Enter text here...',
+    placeholder: 'დაწერე ბლოგი აქ...',
     defaultParagraphSeparator: '',
     defaultFontName: '',
     defaultFontSize: '',
@@ -167,7 +195,7 @@ export class AdminBlogComponent implements OnInit {
       const params = this.buildParams();
 
 
-      this.httpAdmin.addBlogPost(params).subscribe({
+      this.adminHttp.addBlogPost(params).subscribe({
         next: ((res) => {
 
           this._snackBar.openFromComponent(AlertComponent, {
@@ -177,6 +205,8 @@ export class AdminBlogComponent implements OnInit {
               type: 'success'
             }
           })
+          this.getBlogPosts()
+
         }),
         error: ((err) => {
           console.error(err)

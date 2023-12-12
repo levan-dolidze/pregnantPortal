@@ -41,13 +41,15 @@
             <div>
              
 
-                <input type="file" placeholder="{{'image'|translate}}" name="" id="fileInput" formControlName="img"
+                <input type="file" placeholder="{{'image'|translate}}" name="" id="fileInp" formControlName="img"
                     (change)="showPreview($event)">
 
-                    <label for="fileInput" class="custom-file-upload">
+                    <label for="fileInp" class="custom-file-upload">
                         {{'upload'|translate}} <mat-icon>upload
                          
                         </mat-icon>
+                       <mat-spinner *ngIf="isLoading" [diameter]=20></mat-spinner>
+
                        </label>
             </div>
 
@@ -65,7 +67,7 @@
 
 
             <button type="submit" mat-raised-button color="primary">
-                <mat-spinner *ngIf="isLoading" [diameter]=20></mat-spinner>
+             
 
                 {{'add'|translate}}
 

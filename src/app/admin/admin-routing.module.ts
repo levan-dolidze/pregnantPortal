@@ -31,6 +31,7 @@ const routes: Routes = [
             path: 'admin-courses',
             component: AdminCoursesComponent,
             canActivate: [AuthGuard],
+            data:{stepName:'courses'}
 
 
           },
@@ -38,6 +39,8 @@ const routes: Routes = [
             path: 'admin-pregnancy',
             component: AdminPregnancyStuffComponent,
             canActivate: [AuthGuard],
+            data:{stepName:'stuffs'}
+
 
 
           },
@@ -45,6 +48,8 @@ const routes: Routes = [
             path: 'admin-home',
             component: AdminHomeComponent,
             canActivate: [AuthGuard],
+            data:{stepName:'home'}
+
 
 
           },
@@ -53,12 +58,16 @@ const routes: Routes = [
             component: AdminAboutComponent,
 
             canActivate: [AuthGuard],
+            data:{stepName:'about'}
+
 
           },
           {
             path: 'admin-books',
             component: AdminBookComponent,
             canActivate: [AuthGuard],
+            data:{stepName:'books'}
+
 
 
           },
@@ -66,22 +75,30 @@ const routes: Routes = [
             path: 'admin-free-guides',
             component: AdminFreeGuideComponent,
             canActivate: [AuthGuard],
+            data:{stepName:'guide'}
+
           },
           {
             path: 'admin-blog',
             component: AdminBlogComponent,
             canActivate: [AuthGuard],
+            data:{stepName:'blog'}
+
           },
         
           {
             path: 'admin-contact',
             component: AdminContactComponent,
             canActivate: [AuthGuard],
+            data:{stepName:'contact'}
+
           },
           {
             path: 'admin-shop',
             component: AdminShopComponent,
             canActivate: [AuthGuard],
+            data:{stepName:'shop'}
+
 
 
           },

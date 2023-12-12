@@ -82,10 +82,11 @@ export class CoursesViewComponent extends GridDirective implements OnInit {
 
       },
       {
-        title: 'ფოტო',
+        title: 'ვიდეო',
         label: 'label',
         onClick: true,
         getData: this.courses.map(x => x.img),
+        isVideo:true
       }
 
     ];
