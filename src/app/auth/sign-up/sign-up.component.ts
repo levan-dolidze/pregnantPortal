@@ -93,12 +93,12 @@ export class SignUpComponent implements OnInit {
           uid:auth.currentUser.uid
         }
 
-        this.afAuth.user.subscribe((user) => {
-          if (user && user.emailVerified) {
-            this.db.object(`users/${user.uid}/verified`).set(true);
-            this.db.object(`users/${user.uid}/isAdmin`).set(false);
-          }
-        });
+        // this.afAuth.user.subscribe((user) => {
+        //   if (user && user.emailVerified) {
+        //     this.db.object(`users/${user.uid}/verified`).set(true);
+        //     this.db.object(`users/${user.uid}/isAdmin`).set(true);
+        //   }
+        // });
         // this.authservice.storeNewUser(params).subscribe()
       
         this._snackBar.openFromComponent(AlertComponent, {

@@ -12,11 +12,8 @@ export class AuthBtnModesService {
   constructor(private authService:AuthService) { }
 
 
-
   getAuthBtnMode(container: Array<any>, token: any, admin: boolean): Observable<Array<authActionModes>> {
 
-
-   
 
     if (token.emailVerified && this.authService.isAdminNew()) {
       container = []
@@ -40,10 +37,7 @@ export class AuthBtnModesService {
           isIcon:true,
           permission: "user",
         },
-
       )
-
-
     }
 
     else if (token.emailVerified && !this.authService.isAdminNew()) {
@@ -64,7 +58,6 @@ export class AuthBtnModesService {
         },
       )
       return of(container)
-
     }
 
     else if (!token.emailVerified) {
@@ -86,7 +79,6 @@ export class AuthBtnModesService {
         },
       )
       return of(container)
-
     }
 
     return of(container).pipe(

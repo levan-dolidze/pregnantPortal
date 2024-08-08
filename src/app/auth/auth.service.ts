@@ -23,11 +23,17 @@ const users = '/users.json';
 export class AuthService {
   public isAdminEvent$: BehaviorSubject<boolean>;
 
+  readonly adminId = 'vjK5JImmJpVXFEDAud0wY7lVDq52';
+
   destroyRef = inject(DestroyRef);
   private getUserIsAdmin = signal<any>(false);
+  private isUserLoggedIn = signal<any>(false);
 
   userState = computed(this.getUserIsAdmin);
+  isUserLoggedInState = computed(this.isUserLoggedIn);
+  
   private userIsAdminStateLoaded$ = this.getIsAdmin();
+
 
   constructor(
     public firebaseAuth: AngularFireAuth,
@@ -45,7 +51,10 @@ export class AuthService {
             ? JSON.parse(localStorage.getItem('user') ?? '')
             : '';
           this.getUserIsAdmin.update(
-            (x) => (x = list.find((x: any) => x.key == user?.uid))
+            (x) => (x = user.emailVerified && user.uid === this.adminId)
+          );
+          this.isUserLoggedIn.update(
+            (x) => (x = user.emailVerified)
           );
         },
         error: (err: any) => {
@@ -76,7 +85,7 @@ export class AuthService {
       const parsedUser = JSON.parse(user);
       if (
         parsedUser.emailVerified &&
-        parsedUser.uid === 'z2Kut4ix69SzKFKJHcwYBjMJLt12'
+        parsedUser.uid === this.adminId
       ) {
         return true;
       }
@@ -104,26 +113,20 @@ export class AuthService {
       });
   }
 
-  async setAdmin(user: any) {
-    await this.angularFirestore.collection('users').doc(user.uid).set(
-      {
-        email: user.email,
-        isAdmin: true,
-      },
-      { merge: true }
-    );
 
-    console.log(user);
-    localStorage.setItem('user', JSON.stringify(user));
-  }
 
   async signIn(email: string, password: string) {
     await this.firebaseAuth
       .signInWithEmailAndPassword(email, password)
       .then((res) => {
         if (res.user.emailVerified) {
-          this.setAdmin(res.user);
           localStorage.setItem('user', JSON.stringify(res.user));
+          this.getUserIsAdmin.update(
+            (x) => (x = res.user.emailVerified && res.user.uid == this.adminId)
+          );
+          this.isUserLoggedIn.update(
+            (x) => (x = res.user.emailVerified)
+          );
         } else {
           this._snackBar.openFromComponent(AlertComponent, {
             duration: 2000,
@@ -140,5 +143,7 @@ export class AuthService {
   async logOut() {
     this.firebaseAuth.signOut();
     localStorage.clear();
+    this.getUserIsAdmin.update((x) => (x = false));
+    this.isUserLoggedIn.update((x) => (x = false));
   }
 }

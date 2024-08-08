@@ -1,50 +1,157 @@
 <div class="navbar-content">
-    <div class="navbar-inner">
-        <div class="navbar-title">
-            {{"headerTitle"|translate}}
-        </div>
-        <div class="navbar-navigation">
+  <div class="navbar-inner">
+    <div class="navbar-title">
+      {{ "headerTitle" | translate }}
+    </div>
+    <div class="navbar-navigation">
+      {{ userState() | json }}
+      <div class="navigation-inner">
+        <button mat-button [routerLink]="['/lending']">
+          {{ "home" | translate }}
+        </button>
+        <!-- <button mat-button [routerLink]="['/about']"> {{"about"|translate}}</button> -->
 
-
-            <div class="navigation-inner">
-                <button mat-button [routerLink]="['/lending']"> {{"home"|translate}}</button>
-                <!-- <button mat-button [routerLink]="['/about']"> {{"about"|translate}}</button> -->
-
-                <button mat-button [routerLink]="['/courses']">{{"courses"|translate}}</button>
-                <!-- <button mat-button [routerLink]="['/book']">{{"book"|translate}}</button>
+        <button mat-button [routerLink]="['/courses']">
+          {{ "courses" | translate }}
+        </button>
+        <!-- <button mat-button [routerLink]="['/book']">{{"book"|translate}}</button>
                 <button mat-button [routerLink]="['/free-guides']">{{"free-guide"|translate}}</button> -->
-                <button mat-button [routerLink]="['/shop']">{{"shop"|translate}}</button>
-                <button mat-button [routerLink]="['/blog']">{{"blog"|translate}}</button>
-                <button mat-button [routerLink]="['/contact']">{{"contact"|translate}}</button>
+        <button mat-button [routerLink]="['/shop']">
+          {{ "shop" | translate }}
+        </button>
+        <button mat-button [routerLink]="['/blog']">
+          {{ "blog" | translate }}
+        </button>
+        <button mat-button [routerLink]="['/contact']">
+          {{ "contact" | translate }}
+        </button>
+        <span>
+          <select
+            (change)="changeLang($event.target)"
+            [(ngModel)]="selectedLang"
+          >
+            <option value="ka" [selected]="lang == 'ka'">KA</option>
+            <option value="en" [selected]="lang == 'en'">ENG</option>
+          </select>
+
+          <button
+            *ngIf="isUserLoggedInState()"
+            (click)="onLogOut()"
+            mat-button
+            [routerLink]="['/logOut']"
+          >
+            {{ "logOut" | translate }}
+          </button>
+          <button
+            *ngIf="!isUserLoggedInState()"
+            (click)="loginSignUp('signUp')"
+            mat-button
+            [routerLink]="['/signUp']"
+          >
+            {{ "signUp" | translate }}
+          </button>
+          <button
+            *ngIf="!isUserLoggedInState()"
+            (click)="loginSignUp('logIn')"
+            mat-button
+            [routerLink]="['/logIn']"
+          >
+            {{ "logIn" | translate }}
+          </button>
 
 
+          <ng-container *ngIf="isUserLoggedInState()">
+            <button *ngIf="userState()"
+            mat-button
+            [matMenuTriggerFor]="adminMenu">
+            {{ "admin" | translate }}
+            <span *ngIf="generalNotification" [matBadge]='generalNotification' matBadgeColor="warn">
+            </span>
+          </button>
 
-                <span>
+            <button  *ngIf="!userState()"
+            mat-button
+            [matMenuTriggerFor]="simpleUser">
+            {{ "my_page" | translate }}
+            <span *ngIf="generalNotification" [matBadge]='generalNotification' matBadgeColor="warn">
+            </span>
+          </button>
+          </ng-container>
+      
+     
 
+          <!-- Dropdown menu -->
+          <mat-menu #adminMenu="matMenu">
+            <!-- Menu items for when userState is true -->
+            <ng-container>
+              <button mat-menu-item [routerLink]="'/admin/admin-courses'">
+                {{ "ordered_courses" | translate }}
 
+                <span *ngIf="orderedCourses?.length"  [matBadge]='orderedCourses?.length' 
+                matBadgeColor="warn">
 
-                    <select (change)="changeLang($event.target)" [(ngModel)]="selectedLang">
-                        <option value="ka" [selected]="lang =='ka'">KA</option>
-                        <option value="en" [selected]="lang =='en'"> ENG</option>
-                    </select>
+                </span>
+                
+              </button>
+              <button mat-menu-item [routerLink]="'/admin/admin-pregnancy'">
+                {{ "ordered_pregnancy_stuff" | translate }}
+                <span *ngIf="orderedItems?.length"  [matBadge]='orderedItems?.length' 
+                matBadgeColor="warn">
 
+                </span>
+              </button>
+              <button mat-menu-item [routerLink]="'/admin/admin-message'">
+                {{ "customer_message" | translate }}
+              </button>
+              <button mat-menu-item [routerLink]="'/admin/admin-home'">
+                {{ "home" | translate }}
+              </button>
+              <button mat-menu-item [routerLink]="'/admin/admin-about'">
+                {{ "about" | translate }}
+              </button>
+              <button mat-menu-item [routerLink]="'/admin/admin-shop'">
+                {{ "shop" | translate }}
+              </button>
+              <button mat-menu-item [routerLink]="'/admin/admin-blog'">
+                {{ "blog" | translate }}
+              </button>
+              <button mat-menu-item [routerLink]="'/admin/admin-contact'">
+                {{ "contact" | translate }}
+                <span *ngIf="contact?.length"  [matBadge]='contact?.length' 
+                matBadgeColor="warn">
 
+                </span>
+              </button>
+            </ng-container>
+          </mat-menu>
 
-                 
-                    <button *ngFor="let action of authActions" mat-button
+          <mat-menu #simpleUser="matMenu">
+            <ng-container >
+                <button mat-menu-item [routerLink]="'/my-courses'">
+                  {{ "user_courses" | translate }}
+                </button>
+
+                <button mat-menu-item [routerLink]="'/my-communication'">
+                  {{ "user_communications" | translate }}
+                </button>
+              </ng-container>
+          </mat-menu>
+
+          <!-- <button *ngFor="let action of authActions" mat-button
                         [matMenuTriggerFor]="action.type === 'admin' ? adminMenu : action.type === 'userWorld' ? userWorldMenu : null"
                         (click)="initAuthActions(action.type)"
                         >
                         <ng-container *ngIf="action.isIcon">
                             <mat-icon>{{action.icon}}</mat-icon>
                         </ng-container>
-                        <span *ngIf="action.type === 'admin'&&generalNotification" [matBadge]='generalNotification' matBadgeColor="warn">
+                        <span *ngIf="userState()&&generalNotification" [matBadge]='generalNotification' matBadgeColor="warn">
 
                         </span>
 
                         {{action.text|translate}}
 
                     </button>
+
 
                     <mat-menu #adminMenu="matMenu">
                         <div class="admin-menu">
@@ -87,26 +194,17 @@
                             </button>
 
                         </div>
-                    </mat-menu>
-
-
-
-
-                </span>
-            </div>
-
-        </div>
+                    </mat-menu> -->
+        </span>
+      </div>
     </div>
-    <div class="page-name">
-        {{pageName}} >
-    </div>
+  </div>
+  <div class="page-name">{{ pageName }} ></div>
 
-
-
-    <div class="page-container">
-        <router-outlet></router-outlet>
-    </div>
-    <!-- 
+  <div class="page-container">
+    <router-outlet></router-outlet>
+  </div>
+  <!-- 
     <div class="footer">
         footer
     </div> -->
