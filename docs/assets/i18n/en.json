@@ -47,7 +47,10 @@
     "blog":"Blog",
     "show_more":"Show more",
     "add_blog":"Add blog",
-    "current_blogs":"Show blog list"
+    "current_blogs":"Show blog list",
+    "my_page":"My cabinet",
+    "patient_appointment":"Patient appointment"
+
 
 
 }
