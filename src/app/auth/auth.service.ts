@@ -53,21 +53,21 @@ export class AuthService {
       });
   }
 
-  getIsAdmin(): Observable<UserIsAdmin[]> {
+ private getIsAdmin(): Observable<UserIsAdmin[]> {
     return this.apiService.get(users).pipe(
       map((res) => {
         if (res) {
-          const stuffs = [];
+          const admin = [];
           for (const key in res) {
-            stuffs.push({ ...res[key], key: key });
+            admin.push({ ...res[key], key: key });
           }
-          return stuffs;
+          return admin;
         } else {
           return [];
         }
       })
     );
-  }
+  };
 
   async signUp(params: SignUp) {
     await this.firebaseAuth
