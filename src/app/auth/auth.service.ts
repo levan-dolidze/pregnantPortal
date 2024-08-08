@@ -31,7 +31,7 @@ export class AuthService {
     const user = localStorage.getItem('user');
     if (user) {
       const parsedUser = JSON.parse(user)
-      if (parsedUser.emailVerified && parsedUser.uid === 'osQEYxPug4ZekILcy7XnIYZc1VD2') {
+      if (parsedUser.emailVerified && parsedUser.uid === 'moPlC59ReoVRbSC8g7rKTyDgtEn2') {
         return true
       }
       return false
@@ -61,8 +61,10 @@ export class AuthService {
   }
 
   async signIn(email: string, password: string) {
+    console.log(password)
     await this.firebaseAuth.signInWithEmailAndPassword(email, password).then(res => {
 
+      console.log(res)
       if (res.user.emailVerified) {
         localStorage.setItem('user', JSON.stringify(res.user))
       }

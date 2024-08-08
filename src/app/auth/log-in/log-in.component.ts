@@ -7,6 +7,8 @@ import { LocalStorageService } from 'src/app/core/services/local-storage.service
 import { AuthService } from '../auth.service';
 import { IsAdminCheck, LogIn } from '../models/authModel';
 import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 
 @Component({
   selector: 'app-log-in',
@@ -22,7 +24,9 @@ export class LogInComponent implements OnInit {
     private authService: AuthService,
     private alert: AlertService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private afAuth: AngularFireAuth,
+    private db: AngularFireDatabase
 
   ) { }
 
@@ -69,15 +73,16 @@ export class LogInComponent implements OnInit {
           isAdmin: this.authService.isAdmin(username)
         }).subscribe((res) => {
 
+
+          this.afAuth.user.subscribe((user)=>{
+            if(user&&user.emailVerified) {
+              this.db.object(`users/${user.uid}/verified`).set(true);
+            }
+
+          })
           this.dialogRef.close();
           this.router.navigate([''])
 
-          // this.alert.success('success')
-
-
-          // this.isAdmin = res
-          // this.authService.isAdminEvent$.next(this.isAdmin.isAdmin)
-          // this.localStorageService.isTokenEvent$.next(this.isAdmin.token)
         })
 
 
