@@ -4,18 +4,15 @@
       {{ "headerTitle" | translate }}
     </div>
     <div class="navbar-navigation">
-      {{ userState() | json }}
       <div class="navigation-inner">
         <button mat-button [routerLink]="['/lending']">
           {{ "home" | translate }}
         </button>
-        <!-- <button mat-button [routerLink]="['/about']"> {{"about"|translate}}</button> -->
 
         <button mat-button [routerLink]="['/courses']">
           {{ "courses" | translate }}
         </button>
-        <!-- <button mat-button [routerLink]="['/book']">{{"book"|translate}}</button>
-                <button mat-button [routerLink]="['/free-guides']">{{"free-guide"|translate}}</button> -->
+   
         <button mat-button [routerLink]="['/shop']">
           {{ "shop" | translate }}
         </button>
@@ -77,12 +74,8 @@
             </span>
           </button>
           </ng-container>
-      
-     
 
-          <!-- Dropdown menu -->
           <mat-menu #adminMenu="matMenu">
-            <!-- Menu items for when userState is true -->
             <ng-container>
               <button mat-menu-item [routerLink]="'/admin/admin-courses'">
                 {{ "ordered_courses" | translate }}
@@ -136,65 +129,6 @@
                 </button>
               </ng-container>
           </mat-menu>
-
-          <!-- <button *ngFor="let action of authActions" mat-button
-                        [matMenuTriggerFor]="action.type === 'admin' ? adminMenu : action.type === 'userWorld' ? userWorldMenu : null"
-                        (click)="initAuthActions(action.type)"
-                        >
-                        <ng-container *ngIf="action.isIcon">
-                            <mat-icon>{{action.icon}}</mat-icon>
-                        </ng-container>
-                        <span *ngIf="userState()&&generalNotification" [matBadge]='generalNotification' matBadgeColor="warn">
-
-                        </span>
-
-                        {{action.text|translate}}
-
-                    </button>
-
-
-                    <mat-menu #adminMenu="matMenu">
-                        <div class="admin-menu">
-
-                            <button *ngFor="let link of adminBtns" mat-menu-item [routerLink]="link.link">
-
-                        <span> 
-
-                            {{link.courses}}
-
-                       <span *ngIf="orderedCourses?.length&&link.type==='courses'"  [matBadge]='orderedCourses?.length' 
-                       matBadgeColor="warn">
-
-                       </span>
-                       <span *ngIf="orderedItems?.length&&link.type==='items'"  [matBadge]='orderedItems?.length' 
-                       matBadgeColor="warn">
-
-                       </span>
-                       <span *ngIf="contact?.length&&link.type==='contact'"  [matBadge]='contact?.length' 
-                       matBadgeColor="warn">
-
-                       </span>
-                            
-                        </span>
-
-                                  
-                            {{link.text|translate}}  
-
-                            </button>
-
-
-
-                        </div>
-                    </mat-menu>
-                    <mat-menu #userWorldMenu="matMenu">
-                        <div class="admin-menu">
-
-                            <button *ngFor="let link of userWorldBtns" mat-menu-item [routerLink]="link.link">
-                                {{link.text|translate}}
-                            </button>
-
-                        </div>
-                    </mat-menu> -->
         </span>
       </div>
     </div>

@@ -1,13 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import {
-  Observable,
-  Subscription,
-  forkJoin,
-  shareReplay,
-} from 'rxjs';
+import { Observable, Subscription, forkJoin, shareReplay } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { LogInComponent } from 'src/app/auth/log-in/log-in.component';
 import { IsAdminCheck } from 'src/app/auth/models/authModel';
@@ -42,10 +37,6 @@ export class LayoutComponent implements OnInit {
     private adminHttp: AdminHttpService
   ) {
     this.pageName = this.route.snapshot.data['pageName'];
-
-    // this.localStorageService.getToken().subscribe((res) => {
-    //   this.authBtnInit(res);
-    // });
   }
   userState = this.authService.userState;
   isUserLoggedInState = this.authService.isUserLoggedInState;
@@ -111,46 +102,9 @@ export class LayoutComponent implements OnInit {
     this.subscriobtion$.unsubscribe();
   }
 
-  onLogOut(){
-
+  onLogOut() {
     this.authService.logOut();
-
   }
-
-  // authBtnInit(storedAdmin: boolean) {
-  //   combineLatest({
-  //     token: this.localStorageService.isTokenEvent$,
-  //     admin: this.authService.isAdminEvent$,
-  //   }).subscribe((res) => {
-  //     this.autBtnService
-  //       .getAuthBtnMode(
-  //         this.authActions,
-  //         res.token,
-  //         storedAdmin ? storedAdmin : res.admin
-  //       )
-  //       .subscribe((res) => {
-  //         this.authActions = res;
-  //       });
-  //     this.autBtnService
-  //       .getAdminBtns(
-  //         this.adminBtns,
-  //         res.token,
-  //         storedAdmin ? storedAdmin : res.admin
-  //       )
-  //       .subscribe((res) => {
-  //         this.adminBtns = res;
-  //       });
-  //     this.autBtnService
-  //       .getMyWorldBtns(
-  //         this.adminBtns,
-  //         res.token,
-  //         storedAdmin ? storedAdmin : res.admin
-  //       )
-  //       .subscribe((res) => {
-  //         this.userWorldBtns = res;
-  //       });
-  //   });
-  // }
 
   changeLang(lang: any) {
     localStorage.setItem('lang', lang.value);
@@ -158,12 +112,6 @@ export class LayoutComponent implements OnInit {
   }
 
   loginSignUp(type: IActionType) {
-    // if (type === 'logOut') {
-    //   this.authService.logOut();
-    //   this.localStorageService.getToken().subscribe((res) => {});
-    //   return;
-    // }
-
     const popups: any = {
       logIn: {
         component: LogInComponent,
