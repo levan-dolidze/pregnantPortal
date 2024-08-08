@@ -69,11 +69,7 @@ export class LogInComponent implements OnInit {
             token: this.localStorageService.getToken(),
             isAdmin: this.authService.isAdmin(username),
           }).subscribe((res) => {
-            this.afAuth.user.subscribe((user) => {
-              if (user && user.emailVerified) {
-                this.db.object(`users/${user.uid}/verified`).set(true);
-              }
-            });
+        
             this.dialogRef.close();
             this.router.navigate(['']);
           });
