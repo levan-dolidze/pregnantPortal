@@ -10,7 +10,6 @@ import {
   MAT_DIALOG_DATA,
   MatDialog,
 } from '@angular/material/dialog';
-import { forkJoin, map, switchMap } from 'rxjs';
 import { AlertService } from 'src/app/core/services/alert.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { AuthService } from '../auth.service';
@@ -64,15 +63,8 @@ export class LogInComponent implements OnInit {
       await this.authService
         .signIn(params.userName, params.password)
         .then((res) => {
-          const username = this.form.get('userName')?.value;
-          forkJoin({
-            token: this.localStorageService.getToken(),
-            isAdmin: this.authService.isAdmin(username),
-          }).subscribe((res) => {
-        
             this.dialogRef.close();
             this.router.navigate(['']);
-          });
         });
     }
   }

@@ -15,7 +15,6 @@ export class AuthGuard  {
 
   }
   canActivate(): any {
-    const isAdmin = this.authService.isAdminNew()
 
     return true
 
