@@ -29,13 +29,9 @@ export class LogInComponent implements OnInit {
   constructor(
     @Optional() public dialogRef: MatDialogRef<LogInComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { promoCodeDetails: any },
-    private localStorageService: LocalStorageService,
     private authService: AuthService,
-    private alert: AlertService,
     private fb: FormBuilder,
     private router: Router,
-    private afAuth: AngularFireAuth,
-    private db: AngularFireDatabase,
     private dialog: MatDialog
   ) {}
 
