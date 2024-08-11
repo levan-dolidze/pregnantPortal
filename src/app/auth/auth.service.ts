@@ -25,9 +25,11 @@ export class AuthService {
   destroyRef = inject(DestroyRef);
   private getUserIsAdmin = signal<any>(false);
   private isUserLoggedIn = signal<any>(false);
+  private user = signal<any>('');
 
   userState = computed(this.getUserIsAdmin);
   isUserLoggedInState = computed(this.isUserLoggedIn);
+  userData = computed(this.user);
 
   private userIsAdminStateLoaded$ = this.getIsAdmin();
 
@@ -48,6 +50,7 @@ export class AuthService {
             (x) => (x = user.emailVerified && user.uid === this.adminId)
           );
           this.isUserLoggedIn.update((x) => (x = user.emailVerified));
+          this.user.update((x) => (x = user));
         },
         error: (err: any) => {
           console.error(err);

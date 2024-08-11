@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AdminHttpService } from 'src/app/admin/admin-http.service';
 import { FullCourse, OrderedFullCourse } from 'src/app/admin/models/shop';
+import { AuthService } from 'src/app/auth/auth.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 
 @Component({
@@ -55,6 +56,9 @@ export class MyCoursesComponent implements OnInit {
   };
 
 
+  auth = inject(AuthService);
+
+  user = this.auth.userData;
   getMyCourses() {
     this.adminService.getMyConfirmedCourses().subscribe({
       next: ((res) => {
@@ -62,7 +66,7 @@ export class MyCoursesComponent implements OnInit {
       
 
 
-        const keys = res.filter((x => x.uid === this.uid.uid)).map((x=>x.stuff.key))
+        const keys = res.filter((x => x.uid === this.user().uid)).map((x=>x.stuff.key))
 
         this.getFullCourses(keys)
 

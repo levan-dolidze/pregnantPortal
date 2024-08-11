@@ -71,8 +71,8 @@
             mat-button
             [matMenuTriggerFor]="simpleUser">
             {{ "my_page" | translate }}
-            <span *ngIf="generalNotification" [matBadge]='generalNotification' matBadgeColor="warn">
-            </span>
+            <!-- <span *ngIf="generalNotification" [matBadge]='generalNotification' matBadgeColor="warn">
+            </span> -->
           </button>
           </ng-container>
 
@@ -100,7 +100,6 @@
                 {{ "contact" | translate }}
                 <span *ngIf="contact?.length"  [matBadge]='contact?.length' 
                 matBadgeColor="warn">
-
                 </span>
               </button>
               <button mat-menu-item [routerLink]="'/admin/admin-message'">

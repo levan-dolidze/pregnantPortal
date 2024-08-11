@@ -1,4 +1,4 @@
-import { Component, OnInit, Optional, Inject } from '@angular/core';
+import { Component, OnInit, Optional, Inject, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Stuffs } from 'src/app/admin/models/shop';
@@ -9,6 +9,8 @@ import { AlertComponent } from 'src/app/shared/components/alert/alert.component'
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { BankAccountsComponent } from 'src/app/shared/components/bank-accounts/bank-accounts.component';
 import { FieldModeControl } from 'src/app/shared/functions/sharedFunctions';
+import { AuthService } from 'src/app/auth/auth.service';
+import { regExp } from 'src/app/shared/validations/regex';
 
 @Component({
   selector: 'app-buy-now',
@@ -32,7 +34,9 @@ export class BuyNowComponent implements OnInit {
 
   }
 
+  auth = inject(AuthService);
 
+  user = this.auth.userData;
   seasons: string[] = ['terms'];
   color: 'primary'
 
@@ -81,7 +85,7 @@ export class BuyNowComponent implements OnInit {
 
       name: [null, [Validators.required]],
       lastName: [null, [Validators.required]],
-      IDNumber: [null, [Validators.required]],
+      IDNumber: [null, [Validators.required,Validators.pattern(regExp.onlyNumbers)]],
       phone: [null, [Validators.required]],
       address: [null, [Validators.required]],
       terms: [null, [Validators.required]]
@@ -103,7 +107,7 @@ export class BuyNowComponent implements OnInit {
         ...
         this.form.value,
         stuff: this.data.stuffDetails,
-        uid: this.uid.uid
+        uid: this.user().uid
       }
 
 
