@@ -46,6 +46,7 @@ export class AuthService {
           // const user: any = localStorage.getItem('user')
           //   ? JSON.parse(localStorage.getItem('user') ?? '')
           //   : '';
+          console.log(user)
           this.getUserIsAdmin.update(
             (x) => (x = user.emailVerified && user.uid === this.adminId)
           );

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRootComponent } from './shared/app-root/app-root.component';
+import { AuthGuard } from './core/guards/auth.guard';
+import { adminGuard } from './core/guards/admin.guard';
 
 const routes: Routes = [
   {
@@ -11,7 +13,7 @@ const routes: Routes = [
       {
         path: '',
         redirectTo: 'lending',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       { path: 'lending', loadChildren: () => import('./features/lending/lending.module').then(m => m.LendingModule) },
       { path: 'about', loadChildren: () => import('./features/about/about.module').then(m => m.AboutModule) },
@@ -22,14 +24,27 @@ const routes: Routes = [
       { path: 'blog', loadChildren: () => import('./features/blog/blog.module').then(m => m.BlogModule) },
 
       { path: 'contact', loadChildren: () => import('./features/contact/contact.module').then(m => m.ContactModule) },
-      { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
-      { path: 'my-courses', loadChildren: () => import('./features/user/my-courses.module').then(m => m.MyCoursesModule) },
-      { path: 'my-communication', loadChildren: () => import('./features/user/my-communication/my-communication.module').then(m => m.MyCommunicationModule) },
+      { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+        canActivate:[AuthGuard,adminGuard]
+       },
+      { path: 'my-courses', loadChildren: () => import('./features/user/my-courses.module').then(m => m.MyCoursesModule),
+
+        canActivate:[AuthGuard]
+
+       },
+      { path: 'my-communication', loadChildren: () => import('./features/user/my-communication/my-communication.module').then(m => m.MyCommunicationModule),
+
+        canActivate:[AuthGuard]
+
+       },
 
 
     ]
   },
-  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
+    canActivate:[AuthGuard]
+
+   },
 
 
 
