@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, effect, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -25,6 +25,7 @@ export class LayoutComponent implements OnInit {
   isAdmin: IsAdminCheck;
   prise: number = 15;
   subscriobtion$ = new Subscription();
+  userState = this.authService.userState;
 
   constructor(
     private route: ActivatedRoute,
@@ -37,8 +38,14 @@ export class LayoutComponent implements OnInit {
     private adminHttp: AdminHttpService
   ) {
     this.pageName = this.route.snapshot.data['pageName'];
+
+    effect(()=>{
+
+      if(this.userState()) {
+      this.returnNotifications();
+      }
+    })
   }
-  userState = this.authService.userState;
   isUserLoggedInState = this.authService.isUserLoggedInState;
   pageName: string;
   lang: string;
@@ -52,7 +59,6 @@ export class LayoutComponent implements OnInit {
   ngOnInit(): void {
     this.languageService.setLanguage();
     this.selectedLang = this.languageService.defaultLang;
-    this.returnNotifications();
   }
 
   observable$: Observable<any>;
