@@ -63,6 +63,7 @@ export class LogInComponent implements OnInit {
       await this.authService
         .signIn(params.userName, params.password)
         .then((res) => {
+          console.log(res)
             this.dialogRef.close();
             this.router.navigate(['']);
         });

@@ -78,8 +78,8 @@ export class AuthService {
   }
 
   async signIn(email: string, password: string) {
-    await this.firebaseAuth
-      .signInWithEmailAndPassword(email, password)
+    try {
+      await this.firebaseAuth.signInWithEmailAndPassword(email, password)
       .then((res) => {
         if (res.user.emailVerified) {
           localStorage.setItem('user', JSON.stringify(res.user));
@@ -98,6 +98,16 @@ export class AuthService {
           console.error('error');
         }
       });
+    }
+    catch {
+      this._snackBar.openFromComponent(AlertComponent, {
+        duration: 2000,
+        data: {
+          message: 'ავტორიზაცია ვერ მოხდა!',
+          type: 'error',
+        },
+      });
+    }
   }
 
   async logOut() {
