@@ -6,7 +6,7 @@ import {
   signal,
 } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { map, Observable } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { SignUp } from './models/authModel';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AlertComponent } from '../shared/components/alert/alert.component';
@@ -31,7 +31,7 @@ export class AuthService {
   isUserLoggedInState = computed(this.isUserLoggedIn);
   userData = computed(this.user);
 
-  private userIsAdminStateLoaded$ = this.getIsAdmin();
+  private userIsAdminStateLoaded$ = this.getUser();
 
   constructor(
     public firebaseAuth: AngularFireAuth,
@@ -42,10 +42,10 @@ export class AuthService {
     this.userIsAdminStateLoaded$
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
-        next: (list: any) => {
-          const user: any = localStorage.getItem('user')
-            ? JSON.parse(localStorage.getItem('user') ?? '')
-            : '';
+        next: (user: any) => {
+          // const user: any = localStorage.getItem('user')
+          //   ? JSON.parse(localStorage.getItem('user') ?? '')
+          //   : '';
           this.getUserIsAdmin.update(
             (x) => (x = user.emailVerified && user.uid === this.adminId)
           );
@@ -58,20 +58,25 @@ export class AuthService {
       });
   }
 
- private getIsAdmin(): Observable<UserIsAdmin[]> {
-    return this.apiService.get(users).pipe(
-      map((res) => {
-        if (res) {
-          const admin = [];
-          for (const key in res) {
-            admin.push({ ...res[key], key: key });
-          }
-          return admin;
-        } else {
-          return [];
-        }
-      })
-    );
+ private getUser(): Observable<UserIsAdmin[]> {
+    // return this.apiService.get(users).pipe(
+    //   map((res) => {
+    //     if (res) {
+    //       const admin = [];
+    //       for (const key in res) {
+    //         admin.push({ ...res[key], key: key });
+    //       }
+    //       return admin;
+    //     } else {
+    //       return [];
+    //     }
+    //   })
+    // );
+    const user: any = localStorage.getItem('user')
+    ? JSON.parse(localStorage.getItem('user') ?? '')
+    : '';
+    return of(user)
+  
   };
 
   async signUp(params: SignUp) {
