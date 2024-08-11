@@ -8,6 +8,16 @@
                 <mat-label>{{'user'|translate}}</mat-label>
                 <input matInput placeholder="{{'user'|translate}}"  formControlName="userName">
             </mat-form-field>
+            <ng-container *ngIf="form.get('userName')?.dirty">
+                <mat-error
+                  *ngIf="form.get('userName').errors?.['required']">
+                  ველი სავალდებულოა
+                </mat-error>
+                <mat-error
+                  *ngIf="form.get('userName').errors?.['pattern']">
+                  არასწორი ფორმატი
+                </mat-error>
+              </ng-container>
         </div>
       
 
@@ -18,6 +28,16 @@
                 type="password"
                 >
             </mat-form-field>
+            <ng-container *ngIf="form.get('password')?.dirty">
+                <mat-error
+                  *ngIf="form.get('password').errors?.['required']">
+                  ველი სავალდებულოა
+                </mat-error>
+                <mat-error
+                  *ngIf="form.get('password')?.hasError('minLength')">
+                  პაროლის არასწორი ფორმატი
+                </mat-error>
+              </ng-container>
         </div>
         <div style="margin-bottom: 5px;cursor: pointer;" (click)="signUp('signUp')">
             {{'signUp'|translate}}

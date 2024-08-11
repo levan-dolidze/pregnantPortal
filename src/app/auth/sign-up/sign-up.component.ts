@@ -21,6 +21,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { FieldModeControl } from 'src/app/shared/functions/sharedFunctions';
 
 @Component({
   selector: 'app-sign-up',
@@ -56,6 +57,7 @@ export class SignUpComponent implements OnInit {
 
   async onSignUp() {
     if (this.form.invalid) {
+      FieldModeControl.formFieldsModeControl('markAsDirty',this.form)
       return;
     } else {
       const params = this.form.value;

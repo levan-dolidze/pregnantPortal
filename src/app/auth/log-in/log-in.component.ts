@@ -4,6 +4,7 @@ import {
   FormControl,
   FormControlOptions,
   FormGroup,
+  Validators,
 } from '@angular/forms';
 import {
   MatDialogRef,
@@ -19,6 +20,8 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { SignUpComponent } from '../sign-up/sign-up.component';
 import { IActionType } from 'src/app/shared/layout/models/authModel';
+import { FieldModeControl } from 'src/app/shared/functions/sharedFunctions';
+import { regExp } from 'src/app/shared/validations/regex';
 
 @Component({
   selector: 'app-log-in',
@@ -45,13 +48,14 @@ export class LogInComponent implements OnInit {
 
   initForm() {
     this.form = this.fb.group({
-      userName: new FormControl(null),
-      password: new FormControl(null),
+      userName: [null, [Validators.required, Validators.pattern(regExp.email)]],
+      password: [null, [Validators.required, Validators.minLength(6)]],
     } as { [key in keyof LogIn]: FormControlOptions });
   }
 
   async onSubmit() {
     if (this.form.invalid) {
+      FieldModeControl.formFieldsModeControl('markAsDirty',this.form)
       return;
     } else {
       const params: LogIn = this.form.value;
