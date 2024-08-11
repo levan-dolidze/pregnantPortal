@@ -1,9 +1,13 @@
-
 .mat-mdc-radio-button.mat-accent {
-    --mdc-radio-selected-pressed-icon-color:#a6bdce!important;
-    --mdc-radio-selected-focus-icon-color:#a6bdce !important;
-    --mdc-radio-selected-hover-icon-color: #a6bdce!important;
-    --mdc-radio-selected-icon-color:#a6bdce!important;
-    --mdc-radio-selected-pressed-icon-color:#a6bdce !important;
-    --mat-radio-checked-ripple-color: #a6bdce !important;
-  }
+  --mdc-radio-selected-pressed-icon-color: #a6bdce !important;
+  --mdc-radio-selected-focus-icon-color: #a6bdce !important;
+  --mdc-radio-selected-hover-icon-color: #a6bdce !important;
+  --mdc-radio-selected-icon-color: #a6bdce !important;
+  --mdc-radio-selected-pressed-icon-color: #a6bdce !important;
+  --mat-radio-checked-ripple-color: #a6bdce !important;
+}
+
+.mat-form-field-wrapper {
+  // margin: 10px !important;
+  padding: 1px 0px 1px 0px !important;
+}
