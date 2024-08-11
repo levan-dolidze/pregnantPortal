@@ -13,6 +13,7 @@ import { AlertComponent } from '../shared/components/alert/alert.component';
 import { ApiService } from '../shared/services/api.service';
 import { UserIsAdmin } from './sign-up/utils';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Router } from '@angular/router';
 const users = '/users.json';
 
 @Injectable({
@@ -32,6 +33,7 @@ export class AuthService {
 
   constructor(
     public firebaseAuth: AngularFireAuth,
+    private router:Router,
     private _snackBar: MatSnackBar,
     private apiService: ApiService
   ) {
@@ -115,5 +117,6 @@ export class AuthService {
     localStorage.clear();
     this.getUserIsAdmin.update((x) => (x = false));
     this.isUserLoggedIn.update((x) => (x = false));
+    this.router.navigate([''])
   }
 }
