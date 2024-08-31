@@ -15,6 +15,7 @@ import { LanguageService } from '../services/language.service';
 import { OrderedFullCourse } from 'src/app/admin/models/shop';
 import { ShopService } from 'src/app/features/shop/shop.service';
 import { AdminHttpService } from 'src/app/admin/admin-http.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-layout',
@@ -31,7 +32,7 @@ export class LayoutComponent implements OnInit {
     private route: ActivatedRoute,
     private dialog: MatDialog,
     private translate: TranslateService,
-
+    private afAuth: AngularFireAuth,
     public authService: AuthService,
     public languageService: LanguageService,
     private shopService: ShopService,
@@ -59,6 +60,11 @@ export class LayoutComponent implements OnInit {
   ngOnInit(): void {
     this.languageService.setLanguage();
     this.selectedLang = this.languageService.defaultLang;
+
+    this.afAuth.authState.subscribe((res)=>{
+      console.log(res)
+
+    })
   }
 
   observable$: Observable<any>;
