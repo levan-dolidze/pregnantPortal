@@ -1,9 +1,15 @@
 <div class="navbar-content">
   <div class="navbar-inner">
     <div class="navbar-title">
-      {{ "headerTitle" | translate }}
+      <div>
+        {{ "headerTitle" | translate }} 
+      </div>
+      <div class="phone-icon">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="phone">
+        </mat-icon>
+          +995 42 41 61
+      </div>
     </div>
-
     <div class="navbar-navigation">
       <div class="navigation-inner">
         <button mat-button [routerLink]="['/lending']">

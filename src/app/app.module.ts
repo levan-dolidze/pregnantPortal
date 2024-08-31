@@ -26,7 +26,6 @@ import { TruncatePipe } from './shared/pipes/truncate.pipe';
     AppComponent,
     AdminUploadedFullCoursesComponent,
     AdminAddFullCoursePopComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -43,18 +42,15 @@ import { TruncatePipe } from './shared/pipes/truncate.pipe';
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
+        deps: [HttpClient],
       },
-    })
-
-
-
+    }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
-  return new TranslateHttpLoader(http,"assets/i18n/", ".json");
+  return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }

@@ -57,6 +57,8 @@ export class AuthService {
           console.error(err);
         },
       });
+
+      this.onAuthChange()
   }
 
  private getUser(): Observable<UserIsAdmin[]> {
@@ -121,6 +123,16 @@ export class AuthService {
     }
   }
 
+
+
+  onAuthChange (){
+    this.firebaseAuth.authState.subscribe((res)=>{
+      console.log(res.uid)
+    })
+  }
+
+
+  
   async logOut() {
     this.firebaseAuth.signOut();
     localStorage.clear();

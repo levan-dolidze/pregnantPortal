@@ -4,6 +4,7 @@ import { LocalStorageService } from 'src/app/core/services/local-storage.service
 import { Router } from '@angular/router';
 import { Stuffs } from 'src/app/admin/models/shop';
 import { Cart } from '../shop/model';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-courses',
@@ -15,7 +16,9 @@ export class CoursesComponent implements OnInit {
   constructor(private shopService: ShopService,
 
     private localStorage: LocalStorageService,
-    private router:Router
+    private router:Router,
+    public firebaseAuth: AngularFireAuth,
+
 
   ) { }
 
@@ -25,6 +28,11 @@ export class CoursesComponent implements OnInit {
   ngOnInit(): void {
     this.getCourses()
 
+    this.firebaseAuth.authState.subscribe((res)=>{
+      console.log(res)
+
+    })
+  
   }
 
 
